@@ -117,7 +117,8 @@
 %%
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
-\title{Automated Feedback Loops: Enhancing Student Motivation and Performance in Programming Courses}
+% \title{Automated Feedback Loops: Enhancing Student Motivation and Performance in Programming Courses}
+\title{Direct automated feedback for student submissions based on LLMs}
 
 %%
 %% The "author" command and its associated commands are used to define
@@ -178,34 +179,22 @@
 %% Please copy and paste the code instead of the example below.
 %%
 \begin{CCSXML}
-<ccs2012>
- <concept>
-  <concept_id>00000000.0000000.0000000</concept_id>
-  <concept_desc>Do Not Use This Code, Generate the Correct Terms for Your Paper</concept_desc>
-  <concept_significance>500</concept_significance>
- </concept>
- <concept>
-  <concept_id>00000000.00000000.00000000</concept_id>
-  <concept_desc>Do Not Use This Code, Generate the Correct Terms for Your Paper</concept_desc>
-  <concept_significance>300</concept_significance>
- </concept>
- <concept>
-  <concept_id>00000000.00000000.00000000</concept_id>
-  <concept_desc>Do Not Use This Code, Generate the Correct Terms for Your Paper</concept_desc>
-  <concept_significance>100</concept_significance>
- </concept>
- <concept>
-  <concept_id>00000000.00000000.00000000</concept_id>
-  <concept_desc>Do Not Use This Code, Generate the Correct Terms for Your Paper</concept_desc>
-  <concept_significance>100</concept_significance>
- </concept>
-</ccs2012>
+  <ccs2012>
+     <concept>
+         <concept_id>10003456.10003457.10003527.10003540</concept_id>
+         <concept_desc>Social and professional topics~Student assessment</concept_desc>
+         <concept_significance>500</concept_significance>
+         </concept>
+     <concept>
+         <concept_id>10010405.10010489</concept_id>
+         <concept_desc>Applied computing~Education</concept_desc>
+         <concept_significance>500</concept_significance>
+         </concept>
+   </ccs2012>
 \end{CCSXML}
-
-\ccsdesc[500]{Do Not Use This Code~Generate the Correct Terms for Your Paper}
-\ccsdesc[300]{Do Not Use This Code~Generate the Correct Terms for Your Paper}
-\ccsdesc{Do Not Use This Code~Generate the Correct Terms for Your Paper}
-\ccsdesc[100]{Do Not Use This Code~Generate the Correct Terms for Your Paper}
+  
+\ccsdesc[500]{Social and professional topics~Student assessment}
+\ccsdesc[500]{Applied computing~Education}
 
 %%
 %% Keywords. The author(s) should pick words that accurately describe
@@ -222,24 +211,83 @@
 %% information and builds the first part of the formatted document.
 \maketitle
 
-\section{Introduction}
+\section{Introduction} % 1 page
 
-\section{Related Work}
+describe the problem of providing feedback to students in programming courses
+time consuming, not scalable, not always available
+hinders learning progress and motivation %todo: reference for this!
+
+
+
+outline of the paper at the end
+
+\section{Related Work} % 2 page
 
 \cite{hahn:2021:SystematicReviewEffects}
 
-\section{Approach: Automated Feedback Delivery}
+\newpage
+\section{Approach: Direct Automated Feedback Delivery (DAFeeD)} % 1 page
+DAFeeD employs large language models to deliver automated feedback on student submissions, designed to complement traditional teaching methods and provide additional support.
+Figure \ref{fig:DAFeeD-workflow} illustrates the continuous feedback workflow that DAFeeD facilitates, enabling students to receive feedback at any time, thereby eliminating the need to wait for responses from human tutors or course professors.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{figures/DAFeeD-ActivityDiagram.pdf}
+  \caption{Workflow of direct automated feedback delivery for students' submissions (UML Activity Diagram)}
+  \label{fig:DAFeeD-workflow}
+\end{figure}
+
+DAFeeD can provide feedback on various aspects such as the correctness of the code, the quality of the code, and the performance of the student.
+Once the student submits their solution, DAFeeD initiates a three-stage process to generate natural language feedback.
+
+The first stage, called \textit{Formatting}, takes the student's submission and extracts the submission content, problem statement including learning objectives, and any possible grading instructions the instructor defines.
+This extracted information represents the prompt input.
+During the prompt generation step, a predefined prompt template is filled with the prompt input data, resulting in a formatted prompt.
+
+In the second stage, called \textit{Predicting}, the formatted prompt is sent to a large language model, which generates a response that includes detailed feedback for the student.
+
+The final stage, \textit{Parsing}, takes the LLM response, which comes in the JSON format, and parses feedback items from it. 
+In addition to the feedback text, the feedback object also contains reference information indicating the part of the submission it pertains to.
+For programming exercises, this includes the file name and line number of the relevant code snippet to which the feedback refers.
+For text exercises, the reference information includes only the sentence or word range the feedback refers to.
+
+All of the feedback is then returned to the student for review.
+If the student is satisfied with the feedback, the process concludes. 
+Otherwise, the student can refine their solution and resubmit it, initiating the DAFeeD process anew.
+
+This iterative process is designed to motivate students to continuously learn and experiment with their solutions, resulting in improved performance.
 
 
-\section{Reference Implementation: Athena}
+\section{Reference Implementation: Athena} % 2 pages
+
+%todo: visualization of the feedback in Artemis
 
 \subsection{Prompts}
 
+%Todo: Listing of the used prompt (at least simplified) and an explanation of the prompt
+
 \subsection{Feedback Generation}
 
-\subsection{Architecture}
 
-\section{Evaluation}
+\subsection{Architecture}
+%Todo: deployment diagram + description
+Modular approach to support multiple exercise types and extend it in the future
+
+The assessment module manager receives all requests, checks for authorization, and then forwards them to the responsible modules.
+
+Independent of a specific learning management system, provides a REST API documented with the OpenAPI standard
+
+Currently connected to OpenAI and Azure OpenAI 
+Can be simply modified to use open-source models like Llama or Mistral either self-hosted or in the cloud.
+
+
+As the reference implementation is used in conjuction with the Artemis learning management system for actual university courses, the system is designed to be scalable and reliable (performance, maintainability, usability)
+Deployed in a kubernetes cluster to ensure scalability and reliability, loadbalancing, etc.
+
+
+\section{Evaluation} % 5 pages
+
+\subsection{Research Questions}
 
 \subsection{Study Design}
 
@@ -249,7 +297,14 @@
 
 \subsection{Discussion}
 
-\section{Conclusion}
+
+\section{Conclusion} % 1 page
+
+Future work
+improve visualization of feedback, improve feedback quality
+implement for more exercise types
+Use direct automated feedback in a real-world setting by enabling the feature in a real course. 
+This allows us to collect more data to evaluate the impact on student performance and motivation.
 
 
 %%
