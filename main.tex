@@ -47,7 +47,9 @@
 %%
 \documentclass[manuscript,screen,review]{acmart}
 
+\usepackage{caption}
 \usepackage[utf8]{inputenc}
+\usepackage[capitalize, noabbrev]{cleveref}
 
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
@@ -213,20 +215,45 @@
 
 \section{Introduction} % 1 page
 
-describe the problem of providing feedback to students in programming courses
-time consuming, not scalable, not always available
-hinders learning progress and motivation %todo: reference for this!
+% problem
+% time consuming, not scalable, not always available
+% hinders learning progress and motivation %todo: reference for this!
+
+% todo: reference for this!
+In the current educational landscape, providing timely and effective feedback to students remains a significant challenge.
+Traditionally, students must wait for course tutors or professors to review their submissions and provide feedback.
+This process can be time-consuming, often requiring students to arrange meetings and wait for available time slots, which are not always convenient or immediate.
+The inherent delays and scheduling difficulties make this approach not scalable, especially in courses with a large number of students.
+
+% todo: reference for this!
+These limitations hinder students' learning progress and motivation.
+The waiting period for feedback interrupts the learning flow, causing students to lose momentum and potentially disengage from the subject matter.
+%todo: reference for this!
+Additionally, the limited availability of tutors and professors means that not all students receive the individualized attention they need to improve their understanding and skills.
+This situation underscores the necessity for a more efficient and scalable feedback system that can provide continuous support to students without the constraints of traditional methods.
 
 
+% Objectives
 
-outline of the paper at the end
 
+%Outline
+The subsequent sections of this paper are organized to provide a comprehensive understanding of the research. 
+\cref{sec:related-work} provides an overview of related work. 
+\cref{sec:approach:DAFeeD} details the concept and methodology of Direct Automated Feedback Delivery (DAFeeD).
+\cref{sec:reference-implementation} describes the reference implementation of DAFeeD, called Athena, including a general overview, details on the used prompts, and the system architecture. 
+\cref{sec:evaluation} presents the evaluation results, %todo: add results 
+Finally, \cref{sec:conclusion} concludes with a summary of findings and discusses future research directions to enhance automated feedback systems.
+
+\newpage
 \section{Related Work} % 2 page
-
+\label{sec:related-work}
+todo
 \cite{hahn:2021:SystematicReviewEffects}
 
 \newpage
 \section{Approach: Direct Automated Feedback Delivery (DAFeeD)} % 1 page
+\label{sec:approach:DAFeeD}
+
 DAFeeD employs large language models to deliver automated feedback on student submissions, designed to complement traditional teaching methods and provide additional support.
 Figure \ref{fig:DAFeeD-workflow} illustrates the continuous feedback workflow that DAFeeD facilitates, enabling students to receive feedback at any time, thereby eliminating the need to wait for responses from human tutors or course professors.
 
@@ -237,7 +264,7 @@ Figure \ref{fig:DAFeeD-workflow} illustrates the continuous feedback workflow th
   \label{fig:DAFeeD-workflow}
 \end{figure}
 
-DAFeeD can provide feedback on various aspects such as the correctness of the code, the quality of the code, and the performance of the student.
+DAFeeD can provide feedback on various aspects, such as the correctness of the code, the quality of the code, and the performance of the student.
 Once the student submits their solution, DAFeeD initiates a three-stage process to generate natural language feedback.
 
 The first stage, called \textit{Formatting}, takes the student's submission and extracts the submission content, problem statement including learning objectives, and any possible grading instructions the instructor defines.
@@ -259,6 +286,10 @@ This iterative process is designed to motivate students to continuously learn an
 
 
 \section{Reference Implementation: Athena} % 2 pages
+\label{sec:reference-implementation}
+
+We incorporated DAFeeD into a reference implementation named Athena, which is integrated with the learning platform Artemis through which students submit their solution and review the feedback.
+
 
 %todo: visualization of the feedback in Artemis
 
@@ -267,7 +298,7 @@ This iterative process is designed to motivate students to continuously learn an
 %Todo: Listing of the used prompt (at least simplified) and an explanation of the prompt
 
 \subsection{Feedback Generation}
-
+?
 
 \subsection{Architecture}
 %Todo: deployment diagram + description
@@ -283,9 +314,10 @@ Can be simply modified to use open-source models like Llama or Mistral either se
 
 As the reference implementation is used in conjuction with the Artemis learning management system for actual university courses, the system is designed to be scalable and reliable (performance, maintainability, usability)
 Deployed in a kubernetes cluster to ensure scalability and reliability, loadbalancing, etc.
-
+Scale each module independently, e.g., more instances of the programming module when a new programming exercise is released.
 
 \section{Evaluation} % 5 pages
+\label{sec:evaluation}
 
 \subsection{Research Questions}
 
@@ -298,13 +330,16 @@ Deployed in a kubernetes cluster to ensure scalability and reliability, loadbala
 \subsection{Discussion}
 
 
-\section{Conclusion} % 1 page
+\section{Conclusion \& Future Work} % 1 page
+\label{sec:conclusion}
 
-Future work
-improve visualization of feedback, improve feedback quality
-implement for more exercise types
-Use direct automated feedback in a real-world setting by enabling the feature in a real course. 
-This allows us to collect more data to evaluate the impact on student performance and motivation.
+%future work
+% 
+Future work includes enhancing the visualization of feedback, such as grouping and color coding the feedback items to make it easier to differentiate between critical feedback items, suggestions for improvement, and positive feedback.
+A high priority will be on further improving the overall quality of the feedback provided. 
+We also aim to extend the implementation to support direct automated feedback for the remaining exercise types of Artemis.
+Another crucial step is to test direct automated feedback in a real-world setting by utilizing this feature in an actual course. 
+This will allow us to collect comprehensive data to thoroughly evaluate the impact on student performance and motivation.
 
 
 %%
