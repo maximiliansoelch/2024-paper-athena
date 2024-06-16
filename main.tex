@@ -120,7 +120,7 @@
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
 % \title{Automated Feedback Loops: Enhancing Student Motivation and Performance in Programming Courses}
-\title{Direct automated feedback for student submissions based on LLMs}
+\title{Direct automated feedback delivery for student submissions based on LLMs}
 
 %%
 %% The "author" command and its associated commands are used to define
@@ -169,12 +169,19 @@
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-  A clear and well-documented \LaTeX\ document is presented as an
-  article formatted for publication by ACM in a conference proceedings
-  or journal publication. Based on the ``acmart'' document class, this
-  article presents and explains many of the common variations, as well
-  as many of the formatting elements an author may use in the
-  preparation of the documentation of their work.
+
+  Receiving timely and personalized feedback is crucial for students' learning progress and motivation. 
+  However, providing such feedback poses a significant challenge in education, particularly as student numbers have steadily increased in recent years.
+  This growth has made it difficult for tutors and professors to deliver individualized feedback to each student, resulting in a time-consuming, repetitive, and often manual task that contributes to a heavy workload for educators.
+
+  This paper presents DAFeeD, a large language model (LLM)-based approach for providing automated formative feedback on student submissions.
+  The exercise-independent approach can be applied to various domains, such as programming, text, or modeling exercises. 
+  By incorporating exercise-specific information, such as the problem statement and grading instructions, into the prompt, the feedback is tailored to the exercise context.
+  
+  We implemented this approach in an open-source reference implementation named Athena, which is integrated with the learning platform Artemis.
+  To evaluate the effectiveness and efficiency of the approach, we conducted a controlled study with students.
+  The results show ... %todo: add results
+
 \end{abstract}
 
 %%
@@ -224,8 +231,10 @@
 In the current educational landscape, providing timely and effective feedback to students remains a significant challenge.
 Traditionally, students must wait for course tutors or professors to review their submissions and provide feedback.
 This process can be time-consuming, often requiring students to arrange meetings and wait for available time slots, which are not always convenient or immediate.
+Similar it is timecosuming and tedious for professors and tutors to provide asynchronous feedback via email or other communication channels.
 The inherent delays and scheduling difficulties make this approach not scalable, especially in courses with a large number of students.
 
+%todo: interactive learning concept (ref stephans paper)
 % todo: reference for this!
 These limitations hinder students' learning progress and motivation.
 The waiting period for feedback interrupts the learning flow, causing students to lose momentum and potentially disengage from the subject matter.
@@ -235,6 +244,12 @@ This situation underscores the necessity for a more efficient and scalable feedb
 
 
 % Objectives
+In this paper, we present an approach for generating automated feedback on student submissions using large language models (LLMs) to address these challenges.
+The approach is independent of the exercise type and can be applied to various domains, such as programming, text, or modeling exercises.
+We implemented the approach in an open-source reference implementation called Athena, connected to the learning platform Artemis through which students submit their solutions and receive feedback.
+To validate the effectiveness and efficiency of the approach, we tested it in a controlled environment. 
+We collected quantitative and qualitative data to evaluate students' perceptions of the approach and the overall performance of the reference implementation.
+The results show %todo: add results
 
 
 %Outline
@@ -265,9 +280,11 @@ Figure \ref{fig:DAFeeD-workflow} illustrates the continuous feedback workflow th
   \label{fig:DAFeeD-workflow}
 \end{figure}
 
+%todo: exercise independent
 DAFeeD can provide feedback on various aspects, such as the correctness of the code, the quality of the code, and the performance of the student.
 Once the student submits their solution, DAFeeD initiates a three-stage process to generate natural language feedback.
 
+%todo: add learner profile (find reference) to generate individualized, personal feedback tailored to the student's learning progress and needs.
 The first stage, called \textit{Formatting}, takes the student's submission and extracts the submission content, problem statement including learning objectives, and any possible grading instructions the instructor defines.
 This extracted information represents the prompt input.
 During the prompt generation step, a predefined prompt template is filled with the prompt input data, resulting in a formatted prompt.
