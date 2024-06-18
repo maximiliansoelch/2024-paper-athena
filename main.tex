@@ -289,7 +289,7 @@ The first stage, called \textit{Formatting}, takes the student's submission and 
 This extracted information represents the prompt input.
 During the prompt generation step, a predefined prompt template is filled with the prompt input data, resulting in a formatted prompt.
 
-In the second stage, called \textit{Predicting}, the formatted prompt is sent to a large language model, which generates a response that includes detailed feedback for the student.
+In the second stage, called \textit{Predicting}, the formatted prompt is sent to a large language model (LLM), which generates a response that includes detailed feedback for the student.
 
 The final stage, \textit{Parsing}, takes the LLM response, which comes in the JSON format, and parses feedback items from it. 
 In addition to the feedback text, the feedback object also contains reference information indicating the part of the submission it pertains to.
@@ -306,33 +306,58 @@ This iterative process is designed to motivate students to continuously learn an
 \section{Reference Implementation: Athena} % 2 pages
 \label{sec:reference-implementation}
 
-We incorporated DAFeeD into a reference implementation named Athena, which is integrated with the learning platform Artemis through which students submit their solution and review the feedback.
+We incorporated DAFeeD into a reference implementation named Athena, which is seamlessly integrated with the learning platform Artemis. 
+Through Artemis, students can submit their solution and review the feedback.
 
+When submitting their solutions on Artemis, students have the option to request direct automated feedback by clicking a newly added button.
+This feedback request is then sent to Athena, provided the student has not reached their feedback request limit for the exercise.
+Course instructors can customize the number of allowed feedback requests per exercise according to their preference.
+A status visualization informs students about their feedback request state.
+Once Athena generates the feedback and sends it back to Artemis, the student can review it in a modal window on Artemis, as depicted in Figure \ref{fig:Artemis-feedback-visualization}.
 
-%todo: visualization of the feedback in Artemis
+%todo: find better example for feedback including a positive feedback feedback item
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/artemis-feedback_anonymized.png}
+  \caption{Visualization of the feedback how students see it in Artemis.}
+  \label{fig:Artemis-feedback-visualization}
+\end{figure}
 
 \subsection{Prompts}
 
 %Todo: Listing of the used prompt (at least simplified) and an explanation of the prompt
 
 \subsection{Feedback Generation}
-?
 
 \subsection{Architecture}
-%Todo: deployment diagram + description
-Modular approach to support multiple exercise types and extend it in the future
 
-The assessment module manager receives all requests, checks for authorization, and then forwards them to the responsible modules.
+Athena is deployed in production alongside the learning platform Artemis, which serves up to more than 2000 students per course.
+Consequently, the reference implementation must satisfy additional non-functional requirements such as performance, scalability, maintainability, and usability.
+To meet these requirements and to support feedback generation for multiple exercise types while allowing for future extensibility, we adopted a modular architecture, as illustrated in Figure \ref{fig:Athena-architecture}.
 
-Independent of a specific learning management system, provides a REST API documented with the OpenAPI standard
+%TODO: change figure to a deployment diagram showing the architecture
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{figures/DAFeeD-ActivityDiagram.pdf}
+  \caption{Top Level Archietecture of the reference implementation Athena (UML Deployment Diagram)}
+  \label{fig:Athena-architecture}
+\end{figure}
 
-Currently connected to OpenAI and Azure OpenAI 
-Can be simply modified to use open-source models like Llama or Mistral either self-hosted or in the cloud.
+The \textit{module\_manager} handles all incoming requests, verifies authorization, and forwards them to the appropriate modules.
+The \textit{programming\_llm} module manages programming exercises and executes the three-stage DAFeeD process, which includes formatting, predicting, and parsing. 
+Similarly, the \textit{text\_llm module} is optimized for text exercises and follows the same process.
 
+Athena's system design is independent of any specific learning management system (LMS) as it provides a REST API, documented using the OpenAPI standard\footnote{\url{https://www.openapis.org}}.
+This independence allows Athena to be integrated with various LMS platforms, such as Moodle\footnote{\url{https://moodle.org}}.
 
-As the reference implementation is used in conjuction with the Artemis learning management system for actual university courses, the system is designed to be scalable and reliable (performance, maintainability, usability)
-Deployed in a kubernetes cluster to ensure scalability and reliability, loadbalancing, etc.
-Scale each module independently, e.g., more instances of the programming module when a new programming exercise is released.
+Athena currently connects to OpenAI models hosted in a private Azure cloud to ensure that student data is not used for training models, maintaining privacy.
+Additionally, the system can be configured to use open-source models like Llama\footnote{\url{https://llama.meta.com}} or Mistral\footnote{\url{https://mistral.ai}}, either self-hosted or cloud-based.
+
+To meet performance and scalability requirements, Athena and its modules are deployed within a Kubernetes cluster\footnote{\url{https://kubernetes.io}}.
+Kubernetes, in conjunction with Athena's modular architecture, allows the system to scale each module independently.
+For example, additional instances of the programming module can be instantiated when a new programming exercise is released.
+Furthermore, Kubernetes provides out-of-the-box load balancing and self-healing capabilities, ensuring that if a module crashes, it is automatically restarted.
+
 
 \section{Evaluation} % 5 pages
 \label{sec:evaluation}
