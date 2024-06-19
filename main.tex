@@ -52,6 +52,9 @@
 \usepackage[capitalize, noabbrev]{cleveref}
 \usepackage{enumitem}
 
+\usepackage{pgfplots}
+
+
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
@@ -519,6 +522,26 @@ In the final question group, participants assess the overall usability and helpf
 
 \subsection{Results}
 
+\begin{figure}[htpb]
+  \centering
+  \resizebox{\textwidth}{!}{
+    \input{figures/likert_responses.pgf}
+  }
+  \caption[Distribution of Likert scale responses]{Distribution of Likert scale responses.}
+  \label{figure:likert_responses}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \resizebox{\textwidth}{!}{
+    \input{figures/likert_responses_stacked.pgf}
+  }
+  \caption[Distribution of Likert scale responses stacked]{Distribution of Likert scale responses stacked.}
+  \label{figure:likert_responses_stacked}
+\end{figure}
+
+
+
 \subsection{Limitations}
 
 \subsection{Discussion}
@@ -534,7 +557,6 @@ A high priority will be on further improving the overall quality of the feedback
 We also aim to extend the implementation to support direct automated feedback for the remaining exercise types of Artemis.
 Another crucial step is to test direct automated feedback in a real-world setting by utilizing this feature in an actual course. 
 This will allow us to collect comprehensive data to thoroughly evaluate the impact on student performance and motivation.
-
 
 %%
 %% The next two lines define the bibliography style to be used, and
