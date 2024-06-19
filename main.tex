@@ -50,6 +50,7 @@
 \usepackage{caption}
 \usepackage[utf8]{inputenc}
 \usepackage[capitalize, noabbrev]{cleveref}
+\usepackage{enumitem}
 
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
@@ -437,17 +438,17 @@ Athena is deployed in production alongside the learning platform Artemis, which 
 Consequently, the reference implementation must satisfy additional non-functional requirements such as performance, scalability, maintainability, and usability.
 To meet these requirements and to support feedback generation for multiple exercise types while allowing for future extensibility, we adopted a modular architecture, as illustrated in Figure \ref{fig:Athena-architecture}.
 
-%TODO: change figure to a deployment diagram showing the architecture
+%TODO: anonymize the figure (Artemis, Athena )
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{figures/DAFeeD-ActivityDiagram.pdf}
+  \includegraphics[width=\linewidth]{figures/Athena-Architecture.pdf}
   \caption{Top Level Archietecture of the reference implementation Athena (UML Deployment Diagram)}
   \label{fig:Athena-architecture}
 \end{figure}
 
-The \textit{module\_manager} handles all incoming requests, verifies authorization, and forwards them to the appropriate modules.
-The \textit{programming\_llm} module manages programming exercises and executes the three-stage DAFeeD process, which includes formatting, predicting, and parsing. 
-Similarly, the \textit{text\_llm module} is optimized for text exercises and follows the same process.
+The \textit{Module Manager} handles all incoming requests, verifies authorization, and forwards them to the appropriate modules.
+The \textit{ProgrammingLLM} module manages programming exercises and executes the three-stage DAFeeD process, which includes formatting, predicting, and parsing. 
+Similarly, the \textit{TextLLM} module is optimized for text exercises and follows the same process.
 
 Athena's system design is independent of any specific learning management system (LMS) as it provides a REST API, documented using the OpenAPI standard\footnote{\url{https://www.openapis.org}}.
 This independence allows Athena to be integrated with various LMS platforms, such as Moodle\footnote{\url{https://moodle.org}}.
@@ -464,9 +465,57 @@ Furthermore, Kubernetes provides out-of-the-box load balancing and self-healing 
 \section{Evaluation} % 5 pages
 \label{sec:evaluation}
 
+In this section, we outline the methodology employed to validate the effectiveness of the proposed DAFeeD approach including the reference implementation Athena.
+The conducted evaluation represents the treatment validation stage of the design science methodology proposed by Wieringa \cite{wieringa:2014:DesignScienceMethodologya}.
+In this stage, the proposed solution — DAFeeD — is evaluated in a controlled environment, and the collected data is utilized for the refinement and improvement of the solution.
+
+We begin by describing the research questions, followed by the study design and the results.
+Subsequently, we outline the limitations of the evaluation and discuss the implications of the findings.
+
+
 \subsection{Research Questions}
 
+With this study, we want to answer the following research questions about direct automated feedback delivery:
+
+\begin{enumerate}[label=\textbf{RQ\arabic*}]
+  \item How do students perceive the effectiveness of direct automated feedback?
+  \item How does the availability of direct automated feedback affect student engagement and motivation?
+  \item Do students feel more comfortable requesting automatic feedback than asking a human tutor or the course professor?
+  \item How do students perceive the usability and helpfulness of DAFeeD?
+\end{enumerate}
+
+%todo: describe research questions
+
+
 \subsection{Study Design}
+To gain comprehensive insights into students' perceptions of the newly introduced DAFeeD concept, we employed a survey-based approach.
+Initially, study participants tested the new feedback feature on a sample exercise using the Artemis platform in a controlled environment at the university.
+The study conductors were present throughout to answer questions and provide support as needed.
+Following this hands-on experience, participants were asked to complete a survey hosted on the community version of the open-source survey tool LimeSurvey\footnote{\url{https://www.limesurvey.org}}.
+This survey aimed to gather their opinions on direct automated feedback and collect feedback on their overall experience with the feature.
+
+We invited students from current courses at the university to participate in the study via direct messages and conducted the study with a total of 20 participants.
+The study uses a mixed methods approach, combining quantitative and qualitative data collection methods. 
+The participants were a mix of undergraduate and graduate students from various disciplines, including computer science, information systems, and games engineering.
+%todo: describe participants 
+%todo: cite nielsen regarding number of participants
+
+%todo: describe survey
+%likert scale, open questions
+All survey questions, except for the introductory demographic queries and the final, voluntary free-text responses, employ a 5-point Likert scale \cite{allen:2007:LikertScalesData} and are mandatory.
+%Question Group 1
+The survey commences with a series of introductory demographic inquiries, including the student's current study program, ongoing degree pursued, and academic semester. 
+Additionally, respondents are asked to provide information regarding the hardware employed, including details on the operating system and web browser used.
+The final question in this group asks participants to describe their programming experience.
+
+%Question Group 2
+Following the demographic section, the survey explores participants' opinions on the impact of direct automated feedback on student engagement and motivation.
+%Question Group 3
+Subsequently, the survey queries participants on their comfort with the feedback source, specifically whether they prefer receiving feedback from a human tutor or from the DAFeeD feature.
+%Question Group 4
+The survey then investigates aspects related to participants' perceived effectiveness of the DAFeeD feature.
+%Question Group 5
+In the final question group, participants assess the overall usability and helpfulness of the DAFeeD feature.
 
 \subsection{Results}
 
