@@ -53,6 +53,16 @@
 \usepackage{enumitem}
 
 \usepackage{pgfplots}
+\usepackage{listings}
+
+\lstdefinestyle{prompt}{
+  breaklines=true,
+  breakindent=0pt,
+  frame=single,
+  escapeinside={\%*}{*)},  % if you want to add LaTeX within your code
+}
+
+\newcommand{\highlight}[1]{\textcolor{blue}{\textbf{#1}}}
 
 
 %%
@@ -433,6 +443,40 @@ Once Athena generates the feedback and sends it back to Artemis, the student can
 
 %Todo: Listing of the used prompt (at least simplified) and an explanation of the prompt
 
+% Prompt for generating feedback suggestions of programming exercises
+\begin{figure}[!htbp]
+  \caption*{System Message}
+  \begin{lstlisting}[style=prompt]
+  You are an AI tutor for programming assessment at a prestigious university.
+  
+  # Task
+  Create graded feedback suggestions for a student's programming submission that a human tutor would accept. Meaning, the feedback you provide should be appliable to the submission with little to no modification.
+  
+  # Style
+  1. Constructive, 2. Specific, 3. Balanced, 4. Clear and Concise, 5. Actionable, 6. Educational, 7. Contextual
+  
+  # Problem statement
+  %*\highlight{\{problem\_statement\}}*)
+  
+  # Grading instructions
+  %*\highlight{\{grading\_instructions\}}*)
+  Max points: %*\highlight{\{max\_points\}}*), bonus points: %*\highlight{\{bonus\_points\}}*) (whole assessment, not just this file)
+  
+  # Diff between solution (deletions) and student's submission (additions):
+  %*\highlight{\{solution\_to\_submission\_diff\}}*)
+  
+  # Diff between template (deletions) and student's submission (additions):
+  %*\highlight{\{template\_to\_submission\_diff\}}*)
+
+  Student's submission file to grade (with line numbers <number>: <line>):
+  """
+  %*\highlight{\{submission\_file\}}*)
+  """
+  \end{lstlisting}
+  \caption[Prompt for Generating Feedback Suggestions for Programming Exercises]{Prompt for Generating Feedback Suggestions for Programming Exercises. The highlighted sections are placeholders for the respective elements.}
+  \label{fig:prompt-programming-exercise-generation}
+  \end{figure}
+
 \subsection{Feedback Generation}
 
 \subsection{Architecture}
@@ -522,22 +566,22 @@ In the final question group, participants assess the overall usability and helpf
 
 \subsection{Results}
 
-% \begin{figure}[htpb]
-%   \centering
-%   \resizebox{\textwidth}{!}{
-%     \input{figures/likert_responses.pgf}
-%   }
-%   \caption[Distribution of Likert scale responses]{Distribution of Likert scale responses.}
-%   \label{figure:likert_responses}
-% \end{figure}
-
 \begin{figure}[htpb]
   \centering
   \resizebox{\textwidth}{!}{
-    \input{figures/likert_responses_stacked.pgf}
+    \input{figures/likert_responses.pgf}
   }
   \caption[Distribution of Likert scale responses]{Distribution of Likert scale responses.}
+  \label{figure:likert_responses}
 \end{figure}
+
+% \begin{figure}[htpb]
+%   \centering
+%   \resizebox{\textwidth}{!}{
+%     \input{figures/likert_responses_stacked.pgf}
+%   }
+%   \caption[Distribution of Likert scale responses]{Distribution of Likert scale responses.}
+% \end{figure}
 
 \begin{figure}[htpb]
   \centering
