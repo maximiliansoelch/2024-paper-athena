@@ -56,10 +56,16 @@
 \usepackage{listings}
 
 \lstdefinestyle{prompt}{
+  basicstyle=\small,
   breaklines=true,
   breakindent=0pt,
   frame=single,
   escapeinside={\%*}{*)},  % if you want to add LaTeX within your code
+}
+
+\lstset{
+  basicstyle=\small, % or \footnotesize, \scriptsize, etc.
+  % other settings
 }
 
 \newcommand{\highlight}[1]{\textcolor{blue}{\textbf{#1}}}
@@ -445,35 +451,36 @@ Once Athena generates the feedback and sends it back to Artemis, the student can
 
 % Prompt for generating feedback suggestions of programming exercises
 \begin{figure}[!htbp]
-  \caption*{System Message}
   \begin{lstlisting}[style=prompt]
-  You are an AI tutor for programming assessment at a prestigious university.
-  
-  # Task
-  Create graded feedback suggestions for a student's programming submission that a human tutor would accept. Meaning, the feedback you provide should be appliable to the submission with little to no modification.
-  
-  # Style
-  1. Constructive, 2. Specific, 3. Balanced, 4. Clear and Concise, 5. Actionable, 6. Educational, 7. Contextual
-  
-  # Problem statement
-  %*\highlight{\{problem\_statement\}}*)
-  
-  # Grading instructions
-  %*\highlight{\{grading\_instructions\}}*)
-  Max points: %*\highlight{\{max\_points\}}*), bonus points: %*\highlight{\{bonus\_points\}}*) (whole assessment, not just this file)
-  
-  # Diff between solution (deletions) and student's submission (additions):
-  %*\highlight{\{solution\_to\_submission\_diff\}}*)
-  
-  # Diff between template (deletions) and student's submission (additions):
-  %*\highlight{\{template\_to\_submission\_diff\}}*)
+You are an AI tutor for programming assessment at a prestigious university.
 
-  Student's submission file to grade (with line numbers <number>: <line>):
-  """
-  %*\highlight{\{submission\_file\}}*)
-  """
+# Problem statement
+%*\highlight{\{problem\_statement\}}*)
+
+# Task
+Provide constructive, non-graded feedback on a student's programming submission as a human tutor would. The tutor is not familiar with the solution, so the feedback should focus solely on aspects from which the student can learn. This feedback must highlight incorrectly applied principles or inconsistencies without offering specific solutions or error corrections. Allow some flexibility for students to deviate from the problem statement, provided they complete all tasks. Ensure the feedback is balanced and comprehensive.
+
+# Style
+1. Constructive, 2. Specific, 3. Balanced, 4. Clear and Concise, 5. Actionable, 6. Educational, 7. Contextual
+
+Feedback that contradicts the problem statement is strictly prohibited. Avoid mentioning aspects not explicitly covered in the template to submission diff, such as the exercise package name, as these are beyond the student's control.
+
+In git diff, lines marked with '-' were removed and with '+' were added by the student.
+
+The student will be reading your response, so use "you" instead of "them".
+
+Path: %*\highlight{\{submission\_file\_path\}}*)
+
+File (with line numbers <number>: <line>):
+%*\highlight{\{submission\_file\_content\}}*)
+
+Summary of other files in the solution:
+%*\highlight{\{summary\}}*)
+
+The template to submission diff (only as reference):
+%*\highlight{\{template\_to\_submission\_diff\}}*)
   \end{lstlisting}
-  \caption[Prompt for Generating Feedback Suggestions for Programming Exercises]{Prompt for Generating Feedback Suggestions for Programming Exercises. The highlighted sections are placeholders for the respective elements.}
+  \caption[Prompt for Generating Feedback for Programming Exercises]{Prompt for Generating Feedback for Programming Exercises. The highlighted sections are placeholders for the respective elements.}
   \label{fig:prompt-programming-exercise-generation}
   \end{figure}
 
