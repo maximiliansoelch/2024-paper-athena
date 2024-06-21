@@ -192,15 +192,18 @@
 
   Receiving timely and personalized feedback is crucial for students' learning progress and motivation. 
   However, providing such feedback poses a significant challenge in education, particularly as student numbers have steadily increased in recent years.
-  This growth has made it difficult for tutors and professors to deliver individualized feedback to each student, resulting in a time-consuming, repetitive, and often manual task that contributes to a heavy workload for educators.
+  This growth has made it difficult for tutors and professors to deliver individualized feedback to each student.
+  Consequently, the task has become time-consuming, repetitive, and often manual, contributing to a heavy workload for educators.
 
-  This paper presents DAFeeD, a large language model (LLM)-based approach for providing automated formative feedback on student submissions.
+  This paper introduces direct automated feedback delivery (DAFeeD), a large language model (LLM)-based approach for providing automated formative feedback on student submissions.
   The exercise-independent approach can be applied to various domains, such as programming, text, or modeling exercises. 
-  By incorporating exercise-specific information, such as the problem statement and grading instructions, into the prompt, the feedback is tailored to the exercise context.
+  By incorporating exercise-specific information into the prompt, such as the problem statement and grading instructions, the feedback is tailored to the exercise context.
   
   We implemented this approach in an open-source reference implementation named Athena, which is integrated with the learning platform Artemis.
   To evaluate the effectiveness and efficiency of the approach, we conducted a controlled study with students.
-  The results show ... %todo: add results
+  The survey results indicate that students appreciate the potential of direct automated feedback to help them reach their learning goals.
+  They are more likely to request feedback and stay engaged and connected to the course.
+  This increased engagement and ease of access to feedback have the potential to significantly enhance students' learning effectiveness and even their performance.
 
 \end{abstract}
 
@@ -402,7 +405,7 @@ Figure \ref{fig:DAFeeD-workflow} illustrates the continuous feedback workflow th
   \label{fig:DAFeeD-workflow}
 \end{figure}
 
-%todo: exercise independent
+%todo: exercise independent formative assessment feedback, besides feedback on issues or improvements, the feedback can be positive when the student did the task correctly.
 DAFeeD can provide feedback on various aspects, such as the correctness of the code, the quality of the code, and the performance of the student.
 Once the student submits their solution, DAFeeD initiates a three-stage process to generate natural language feedback.
 
@@ -540,6 +543,14 @@ With this study, we want to answer the following research questions about direct
 
 %todo: describe research questions
 
+RQ1 seeks to understand students' views on the value and impact of the feedback provided by the DAFeeD system. 
+We are interested in whether students find the feedback to be relevant and beneficial to their learning process.
+RQ2 examines the influence of direct automated feedback on students' overall engagement with the course material and their motivation to complete exercises and improve their skills.
+We aim to determine if the immediacy and convenience of automated feedback enhance students' commitment to their coursework.
+RQ3 explores students' comfort levels with seeking feedback from an automated system compared to traditional sources such as human tutors or course professors. 
+We want to assess whether students prefer the anonymity and immediacy of automated feedback over potentially intimidating interactions with instructors.
+%todo: RQ4
+RQ4 focuses 
 
 \subsection{Study Design}
 To gain comprehensive insights into students' perceptions of the newly introduced DAFeeD concept, we employed a survey-based approach.
@@ -553,9 +564,8 @@ The study uses a mixed methods approach, combining quantitative and qualitative 
 The participants were a mix of undergraduate and graduate students from various disciplines, including computer science, information systems, and games engineering.
 %todo: describe participants 
 %todo: cite nielsen regarding number of participants
+%todo: describe sample exercise
 
-%todo: describe survey
-%likert scale, open questions
 All survey questions, except for the introductory demographic queries and the final, voluntary free-text responses, employ a 5-point Likert scale \cite{allen:2007:LikertScalesData} and are mandatory.
 %Question Group 1
 The survey commences with a series of introductory demographic inquiries, including the student's current study program, ongoing degree pursued, and academic semester. 
@@ -570,6 +580,7 @@ Subsequently, the survey queries participants on their comfort with the feedback
 The survey then investigates aspects related to participants' perceived effectiveness of the DAFeeD feature.
 %Question Group 5
 In the final question group, participants assess the overall usability and helpfulness of the DAFeeD feature.
+
 
 \subsection{Results}
 
