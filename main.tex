@@ -448,9 +448,16 @@ Once Athena generates the feedback and sends it back to Artemis, the student can
   \label{fig:Artemis-feedback-visualization}
 \end{figure}
 
-\subsection{Prompts}
 
-%Todo: Listing of the used prompt (at least simplified) and an explanation of the prompt
+\subsection{Feedback Generation}
+
+The prompt design is crucial for guiding the large language model (LLM) in generating effective and contextually relevant feedback. In Figure \ref{fig:prompt-programming-exercise-generation}, we provide an example of a prompt used for generating feedback for programming exercises. This prompt incorporates specific instructions to ensure that the feedback is tailored to the student's submission.
+
+The feedback generation process begins by identifying the differences between the student's submission repository and the provided template repository, the starting point. These differences are identified using a git diff, which highlights lines removed and added by the student. If the problem statement is too lengthy or complex, a separate LLM invocation is used to split the problem statement into relevant parts for each file. This ensures that the feedback is targeted and relevant to the specific context of the file being reviewed. Additionally, a summary of the student's solution across all files is generated using another LLM invocation. This summary provides a comprehensive overview of the submission, which is included in the prompt to offer context for the feedback.
+
+In the provided prompt, several key components guide the AI in creating useful feedback. The \textit{Problem Statement} section contextualizes the student's task and helps the AI understand the exercise's objectives. The \textit{Task Instructions} direct the AI to provide non-graded, constructive feedback focusing on educational aspects without offering direct solutions. \textit{Style Guidelines} ensure the feedback is constructive, specific, balanced, clear, concise, actionable, educational, and contextual. The \textit{File Path and Content} provide the specific file under review along with its content, aiding the AI in pinpointing specific lines of code for feedback. Additionally, \textit{Summary and Diffs} between the template and submission offer additional context, helping the AI understand the student's changes and their overall approach.
+
+The structure and content of this prompt are designed to emulate a human tutor's approach, ensuring that the feedback is both relevant and supportive of the student's learning process. By providing such detailed instructions and contextual information, the LLM can generate feedback that is both meaningful and actionable for students.
 
 % Prompt for generating feedback suggestions of programming exercises
 \begin{figure}[!htbp]
@@ -486,8 +493,6 @@ The template to submission diff (only as reference):
   \caption[Prompt for Generating Feedback for Programming Exercises]{Prompt for Generating Feedback for Programming Exercises. The highlighted sections are placeholders for the respective elements.}
   \label{fig:prompt-programming-exercise-generation}
   \end{figure}
-
-\subsection{Feedback Generation}
 
 \subsection{Architecture}
 
