@@ -398,21 +398,26 @@ Figure \ref{fig:DAFeeD-workflow} illustrates the continuous feedback workflow th
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{figures/DAFeeD-ActivityDiagram.pdf}
-  \caption{Workflow of direct automated feedback delivery for students' submissions (UML Activity Diagram)}
+  \includegraphics[width=\linewidth]{figures/DAFeeD-ActivityDiagram_alternative.pdf}
+  \caption{Workflow of direct automated feedback delivery (DAFeeD) for students' submissions (UML Activity Diagram)}
   \label{fig:DAFeeD-workflow}
 \end{figure}
 
-%todo: exercise independent formative assessment feedback, besides feedback on issues or improvements, the feedback can be positive when the student did the task correctly.
-DAFeeD can provide feedback on various aspects, such as the correctness of the code, the quality of the code, and the performance of the student.
+The feedback process is designed to be exercise-independent, meaning that it can be applied to various exercise types, such as programming, text, or modeling exercises.
+%todo: cite formative feedback
+DAFeeD can provide formative feedback to the students, including feedback on issues or improvements, as well as positive feedback when the student completes the task correctly.
 Once the student submits their solution, DAFeeD initiates a three-stage process to generate natural language feedback.
 
 %todo: add learner profile (find reference) to generate individualized, personal feedback tailored to the student's learning progress and needs.
-The first stage, called \textit{Formatting}, takes the student's submission and extracts the submission content, problem statement including learning objectives, and any possible grading instructions the instructor defines.
-This extracted information represents the prompt input.
-During the prompt generation step, a predefined prompt template is filled with the prompt input data, resulting in a formatted prompt.
+The first stage, called \textit{Formatting}, takes the student's submission and extracts the submission content, the problem statement, including learning objectives, and any possible grading instructions the instructor defines.
+All of this gathered information represents the context.
+During the prompt generation step, a predefined prompt template is filled with the prompt input data, resulting in the feedback prompt.
+Depending on the exercise, adaptions need to be made to the prompt template to ensure that the feedback output of the LLM is tailored to the specific exercise type.
+For programming exercises, the generated feedback needs to have metadata information about the file and line number of the code snippet to which the feedback refers.
+For text exercises, the feedback needs to have metadata about the sentence or word range the feedback refers to.
 
-In the second stage, called \textit{Predicting}, the formatted prompt is sent to a large language model (LLM), which generates a response that includes detailed feedback for the student.
+In the second stage, called \textit{Predicting}, DAFeeD sends the feedback prompt to a large language model (LLM) and invokes it with the prompt. 
+As a result, the LLM generates a response to that prompt including detailed feedback items for the student.
 
 The final stage, \textit{Parsing}, takes the LLM response, which comes in the JSON format, and parses feedback items from it. 
 In addition to the feedback text, the feedback object also contains reference information indicating the part of the submission it pertains to.
@@ -421,7 +426,7 @@ For text exercises, the reference information includes only the sentence or word
 
 All of the feedback is then returned to the student for review.
 If the student is satisfied with the feedback, the process concludes. 
-Otherwise, the student can refine their solution and resubmit it, initiating the DAFeeD process anew.
+Otherwise, the student can refine refine and resubmit their solution, initiating the DAFeeD process anew.
 
 This iterative process is designed to motivate students to continuously learn and experiment with their solutions, resulting in improved performance.
 
