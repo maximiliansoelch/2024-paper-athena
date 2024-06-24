@@ -140,7 +140,7 @@
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
 % \title{Automated Feedback Loops: Enhancing Student Motivation and Performance in Programming Courses}
-\title{Direct automated feedback delivery for student submissions based on LLMs}
+\title{Direct Automated Feedback Delivery for Student Submissions based on LLMs}
 
 %%
 %% The "author" command and its associated commands are used to define
@@ -190,20 +190,19 @@
 %% article.
 \begin{abstract}
 
-  Receiving timely and personalized feedback is crucial for students' learning progress and motivation. 
-  However, providing such feedback poses a significant challenge in education, particularly as student numbers have steadily increased in recent years.
-  This growth has made it difficult for tutors and professors to deliver individualized feedback to each student.
-  Consequently, the task has become time-consuming, repetitive, and often manual, contributing to a heavy workload for educators.
+Timely and individualized feedback is crucial for students' learning progress and motivation.
+However, providing such feedback is a major challenge in education, especially as the number of students has steadily increased in recent years.
+This growth has made it difficult for teachers to provide individualized feedback to each student, resulting in a time-consuming, repetitive and often manual task that contributes to a high workload.
 
-  This paper introduces direct automated feedback delivery (DAFeeD), a large language model (LLM)-based approach for providing automated formative feedback on student submissions.
-  The exercise-independent approach can be applied to various domains, such as programming, text, or modeling exercises. 
-  By incorporating exercise-specific information into the prompt, such as the problem statement and grading instructions, the feedback is tailored to the exercise context.
-  
-  We implemented this approach in an open-source reference implementation named Athena, which is integrated with the learning platform Artemis.
-  To evaluate the effectiveness and efficiency of the approach, we conducted a controlled study with students.
-  The survey results indicate that students appreciate the potential of direct automated feedback to help them reach their learning goals.
-  They are more likely to request feedback and stay engaged and connected to the course.
-  This increased engagement and ease of access to feedback have the potential to significantly enhance students' learning effectiveness and even their performance.
+This paper presents Direct Automated Feedback (DAFeeD), a large language model (LLM)-based approach for automated formative feedback on student submissions in various exercise domains.
+The defined feedback process enables interactive learning by allowing students to submit their solutions multiple times and request feedback repeatedly before the submission deadline.
+By incorporating task-specific information into the prompt, DAFeeD provides iterative customized feedback, facilitating continuous student improvement.
+
+To empirically evaluate the feedback process, we implemented it in an open-source reference implementation that is integrated into the LMS learning platform.
+We conducted a controlled study in which students used the feedback process in a programming task in a supervised environment and completed a survey.
+The results show that students perceive the feedback process as relevant and beneficial to their learning.
+Students indicated that they feel more comfortable and willing to request automated feedback than they would with human tutors because it is more convenient and immediate.
+This shows that DAFeeD has the potential to significantly improve the feedback process in educational institutions and increase students' learning efficiency and performance.
 
 \end{abstract}
 
@@ -232,11 +231,10 @@
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
-\keywords{Do, Not, Us, This, Code, Put, the, Correct, Terms, for,
-  Your, Paper}
+\keywords{Software Engineering, Education, Formative Feedback, Interactive Learning}
 
 % \received{20 February 2007}
-% \received[revised]{12 March 2009}
+% \received[revised]{12 March 2009} 
 % \received[accepted]{5 June 2009}
 
 %%
@@ -400,21 +398,26 @@ Figure \ref{fig:DAFeeD-workflow} illustrates the continuous feedback workflow th
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{figures/DAFeeD-ActivityDiagram.pdf}
-  \caption{Workflow of direct automated feedback delivery for students' submissions (UML Activity Diagram)}
+  \includegraphics[width=\linewidth]{figures/DAFeeD-ActivityDiagram_alternative.pdf}
+  \caption{Workflow of direct automated feedback delivery (DAFeeD) for students' submissions (UML Activity Diagram)}
   \label{fig:DAFeeD-workflow}
 \end{figure}
 
-%todo: exercise independent formative assessment feedback, besides feedback on issues or improvements, the feedback can be positive when the student did the task correctly.
-DAFeeD can provide feedback on various aspects, such as the correctness of the code, the quality of the code, and the performance of the student.
+The feedback process is designed to be exercise-independent, meaning that it can be applied to various exercise types, such as programming, text, or modeling exercises.
+%todo: cite formative feedback
+DAFeeD can provide formative feedback to the students, including feedback on issues or improvements, as well as positive feedback when the student completes the task correctly.
 Once the student submits their solution, DAFeeD initiates a three-stage process to generate natural language feedback.
 
 %todo: add learner profile (find reference) to generate individualized, personal feedback tailored to the student's learning progress and needs.
-The first stage, called \textit{Formatting}, takes the student's submission and extracts the submission content, problem statement including learning objectives, and any possible grading instructions the instructor defines.
-This extracted information represents the prompt input.
-During the prompt generation step, a predefined prompt template is filled with the prompt input data, resulting in a formatted prompt.
+The first stage, called \textit{Formatting}, takes the student's submission and extracts the submission content, the problem statement, including learning objectives, and any possible grading instructions the instructor defines.
+All of this gathered information represents the context.
+During the prompt generation step, a predefined prompt template is filled with the prompt input data, resulting in the feedback prompt.
+Depending on the exercise, adaptions need to be made to the prompt template to ensure that the feedback output of the LLM is tailored to the specific exercise type.
+For programming exercises, the generated feedback needs to have metadata information about the file and line number of the code snippet to which the feedback refers.
+For text exercises, the feedback needs to have metadata about the sentence or word range the feedback refers to.
 
-In the second stage, called \textit{Predicting}, the formatted prompt is sent to a large language model (LLM), which generates a response that includes detailed feedback for the student.
+In the second stage, called \textit{Predicting}, DAFeeD sends the feedback prompt to a large language model (LLM) and invokes it with the prompt. 
+As a result, the LLM generates a response to that prompt including detailed feedback items for the student.
 
 The final stage, \textit{Parsing}, takes the LLM response, which comes in the JSON format, and parses feedback items from it. 
 In addition to the feedback text, the feedback object also contains reference information indicating the part of the submission it pertains to.
@@ -423,7 +426,7 @@ For text exercises, the reference information includes only the sentence or word
 
 All of the feedback is then returned to the student for review.
 If the student is satisfied with the feedback, the process concludes. 
-Otherwise, the student can refine their solution and resubmit it, initiating the DAFeeD process anew.
+Otherwise, the student can refine refine and resubmit their solution, initiating the DAFeeD process anew.
 
 This iterative process is designed to motivate students to continuously learn and experiment with their solutions, resulting in improved performance.
 
@@ -443,7 +446,7 @@ Once Athena generates the feedback and sends it back to Artemis, the student can
 %todo: find better example for feedback including a positive feedback feedback item
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.9\linewidth]{figures/artemis-feedback-alt_light_clarity-upscaler_anonymized.png}
+  \includegraphics[width=0.75\linewidth]{figures/artemis-feedback-alt_light_clarity-upscaler_anonymized.png}
   \caption{Visualization of the feedback how students see it in Artemis.}
   \label{fig:Artemis-feedback-visualization}
 \end{figure}
@@ -451,13 +454,25 @@ Once Athena generates the feedback and sends it back to Artemis, the student can
 
 \subsection{Feedback Generation}
 
-The prompt design is crucial for guiding the large language model (LLM) in generating effective and contextually relevant feedback. In Figure \ref{fig:prompt-programming-exercise-generation}, we provide an example of a prompt used for generating feedback for programming exercises. This prompt incorporates specific instructions to ensure that the feedback is tailored to the student's submission.
+The prompt design is crucial for guiding the large language model (LLM) in generating effective and contextually relevant feedback. 
+In Figure \ref{fig:prompt-programming-exercise-generation}, we provide an example of a prompt used for generating feedback for programming exercises. 
+This prompt incorporates specific instructions to ensure that the feedback is tailored to the student's submission.
 
-The feedback generation process begins by identifying the differences between the student's submission repository and the provided template repository, the starting point. These differences are identified using a git diff, which highlights lines removed and added by the student. If the problem statement is too lengthy or complex, a separate LLM invocation is used to split the problem statement into relevant parts for each file. This ensures that the feedback is targeted and relevant to the specific context of the file being reviewed. Additionally, a summary of the student's solution across all files is generated using another LLM invocation. This summary provides a comprehensive overview of the submission, which is included in the prompt to offer context for the feedback.
+The feedback generation process begins by identifying the differences between the student's submission repository and the provided template repository, the starting point. 
+These differences are identified using a git diff, which highlights lines removed and added by the student. 
+If the problem statement is too lengthy or complex, a separate LLM invocation is used to split the problem statement into relevant parts for each file. 
+This ensures that the feedback is targeted and relevant to the specific context of the file being reviewed. 
+Additionally, a summary of the student's solution across all files is generated using another LLM invocation. 
+This summary provides a comprehensive overview of the submission, which is included in the prompt to offer context for the feedback.
 
-In the provided prompt, several key components guide the AI in creating useful feedback. The \textit{Problem Statement} section contextualizes the student's task and helps the AI understand the exercise's objectives. The \textit{Task Instructions} direct the AI to provide non-graded, constructive feedback focusing on educational aspects without offering direct solutions. \textit{Style Guidelines} ensure the feedback is constructive, specific, balanced, clear, concise, actionable, educational, and contextual. The \textit{File Path and Content} provide the specific file under review along with its content, aiding the AI in pinpointing specific lines of code for feedback. Additionally, \textit{Summary and Diffs} between the template and submission offer additional context, helping the AI understand the student's changes and their overall approach.
+In the provided prompt, several key components guide the AI in creating useful feedback. The \textit{Problem Statement} section contextualizes the student's task and helps the AI understand the exercise's objectives.
+The \textit{Task Instructions} direct the AI to provide non-graded, constructive feedback focusing on educational aspects without offering direct solutions.
+\textit{Style Guidelines} ensure the feedback is constructive, specific, balanced, clear, concise, actionable, educational, and contextual.
+The \textit{File Path and Content} provide the specific file under review along with its content, aiding the AI in pinpointing specific lines of code for feedback.
+Additionally, \textit{Summary and Diffs} between the template and submission offer additional context, helping the AI understand the student's changes and their overall approach.
 
-The structure and content of this prompt are designed to emulate a human tutor's approach, ensuring that the feedback is both relevant and supportive of the student's learning process. By providing such detailed instructions and contextual information, the LLM can generate feedback that is both meaningful and actionable for students.
+The structure and content of this prompt are designed to emulate a human tutor's approach, ensuring that the feedback is both relevant and supportive of the student's learning process.
+By providing such detailed instructions and contextual information, the LLM can generate feedback that is both meaningful and actionable for students.
 
 % Prompt for generating feedback suggestions of programming exercises
 \begin{figure}[!htbp]
@@ -540,9 +555,9 @@ Subsequently, we outline the limitations of the evaluation and discuss the impli
 With this study, we want to answer the following research questions about direct automated feedback delivery:
 
 \begin{enumerate}[label=\textbf{RQ\arabic*}]
-  \item How do students perceive the effectiveness of direct automated feedback?
-  \item How does the availability of direct automated feedback affect student engagement and motivation?
+  \item How does the availability of direct automated feedback affect student engagement and motivation? 
   \item Do students feel more comfortable requesting automatic feedback than asking a human tutor or the course professor?
+  \item How do students perceive the effectiveness of direct automated feedback?
   \item How do students perceive the usability and helpfulness of DAFeeD?
 \end{enumerate}
 
@@ -571,23 +586,62 @@ The participants were a mix of undergraduate and graduate students from various 
 %todo: cite nielsen regarding number of participants
 %todo: describe sample exercise
 
-All survey questions, except for the introductory demographic queries and the final, voluntary free-text responses, employ a 5-point Likert scale \cite{allen:2007:LikertScalesData} and are mandatory.
-%Question Group 1
-The survey commences with a series of introductory demographic inquiries, including the student's current study program, ongoing degree pursued, and academic semester. 
-Additionally, respondents are asked to provide information regarding the hardware employed, including details on the operating system and web browser used.
-The final question in this group asks participants to describe their programming experience.
+All survey questions, except for the introductory demographic queries and the final, voluntary free-text responses, employ a 5-point Likert scale \cite{allen:2007:LikertScalesData} ranging from "strongly agree" to "strongly disagree" and are mandatory.
+The following list shows the mapping from the asked questions and statements to the research questions:
 
-%Question Group 2
-Following the demographic section, the survey explores participants' opinions on the impact of direct automated feedback on student engagement and motivation.
-%Question Group 3
-Subsequently, the survey queries participants on their comfort with the feedback source, specifically whether they prefer receiving feedback from a human tutor or from the DAFeeD feature.
-%Question Group 4
-The survey then investigates aspects related to participants' perceived effectiveness of the DAFeeD feature.
-%Question Group 5
-In the final question group, participants assess the overall usability and helpfulness of the DAFeeD feature.
+\begin{enumerate}[label=\textbf{RQ\arabic*}]
+  \item \textbf{Engagement and Motivation}
+    \begin{enumerate}[label=\textbf{Q\arabic*},resume]
+      \item The direct automated feedback from Artemis keeps me more engaged in the learning process.
+      \item The direct automatic feedback from Artemis motivates me to repeatedly improve my code.
+      \item The direct automated feedback from Artemis makes me feel more motivated to complete my programming assignments.
+      \item The direct automated feedback from Artemis encourages me to experiment more with my coding solutions.
+    \end{enumerate}
+  \item \textbf{Comfort with Feedback Source}
+  \begin{enumerate}[label=\textbf{Q\arabic*},resume]
+    \item I feel more comfortable requesting direct automated feedback from Artemis than feedback from a human tutor.
+    \item I am likely to request feedback more frequently when using direct automated feedback from Artemis than feedback from my course professor.
+    \item I find receiving direct automated feedback from Artemis less intimidating than receiving feedback from a human tutor.
+    \item I feel that requesting direct automated feedback from Artemis is more convenient than arranging a meeting with a human tutor.
+  \end{enumerate}
+  \item \textbf{Perceived Effectiveness}
+    \begin{enumerate}[label=\textbf{Q\arabic*},resume]
+      \item The direct automated feedback provided by Artemis helps me understand my mistakes.
+      \item The direct automated feedback from Artemis is more effective than one-time feedback.
+      \item The direct automated feedback has significantly improved the quality of my programming assignment.
+      \item The direct automated feedback is a helpful addition to the automatic test case results.
+      \item I feel that having access to direct automated feedback from Artemis continuously helps me more than arranging a meeting with a human tutor.
+    \end{enumerate}
+  \item \textbf{Usability and Helpfulness}
+    \begin{enumerate}[label=\textbf{Q\arabic*},resume]
+      \item It is easy to receive direct automated feedback from Artemis on my programming assignments.
+      \item I would rather use the direct automated feedback integrated into Artemis than use an external AI tool for getting feedback.
+      \item I find the direct automated feedback from Artemis helpful in improving my programming skills.
+      \item I am satisfied with the overall performance of the direct automated feedback.
+    \end{enumerate}
+\end{enumerate}
+
+
+
+% %Question Group 1
+% The survey commences with a series of introductory demographic inquiries, including the student's current study program, ongoing degree pursued, and academic semester. 
+% Additionally, respondents are asked to provide information regarding the hardware employed, including details on the operating system and web browser used.
+% The final question in this group asks participants to describe their programming experience.
+
+% %Question Group 2
+% Following the demographic section, the survey explores participants' opinions on the impact of direct automated feedback on student engagement and motivation.
+% %Question Group 3
+% Subsequently, the survey queries participants on their comfort with the feedback source, specifically whether they prefer receiving feedback from a human tutor or from the DAFeeD feature.
+% %Question Group 4
+% The survey then investigates aspects related to participants' perceived effectiveness of the DAFeeD feature.
+% %Question Group 5
+% In the final question group, participants assess the overall usability and helpfulness of the DAFeeD feature.
 
 
 \subsection{Results}
+
+In the following paragraphs, we present the results. 
+The answers to each of the likert scale questions are visualized in Figure \ref{fig:Survey-Results}.
 
 \begin{figure}[htpb]
   \centering
@@ -595,13 +649,52 @@ In the final question group, participants assess the overall usability and helpf
     \input{figures/likert_responses.pgf}
   }
   \caption[Distribution of Likert scale responses]{Distribution of Likert scale responses.}
+  \label{fig:Survey-Results}
 \end{figure}
+
+%todo make this a bit shorter and simplify sentences
+90\% of students indicated that the direct automated feedback from Artemis keeps them more engaged in the learning process, with 10\% neutral (Q1).
+For Q2, 85\% of students stated that the direct automatic feedback from Artemis motivates them to repeatedly improve their code, with 10\% neutral and 5\% disagreeing.
+For Q3, 85\% of students mentioned that the direct automated feedback from Artemis makes them feel more motivated to complete their programming assignments, with 10\% neutral and 5\% disagreeing.
+
+
+The encouragement to experiment more with coding solutions (Q4) received a positive response, with 70\% agreeing, 20\% neutral, and 10\% disagreeing.
+Comfort levels in requesting feedback showed that 90\% of students feel more comfortable requesting direct automated feedback from Artemis than feedback from a human tutor, with 10\% neutral (Q5).
+For Q6, 100\% of students noted that they are likely to request feedback more frequently when using direct automated feedback from Artemis than feedback from their course professor.
+Receiving feedback from Artemis was found to be less intimidating than from a human tutor by 80\% of students, with 10\% neutral and 10\% disagreeing (Q7).
+
+
+Convenience in requesting feedback showed that 100\% of students feel that requesting direct automated feedback from Artemis is more convenient than arranging a meeting with a human tutor (Q8).
+In terms of understanding mistakes, 90\% of students believed that the direct automated feedback provided by Artemis helps them understand their mistakes, with 10\% neutral (Q9).
+The effectiveness of the feedback was highlighted by 95\% of students who found that the direct automated feedback from Artemis is more effective than one-time feedback, with 5\% neutral (Q10).
+
+
+Regarding the quality of assignments, 70\% of students observed that the direct automated feedback has significantly improved the quality of their programming assignments, with 20\% neutral and 10\% disagreeing (Q11).
+For Q12, 95\% of students felt that the direct automated feedback is a helpful addition to the automatic test case results, with 5\% neutral.
+Continuous access to feedback was found to be more beneficial than arranging meetings with a tutor by 75\% of students, with 15\% neutral and 10\% disagreeing (Q13).
+
+
+Ease of receiving feedback was highly rated, with 100\% of students confirming that it is easy to receive direct automated feedback from Artemis on their programming assignments (Q14).
+Furthermore, 70\% of students preferred using the direct automated feedback integrated into Artemis over using an external AI tool for getting feedback, with 25\% neutral and 5\% disagreeing (Q15).
+In terms of skill improvement, 70\% of students agreed that they find the direct automated feedback from Artemis helpful in improving their programming skills, with 25\% neutral and 5\% disagreeing (Q16).
+Lastly, 80\% of students were satisfied with the overall performance of the direct automated feedback system, with 10\% neutral and 10\% disagreeing (Q17).
+
+
+% free text responses
+The responses to the voluntary free text questions highlight several themes.
+Many students appreciated the immediate availability of feedback, which allowed for prompt corrections without waiting for manual review. 
+However, some respondents suggested improvements such as better categorization of feedback, more detailed explanations of errors, and prioritization of critical issues. 
+The feedback was generally found to be relevant and useful in addressing obvious mistakes and improving code quality. 
+Students expressed a preference for feedback that clearly identified mistakes and provided specific guidance on how to correct them, along with suggestions for improvement. 
+Some challenges included understanding certain automated feedback messages and occasional false positives or negatives in error detection.
 
 
 \subsection{Limitations}
 
+
 \subsection{Discussion}
 
+Overall, the direct automated feedback system was positively received by students, indicating its effectiveness in enhancing their programming skills, despite some areas for improvement.
 
 \section{Conclusion \& Future Work} % 1 page
 \label{sec:conclusion}
