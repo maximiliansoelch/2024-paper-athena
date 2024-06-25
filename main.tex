@@ -50,6 +50,8 @@
 \usepackage{caption}
 \usepackage[utf8]{inputenc}
 \usepackage[capitalize, noabbrev]{cleveref}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
 \usepackage{enumitem}
 
 \usepackage{pgfplots}
@@ -69,6 +71,22 @@
 }
 
 \newcommand{\highlight}[1]{\textcolor{blue}{\textbf{#1}}}
+
+% commands for the findings box
+\definecolor{main}{HTML}{808080}    % setting main color to be used
+\definecolor{sub}{HTML}{f2f2f2} 
+\tcbset{
+	sharp corners,
+	colback = white,
+	before skip = 0.2cm,    % add extra space before the box
+	after skip = 0.5cm      % add extra space after the box
+}
+\newtcolorbox{findingsBox}{
+	colback = sub, 
+	colframe = main, 
+	boxrule = 0pt, 
+	leftrule = 6pt % left rule weight
+}    
 
 
 %%
@@ -586,38 +604,43 @@ The participants were a mix of undergraduate and graduate students from various 
 %todo: cite nielsen regarding number of participants
 %todo: describe sample exercise
 
-All survey questions, except for the introductory demographic queries and the final, voluntary free-text responses, employ a 5-point Likert scale \cite{allen:2007:LikertScalesData} ranging from "strongly agree" to "strongly disagree" and are mandatory.
+All survey questions, except for the introductory demographic queries and the five final, voluntary free-text responses (Q18 - Q22), employ a 5-point Likert scale \cite{allen:2007:LikertScalesData} ranging from "strongly agree" to "strongly disagree" and are mandatory.
 The following list shows the mapping from the asked questions and statements to the research questions:
 
 \begin{enumerate}[label=\textbf{RQ\arabic*}]
   \item \textbf{Engagement and Motivation}
-    \begin{enumerate}[label=\textbf{Q\arabic*},resume]
-      \item The direct automated feedback keeps me more engaged in the learning process.
-      \item The direct automatic feedback motivates me to repeatedly improve my code.
-      \item The direct automated feedback makes me feel more motivated to complete my programming assignments.
-      \item The direct automated feedback encourages me to experiment more with my coding solutions.
+    \begin{enumerate}[label=\textbf{Q\arabic*},resume,ref=Q\arabic*]
+      \item \label{Q1} The direct automated feedback keeps me more engaged in the learning process.
+      \item \label{Q2} The direct automatic feedback motivates me to repeatedly improve my code.
+      \item \label{Q3} The direct automated feedback makes me feel more motivated to complete my programming assignments.
+      \item \label{Q4} The direct automated feedback encourages me to experiment more with my coding solutions.
     \end{enumerate}
   \item \textbf{Comfort with Feedback Source}
-  \begin{enumerate}[label=\textbf{Q\arabic*},resume]
-    \item I feel more comfortable requesting direct automated feedback than feedback from a human tutor.
-    \item I am likely to request feedback more frequently when using direct automated feedback than feedback from my course professor.
-    \item I find receiving direct automated feedback less intimidating than receiving feedback from a human tutor.
-    \item I feel that requesting direct automated feedback is more convenient than arranging a meeting with a human tutor.
+  \begin{enumerate}[label=\textbf{Q\arabic*},resume,ref=Q\arabic*]
+    \item \label{Q5} I feel more comfortable requesting direct automated feedback than feedback from a human tutor.
+    \item \label{Q6} I am likely to request feedback more frequently when using direct automated feedback than feedback from my course professor.
+    \item \label{Q7} I find receiving direct automated feedback less intimidating than receiving feedback from a human tutor.
+    \item \label{Q8} I feel that requesting direct automated feedback is more convenient than arranging a meeting with a human tutor.
   \end{enumerate}
   \item \textbf{Perceived Effectiveness}
-    \begin{enumerate}[label=\textbf{Q\arabic*},resume]
-      \item The direct automated feedback helps me understand my mistakes.
-      \item The direct automated feedback is more effective than one-time feedback.
-      \item The direct automated feedback has significantly improved the quality of my programming assignment.
-      \item The direct automated feedback is a helpful addition to the automatic test case results.
-      \item I feel that having access to direct automated feedback continuously helps me more than arranging a meeting with a human tutor.
+    \begin{enumerate}[label=\textbf{Q\arabic*},resume,ref=Q\arabic*]
+      \item \label{Q9} The direct automated feedback helps me understand my mistakes.
+      \item \label{Q10} The direct automated feedback is more effective than one-time feedback.
+      \item \label{Q11} The direct automated feedback has significantly improved the quality of my programming assignment.
+      \item \label{Q12} The direct automated feedback is a helpful addition to the automatic test case results.
+      \item \label{Q13} I feel that having access to direct automated feedback continuously helps me more than arranging a meeting with a human tutor.
     \end{enumerate}
   \item \textbf{Usability and Helpfulness}
-    \begin{enumerate}[label=\textbf{Q\arabic*},resume]
-      \item It is easy to receive direct automated feedback  on my programming assignments.
-      \item I would rather use the direct automated feedback integrated into Artemis than use an external AI tool for getting feedback.
-      \item I find the direct automated feedback helpful in improving my programming skills.
-      \item I am satisfied with the overall performance of the direct automated feedback.
+    \begin{enumerate}[label=\textbf{Q\arabic*},resume,ref=Q\arabic*]
+      \item \label{Q14} It is easy to receive direct automated feedback  on my programming assignments.
+      \item \label{Q15} I would rather use the direct automated feedback integrated into Artemis than use an external AI tool for getting feedback.
+      \item \label{Q16} I find the direct automated feedback helpful in improving my programming skills.
+      \item \label{Q17} I am satisfied with the overall performance of the direct automated feedback.
+      \item \label{Q18} Are there any improvements that you would suggest for direct automated feedback?
+      \item \label{Q19} How did you find the feedback?
+      \item \label{Q20} What kind of feedback would you like to receive?
+      \item \label{Q21} Was there anything you particularly liked about the direct automated feedback process?
+      \item \label{Q22} What difficulties did you encounter when using the direct automated feedback process?
     \end{enumerate}
 \end{enumerate}
 
@@ -652,33 +675,35 @@ The answers to each of the likert scale questions are visualized in Figure \ref{
   \label{fig:Survey-Results}
 \end{figure}
 
+
 %todo make this a bit shorter and simplify sentences
-90\% of students indicated that the direct automated feedback from Artemis keeps them more engaged in the learning process, with 10\% neutral (Q1).
-For Q2, 85\% of students stated that the direct automatic feedback from Artemis motivates them to repeatedly improve their code, with 10\% neutral and 5\% disagreeing.
-For Q3, 85\% of students mentioned that the direct automated feedback from Artemis makes them feel more motivated to complete their programming assignments, with 10\% neutral and 5\% disagreeing.
-The encouragement to experiment more with coding solutions (Q4) received a positive response, with 70\% agreeing, 20\% neutral, and 10\% disagreeing.
+90\% of students indicated that the direct automated feedback from Artemis keeps them more engaged in the learning process, with 10\% neutral (\ref{Q1}).
+For \ref{Q2}, 85\% of students stated that the direct automatic feedback from Artemis motivates them to repeatedly improve their code, with 10\% neutral and 5\% disagreeing.
+For \ref{Q3}, 85\% of students mentioned that the direct automated feedback from Artemis makes them feel more motivated to complete their programming assignments, with 10\% neutral and 5\% disagreeing.
+The encouragement to experiment more with coding solutions (\ref{Q4}) received a positive response, with 70\% agreeing, 20\% neutral, and 10\% disagreeing.
 
 
-Comfort levels in requesting feedback showed that 90\% of students feel more comfortable requesting direct automated feedback from Artemis than feedback from a human tutor, with 10\% neutral (Q5).
-For Q6, 100\% of students noted that they are likely to request feedback more frequently when using direct automated feedback from Artemis than feedback from their course professor.
-Receiving feedback from Artemis was found to be less intimidating than from a human tutor by 80\% of students, with 10\% neutral and 10\% disagreeing (Q7).
-Convenience in requesting feedback showed that 100\% of students feel that requesting direct automated feedback from Artemis is more convenient than arranging a meeting with a human tutor (Q8).
+Comfort levels in requesting feedback showed that 90\% of students feel more comfortable requesting direct automated feedback from Artemis than feedback from a human tutor, with 10\% neutral (\ref{Q5}).
+For \ref{Q6}, 100\% of students noted that they are likely to request feedback more frequently when using direct automated feedback from Artemis than feedback from their course professor.
+Receiving feedback from Artemis was found to be less intimidating than from a human tutor by 80\% of students, with 10\% neutral and 10\% disagreeing (\ref{Q7}).
+Convenience in requesting feedback showed that 100\% of students feel that requesting direct automated feedback from Artemis is more convenient than arranging a meeting with a human tutor (\ref{Q8}).
 
 
-In terms of understanding mistakes, 90\% of students believed that the direct automated feedback provided by Artemis helps them understand their mistakes, with 10\% neutral (Q9).
-The effectiveness of the feedback was highlighted by 95\% of students who found that the direct automated feedback from Artemis is more effective than one-time feedback, with 5\% neutral (Q10).
-Regarding the quality of assignments, 70\% of students observed that the direct automated feedback has significantly improved the quality of their programming assignments, with 20\% neutral and 10\% disagreeing (Q11).
-For Q12, 95\% of students felt that the direct automated feedback is a helpful addition to the automatic test case results, with 5\% neutral.
-Continuous access to feedback was found to be more beneficial than arranging meetings with a tutor by 75\% of students, with 15\% neutral and 10\% disagreeing (Q13).
+In terms of understanding mistakes, 90\% of students believed that the direct automated feedback provided by Artemis helps them understand their mistakes, with 10\% neutral (\ref{Q9}).
+The effectiveness of the feedback was highlighted by 95\% of students who found that the direct automated feedback from Artemis is more effective than one-time feedback, with 5\% neutral (\ref{Q10}).
+Regarding the quality of assignments, 70\% of students observed that the direct automated feedback has significantly improved the quality of their programming assignments, with 20\% neutral and 10\% disagreeing (\ref{Q11}).
+For \ref{Q12}, 95\% of students felt that the direct automated feedback is a helpful addition to the automatic test case results, with 5\% neutral.
+Continuous access to feedback was found to be more beneficial than arranging meetings with a tutor by 75\% of students, with 15\% neutral and 10\% disagreeing (\ref{Q13}).
 
 
-Ease of receiving feedback was highly rated, with 100\% of students confirming that it is easy to receive direct automated feedback from Artemis on their programming assignments (Q14).
-Furthermore, 70\% of students preferred using the direct automated feedback integrated into Artemis over using an external AI tool for getting feedback, with 25\% neutral and 5\% disagreeing (Q15).
-In terms of skill improvement, 70\% of students agreed that they find the direct automated feedback from Artemis helpful in improving their programming skills, with 25\% neutral and 5\% disagreeing (Q16).
-Lastly, 80\% of students were satisfied with the overall performance of the direct automated feedback system, with 10\% neutral and 10\% disagreeing (Q17).
+Ease of receiving feedback was highly rated, with 100\% of students confirming that it is easy to receive direct automated feedback from Artemis on their programming assignments (\ref{Q14}).
+Furthermore, 70\% of students preferred using the direct automated feedback integrated into Artemis over using an external AI tool for getting feedback, with 25\% neutral and 5\% disagreeing (\ref{Q15}).
+In terms of skill improvement, 70\% of students agreed that they find the direct automated feedback from Artemis helpful in improving their programming skills, with 25\% neutral and 5\% disagreeing (\ref{Q16}).
+Lastly, 80\% of students were satisfied with the overall performance of the direct automated feedback system, with 10\% neutral and 10\% disagreeing (\ref{Q17}).
 
 
 % free text responses
+% todo: add Question numbers 
 The responses to the voluntary free text questions highlight several themes.
 Many students appreciated the immediate availability of feedback, which allowed for prompt corrections without waiting for manual review. 
 However, some respondents suggested improvements such as better categorization of feedback, more detailed explanations of errors, and prioritization of critical issues. 
@@ -688,6 +713,58 @@ Some challenges included understanding certain automated feedback messages and o
 
 
 \subsection{Findings}
+
+The responses to RQ1 show that the availability of direct automated feedback can significantly enhance student engagement and motivation.
+Students reported feeling more engaged in the learning process.
+The majority of participants also stated they are motivated to repeatedly improve their code and complete their programming assignments.
+Additionally, the feedback encouraged a notable percentage of participants to experiment more with their coding solutions.
+These findings suggest that direct automated feedback is highly effective in boosting both engagement and motivation among students.
+
+\begin{findingsBox}
+	\textbf{Main Findings for RQ1:} The availability of direct automated feedback significantly enhances student engagement and motivation. 
+  Students feel more engaged in the learning process, motivated to improve their code, and encouraged to experiment more with their coding solutions, without having to wait for manual feedback.
+\end{findingsBox}
+
+The responses to RQ2 reveal a strong level of comfort for requesting automated feedback compared to traditional human feedback channels.
+Students stated they feel more comfortable requesting automated feedback than from human tutors and were likely to request automated feedback more frequently than from their course professors.
+Requesting automated feedback was perceived as less intimidating for most of the participants and all of them stated it is more convenient than arranging meetings with a human tutor.
+These findings highlight the effectiveness of automated feedback in providing a more comfortable and accessible feedback mechanism for students.
+
+\begin{findingsBox}
+	\textbf{Main Findings for RQ2:} Students feel more comfortable requesting automated feedback than from human. 
+  They are likely to request automated feedback more frequently and find it less intimidating and more convenient than arranging meetings with a human tutor.
+  % TODO: Does this fit here or in the discussion
+  % Nevertheless, DAFeeD's role should be seen as a complementary tool rather than a complete substitute for humans.
+\end{findingsBox}
+
+The responses to RQ3 indicate that students think automated feedback is highly effective in helping them understand and improve their programming assignments. 
+Students reported that the feedback helped them understand their mistakes and found it more effective than receiving only one-time feedback for their submission.
+The majority reported that the feedback significantly improved the quality of their programming assignments, and all participants stated that automatic feedback is a helpful addition to automatic test case results generated by Artemis.
+In addition, most participants saw continuous access to autamted feedback as more beneficial than arranging meetings with a tutor. 
+These findings suggest that automated feedback not only aids in error identification but also significantly enhances the overall quality of student assignments.
+
+\begin{findingsBox}
+	\textbf{Main Findings for RQ3:} Students perceive automated feedback as highly effective in helping them understand and improve their programming assignments. 
+  The feedback helps them understand their mistakes, improves the quality of their assignments, and is a helpful addition to automatic test case results.
+\end{findingsBox}
+
+The responses to RQ4 demonstrate the ease of receiving feedback and overall satisfaction with DAFeeD's feedback process and its reference implementation. 
+Students found it easy to receive feedback on their programming assignments.
+A large number of participants preferred using the feedback integrated into Artemis than copy their submission and relevant context information over to an external AI tool. 
+Most participants also deemed the feedback helpful in improving their programming skills. 
+In regards to the overall performance of the direct automated feedback, the majority of students expressed high satisfaction with the system.
+%These findings underscore the high level of user satisfaction and the perceived effectiveness of Artemis' automated feedback in enhancing programming skills.
+%TODO: free text answers including improvements
+
+\begin{findingsBox}
+	\textbf{Main Findings for RQ4:} Students find it easy to receive feedback on their programming assignments and are satisfied with the overall performance of DAFeeD and its reference implementation. 
+  There are some suggestions for improvements, such as better categorization of feedback, more detailed explanations of errors, and prioritization of critical issues.
+\end{findingsBox}
+
+
+\subsection{Discussion}
+
+Overall, the direct automated feedback system was positively received by students, indicating its effectiveness in enhancing their programming skills, despite some areas for improvement.
 
 
 \subsection{Limitations}
@@ -702,10 +779,6 @@ We follow the categorization framework proposed by Runeson and Höst \cite{runes
 
 % construct validity
 
-
-\subsection{Discussion}
-
-Overall, the direct automated feedback system was positively received by students, indicating its effectiveness in enhancing their programming skills, despite some areas for improvement.
 
 \section{Conclusion \& Future Work} % 1 page
 \label{sec:conclusion}
