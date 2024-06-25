@@ -285,111 +285,91 @@ Finally, \cref{sec:conclusion} concludes with a summary of findings and discusse
 \section{Related Work} % 2 page
 \label{sec:related-work}
 
+% > Effective Feedback Practices %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Focus on Formative Feedback
+% \citet{shute:2008:FocusFormativeFeedback} 
+
+% What makes for effective feedback: staff and student perspectives
+% \citet{dawson:2019:WhatMakesEffective}
+
+
+% > Impact of Feedback on Student Learning %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Adaptive Immediate Feedback Can Improve Novice Programming Engagement and Intention to Persist in Computer Science
+% \citet{marwan:2020:AdaptiveImmediateFeedback}
+
+% A Comparison of Immediate and Scheduled Feedback in Introductory Programming Projects
+% \citet{leinonen:2022:ComparisonImmediateScheduled}
+
+
+% > Automated Feedback Systems in Education %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% todo!: A review of automated feedback systems for learners: Classification framework, challenges, and opportunities.
+% \citet{deeva:2021:ReviewAutomatedFeedback}
+
+% A Systematic Review of the Effects of Automatic Scoring and Automatic Feedback in Educational Settings
 % Marcelo Guerra Hahn, Silvia Margarita Baldiris Navarro, Luis De La Fuente Valentin, and Daniel Burgos. 2021. A Systematic Review of the Effects of Automatic Scoring and Automatic Feedback in Educational Settings. IEEE Access 9 (2021), 108190–108198. https://doi.org/10.1109/ACCESS.2021. 3100890
 \citet{hahn:2021:SystematicReviewEffects} conducted a systematic review on the effects of automatic scoring and feedback tools, underscoring their critical role in scaling online education and reducing the time between submission and feedback. While their work primarily addresses graded feedback, the insights on scalability, bias reduction, and student engagement are highly relevant. This paper informs our understanding of the broader implications of automated feedback systems, reinforcing the potential benefits of DAFeeD in providing iterative, task-specific feedback that enhances student learning outcomes and engagement.
 
+% A Systematic Literature Review of Automated Feedback Generation for Programming Exercises
 % Hieke Keuning, Johan Jeuring, and Bastiaan Heeren. 2018. A Systematic Literature Review of Automated Feedback Generation for Programming Exercises. ACM Transactions on Computing Education 19, 1, Article 3 (Sept. 2018). https://doi.org/10.1145/3231711
 % -> Explore potential of LLMs:
+% Exploring the Potential of Large Language Models to Generate Formative Programming Feedback:
 % Natalie Kiesler, Dominic Lohr, and Hieke Keuning. 2023. Exploring the Potential of Large Language Models to Generate Formative Programming Feedback. arXiv:2309.00029
 \citet{keuning:2018:SystematicLiteratureReview} conducted a systematic review of 101 tools for automated feedback on programming exercises, highlighting that most tools focus on error identification rather than providing actionable guidance or adapting to specific instructional needs. \cite{kiesler:2023:ExploringPotentialLarge} extended this work by applying their feedback typology to explore the effectiveness of large language models (LLMs) like ChatGPT in generating formative programming feedback. They found that while LLMs can produce useful feedback, they often include misleading information for novices. Our DAFeeD system builds on these insights by leveraging advancements in LLMs to provide a integrated feedback process with iterative and customized feedback, facilitating continuous student improvement. To mitigate the risk of misleading information, our system informs students within the LMS that the feedback is AI-generated, emphasizing the need for critical evaluation. This approach ensures that students can benefit from immediate, tailored feedback while being aware of its limitations.
 
+% Feedback-Generation for Programming Exercises With GPT-4:
 % Imen Azaiz, Natalie Kiesler, and Sven Strickroth. 2024. Feedback-Generation for Programming Exercises With GPT-4. arXiv:2403.04449 [cs]
 % Accepted at ITiCSE '24, first author is from LMU
 The work by \citet{azaiz:2024:FeedbackGenerationProgrammingExercises} is relevant as it highlights the limitations of LLMs, advising against using GPT-4 Turbo for automatic feedback generation for programming education due to inconsistencies. In contrast, our research evaluates the integrated direct automatic feedback delivery process within an LMS, which we believe can already be beneficial for students. We anticipate that increasingly powerful LLMs and advanced prompting strategies will improve the feedback generation process over time without revealing solutions.
 
+% > Human-AI Interaction in Education %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% AI Teaches the Art of Elegant Coding: Timely, Fair, and Helpful Style Feedback in a Global Course
-% SIGCSE 2024
-% Citations: 0 (1 on google), 164 downloads on ACM
-% \cite{woodrow:2024:AITeachesArta}
-%
-%%%% Related work: 
-%%%% - Timeliness of feedback:
-%%%% 1. James A. Kulik and Chen-Lin C. Kulik. 1988. Timing of Feedback and Verbal Learning. Review of Educational Research 58 (1988), 79 – 97. https: //api.semanticscholar.org/CorpusID:145572756
-%%%% 2. Kathryn Haughney, Shawnee Wakeman, and Laura Hart. 2020. Quality of Feedback in Higher Education: A Review of Literature. Education Sciences 10, 3 (2020). https://doi.org/10.3390/educsci10030060
-%%%% 3. John C. Chen, Dexter C. Whittinghill, and Jennifer A. Kadlowec. 2006. Using Rapid Feedback to Enhance Student Learning and Satisfaction. In Proceedings. Frontiers in Education. 36th Annual Conference. 13–18. https://doi.org/10.1109/ FIE.2006.322306
-%%%% 4. D.S. Goldstein, J.W. Pellegrino, S.R. Goldman, T.M. Stoelinga, N.T. Heffernan, and C. Heffernan. 2016. Improving mathematical learning outcomes through applying principles of spaced practice and assessment with feedback. Poster presented at the Annual Meeting of the American Educational Research Association.
-%%%%
-%%%% - Automated feedback tools:
-%%%% mostly on style feedback (static analysis, rule-based tools)
-%%%% More modern tools NLP (clustering using pre-existing solutions)
-%%%% No LLM based tools as related work and it is 2024...
+% Grounded copilot: How programmers interact with code-generating models.
+% \citet{barke:2023:GroundedCopilotHow}
+
+% To trust or to think: Cognitive forcing functions can reduce overreliance on AI in AI-assisted decision-making.
+% \citet{bucinca:2021:TrustThinkCognitive}
 
 
-% CodeHelp: Using Large Language Models with Guardrails for Scalable Support in Programming Classes
-% Koli Calling '23 
-% Citations: 45
-% \cite{liffiton:2024:CodeHelpUsingLarge}
-%
-% In our work, students receive immediate feedback from CodeHelp at any time of the day or night.
-%
-%%%% Related Work:
-%%%% Too much, they have 20-30 references in the related work section
-%%%%
-%%%% Key differences pointed out to:
-%%%% 1. (see below Koli '23) Majeed Kazemitabaar, Justin Chow, Carl Ka To Ma, Barbara J. Ericson, David Weintrop, and Tovi Grossman. 2023. Studying the Effect of AI Code Generators on Supporting Novice Learners in Introductory Programming. In Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems (Hamburg, Germany) (CHI ’23). Association for Computing Machinery, New York, NY, USA, Article 455, 23 pages. https://doi.org/10.1145/3544548.3580919
-%%%% 2. (see below ICER '23)  Arto Hellas, Juho Leinonen, Sami Sarsa, Charles Koutcheme, Lilja Kujanpää, and Juha Sorva. 2023. Exploring the Responses of Large Language Models to Beginner Programmers’ Help Requests. arXiv:2306.05715 [cs.CY]
+% > Large Language Models in Education %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% How Novices Use LLM-based Code Generators to Solve CS1 Coding Tasks in a Self-Paced Learning Environment
-% Koli Calling '23
-% Citations: 37
-% \cite{kazemitabaar:2024:HowNovicesUse}
-%
-%%%% Related Work:
-%%%%
-%%%% - Programmers’ Experience with AI Coding Assistants
-%%%% ...
-%%%% - Large Language Models in Computer Science Education
-%%%% ...
+% Programming Is Hard - Or at Least It Used to Be: Educational Opportunities and Challenges of AI Code Generation
+% \citet{becker:2023:ProgrammingHardLeast}
 
+% Studying the effect of AI Code Generators on Supporting Novice Learners in Introductory Programming
+% \citet{kazemitabaar:2023:StudyingEffectAIa
 
 % Exploring the Responses of Large Language Models to Beginner Programmers’ Help Requests
-% ICER '23
-% Citations 5 on ACM 68 on google, 834 downloads
-% \cite{hellas:2023:ExploringResponsesLargea}
-%
-%%%% No obvious related work section, besides background
+% \citet{hellas:2023:ExploringResponsesLargea}
 
+% How Novices Use LLM-based Code Generators to Solve CS1 Coding Tasks in a Self-Paced Learning Environment
+% \citet{kazemitabaar:2024:HowNovicesUse}
 
-% Using GPT-4 to Provide Tiered, Formative Code Feedback
-% SIGCSE 2024
-% Citations: 0 (rather new), 260 downloads on ACM
-% \cite{nguyen:2024:UsingGPT4Provide}
-%
-%%%% Related Work:
-%%%%
-%%%% - Automated formative feedback
-%%%% ...
-%%%% - Potential of Large Language Models
-%%%% ...
-
+% Investigating the Potential of GPT-3 in Providing Feedback for Programming Assessments
+% \citet{balse:2023:InvestigatingPotentialGPT3}
 
 % Using Large Language Models to Enhance Programming Error Messages
-% SIGCSE 2023
-% Citations: 61 (119 on google), 2607 downloads on ACM
-% \cite{leinonen:2023:UsingLargeLanguagea}
-%
-%%%% Related Work / Background:
-%%%%
-%%%% - Programming Error Messages
-%%%% ...
-%%%% - Large Language Models
-%%%% ...
-
+% \citet{leinonen:2023:UsingLargeLanguagea}
 
 % Next-Step Hint Generation for Introductory Programming Using Large Language Models
-% ACE '24
-% Citations: 1 on ACM (5 on Google), 163 downloads on ACM
-% \cite{roest:2024:NextStepHintGeneration}
-%%%% Related Work:
-%%%%
-%%%% - Automated feedback
-%%%%   - Providing effective feedback.
-%%%%   - Feedback on programming tasks.
-%%%%   - Data-driven next-step hints.
-%%%%
-%%%% - Large language models
-%%%%   - LLM in programming education.
+% \citet{roest:2024:NextStepHintGeneration}
+
+% CodeHelp: Using Large Language Models with Guardrails for Scalable Support in Programming Classes
+% \citet{liffiton:2024:CodeHelpUsingLarge}
+
+% Design principles for generating and presenting automated formative feedback on code quality using software metrics
+% \citet{vandenaker:2024:DesignPrinciplesGeneratingb}
+
+% todo!: Using GPT-4 to Provide Tiered, Formative Code Feedback
+% \citet{nguyen:2024:UsingGPT4Provide}
+
+% todo!: AI Teaches the Art of Elegant Coding: Timely, Fair, and Helpful Style Feedback in a Global Course
+% \citet{woodrow:2024:AITeachesArta}
+
+% PyDex: Repairing Bugs in Introductory Python Assignments using LLMs
+% \citet{zhang:2024:PyDexRepairingBugs}
 
 \newpage
 \section{Approach: Direct Automated Feedback Delivery (DAFeeD)} % 1 page
