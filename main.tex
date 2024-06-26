@@ -51,7 +51,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage[capitalize, noabbrev]{cleveref}
 \usepackage{xcolor}
-\usepackage{tcolorbox}
 \usepackage{enumitem}
 
 \usepackage{pgfplots}
@@ -73,20 +72,27 @@
 \newcommand{\highlight}[1]{\textcolor{blue}{\textbf{#1}}}
 
 % commands for the findings box
-\definecolor{main}{HTML}{808080}    % setting main color to be used
-\definecolor{sub}{HTML}{f2f2f2} 
-\tcbset{
-	sharp corners,
-	colback = white,
-	before skip = 0.2cm,    % add extra space before the box
-	after skip = 0.5cm      % add extra space after the box
-}
-\newtcolorbox{findingsBox}{
-	colback = sub, 
-	colframe = main, 
-	boxrule = 0pt, 
-	leftrule = 6pt % left rule weight
-}    
+\newcommand{\findingsbox}[1]{%
+  \vspace{8pt}%
+  \noindent%
+  \setlength{\fboxsep}{-0.25pt}% 
+  \setlength{\fboxrule}{0pt}%
+  \fbox{%
+  \setlength{\fboxrule}{0.25pt}%
+    \fcolorbox{gray!90}{gray!10}{%
+      \parbox{\dimexpr\columnwidth-2\fboxsep-2\fboxrule}{%
+        {\color{gray!90}\vrule width 6pt}%
+        \hspace{10pt}%
+        \parbox{\dimexpr\columnwidth-4\fboxsep-4\fboxrule-29pt}{%
+          \color{black}% 
+          \vspace{8pt}% 
+          #1%
+          \vspace{8pt}%
+        }%
+      }%
+    }%
+  }%
+}   
 
 
 %%
@@ -279,7 +285,8 @@ The inherent delays and scheduling difficulties make this approach not scalable,
 These limitations hinder students' learning progress and motivation.
 The waiting period for feedback interrupts the learning flow, causing students to lose momentum and potentially disengage from the subject matter.
 %todo: reference for this!
-Additionally, the limited availability of tutors and professors means that not all students receive the individualized attention they need to improve their understanding and skills.
+Additionally, providing individualized feedback and enabling students to enhance their knowledge through formative assessments are crucial components of effective learning \cite{irons:2007:EnhancingLearningFormative,higgins:2002:ConscientiousConsumerReconsidering}.
+However, the limited availability of tutors and professors means that not all students receive the individualized attention they need to improve their understanding and skills.
 This situation underscores the necessity for a more efficient and scalable feedback system that can provide continuous support to students without the constraints of traditional methods.
 
 
@@ -756,22 +763,24 @@ The majority of participants also stated they are motivated to repeatedly improv
 Additionally, the feedback encouraged a notable percentage of participants to experiment more with their coding solutions.
 These findings suggest that direct automated feedback is highly effective in boosting both engagement and motivation among students.
 
-\begin{findingsBox}
+\findingsbox{%
 	\textbf{Main Findings for RQ1:} The availability of direct automated feedback significantly enhances student engagement and motivation. 
   Students feel more engaged in the learning process, motivated to improve their code, and encouraged to experiment more with their coding solutions, without having to wait for manual feedback.
-\end{findingsBox}
+}%
+\vspace{8pt}%
 
 The responses to \ref{RQ2} reveal a strong level of comfort for requesting automated feedback compared to traditional human feedback channels.
 Students stated they feel more comfortable requesting automated feedback than from human tutors and were likely to request automated feedback more frequently than from their course professors.
 Requesting automated feedback was perceived as less intimidating for most of the participants and all of them stated it is more convenient than arranging meetings with a human tutor.
 These findings highlight the effectiveness of automated feedback in providing a more comfortable and accessible feedback mechanism for students.
 
-\begin{findingsBox}
+\findingsbox{%
 	\textbf{Main Findings for RQ2:} Students feel more comfortable requesting automated feedback than from human. 
   They are likely to request automated feedback more frequently and find it less intimidating and more convenient than arranging meetings with a human tutor.
   % TODO: Does this fit here or in the discussion
   % Nevertheless, DAFeeD's role should be seen as a complementary tool rather than a complete substitute for humans.
-\end{findingsBox}
+}%
+\vspace{8pt}%
 
 The responses to \ref{RQ3} indicate that students think automated feedback is highly effective in helping them understand and improve their programming assignments. 
 Students reported that the feedback helped them understand their mistakes and found it more effective than receiving only one-time feedback for their submission.
@@ -779,10 +788,11 @@ The majority reported that the feedback significantly improved the quality of th
 In addition, most participants saw continuous access to autamted feedback as more beneficial than arranging meetings with a tutor. 
 These findings suggest that automated feedback not only aids in error identification but also significantly enhances the overall quality of student assignments.
 
-\begin{findingsBox}
+\findingsbox{%
 	\textbf{Main Findings for RQ3:} Students perceive automated feedback as highly effective in helping them understand and improve their programming assignments. 
   The feedback helps them understand their mistakes, improves the quality of their assignments, and is a helpful addition to automatic test case results.
-\end{findingsBox}
+}%
+\vspace{8pt}%
 
 The responses to \ref{RQ4} demonstrate the ease of receiving feedback and overall satisfaction with DAFeeD's feedback process and its reference implementation. 
 Students found it easy to receive feedback on their programming assignments.
@@ -792,10 +802,11 @@ In regards to the overall performance of the direct automated feedback, the majo
 %These findings underscore the high level of user satisfaction and the perceived effectiveness of Artemis' automated feedback in enhancing programming skills.
 %TODO: free text answers including improvements
 
-\begin{findingsBox}
+\findingsbox{%
 	\textbf{Main Findings for RQ4:} Students find it easy to receive feedback on their programming assignments and are satisfied with the overall performance of DAFeeD and its reference implementation. 
   There are some suggestions for improvements, such as better categorization of feedback, more detailed explanations of errors, and prioritization of critical issues.
-\end{findingsBox}
+}%
+\vspace{8pt}%
 
 
 \subsection{Discussion}
