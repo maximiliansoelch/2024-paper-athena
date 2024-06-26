@@ -383,12 +383,38 @@ The work by \citet{azaiz:2024:FeedbackGenerationProgrammingExercises} is relevan
 % Design principles for generating and presenting automated formative feedback on code quality using software metrics
 % \citet{vandenaker:2024:DesignPrinciplesGeneratingb}
 
+
+
 % !!! Using GPT-4 to Provide Tiered, Formative Code Feedback
 % Ha Nguyen and Vicki Allan. [n. d.]. Using GPT-4 to Provide Tiered, Formative Code Feedback. In Proceedings of the 55th ACM Technical Symposium on Computer Science Education V. 1 (New York, NY, USA, 2024-03-07) (SIGCSE 2024). Association for Computing Machinery, 958–964.
-\citet{nguyen:2024:UsingGPT4Provide} demonstrate the feasibility of using GPT-4 for tiered, formative feedback on programming exercises in introductory courses, showing it can generate useful feedback on conceptual understanding, syntax, and time complexity using few-shot learning with sample solutions for Java algorithm tasks. Similarly, our DAFeeD approach uses GPT-4 but is fully integrated into an LMS, enabling students to automatically receive formative feedback on various exercise types multiple times before assessment. Additionally, our feedback references specific segments of the submission and guides students toward solutions without revealing them, enhancing the overall feedback experience and supporting continuous improvement.
+\citet{nguyen:2024:UsingGPT4Provide} demonstrate the feasibility of using GPT-4 for tiered, formative feedback on programming exercises in introductory courses, providing insights on conceptual understanding, syntax, and time complexity. Similarly, our DAFeeD approach uses GPT-4 Turbo and focuses on providing formative feedback in introductory courses. However, while \citeauthor{nguyen:2024:UsingGPT4Provide} provide feedback on isolated code snippets using few-shot learning, DAFeeD delivers iterative feedback on entire repositories with multiple files using a zero-shot approach with detailed prompts and context collection. Additionally, DAFeeD is integrated directly into an LMS, supporting an exercise-independent feedback process, which allows students to iteratively improve their submissions without revealing solutions.
+
+% Similarities:
+%  - Gives formative feedback on programming exercises
+%  - Focuses also on introductory courses (they evaluated on algorithm tasks, we on a introduction to software engineering task)
+%  - They used GPT-4 which is similar to GPT-4 Turbo which we are using
+
+% Differences:
+%  - Our approach is integrated into an LMS directly with multiple exercise types, not just programming
+%  - We focus primarily on the integrated feedback delivery process for students to improve their submission iteratively before the deadline
+%  - They give feedback on a code snippet, we give feedback on a whole repository with multiple files
+%  - They include two sample solution in the prompt (few-shot learning), we do it zero shot with a more detailed prompt and context collection involving further LLM invocations)
+%  - We do not reveal solutions to students
+
+
 
 % !!! AI Teaches the Art of Elegant Coding: Timely, Fair, and Helpful Style Feedback in a Global Course
 % \citet{woodrow:2024:AITeachesArta}
+The work by \citet{woodrow:2024:AITeachesArta} explores the deployment and effectiveness of a real-time style feedback tool using LLMs, specifically GPT 3.5 Turbo, in a large-scale online CS1 course. Their findings indicate significant improvements in student engagement and coding style when feedback is immediate and integrated within the learning platform. \citeauthor{woodrow:2024:AITeachesArta} conducted a randomized control trial with over 8,000 students, demonstrating that real-time feedback was five times more likely to be viewed and incorporated by students compared to delayed feedback. This supports our approach with DAFeeD, emphasizing the importance of immediate, iterative, and context-specific feedback in enhancing student learning outcomes.
+
+% Similarities:
+% - :)
+
+% Differences:
+% - They focus on style feedback (elegant, maintainable, and comprehensible) while we focus on formative feedback in general
+
+
+
 
 % PyDex: Repairing Bugs in Introductory Python Assignments using LLMs
 % \citet{zhang:2024:PyDexRepairingBugs}
