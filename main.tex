@@ -277,17 +277,19 @@ This shows that DAFeeD has the potential to significantly improve the feedback p
 In the current educational landscape, providing timely and effective feedback to students remains a significant challenge.
 Traditionally, students must wait for course tutors or professors to review their submissions and provide feedback.
 This process can be time-consuming, often requiring students to arrange meetings and wait for available time slots, which are not always convenient or immediate.
-Similar it is timecosuming and tedious for professors and tutors to provide asynchronous feedback via email or other communication channels \cite{henderson:2019:ChallengesFeedbackHigher}.
+Similar it is time-consuming and tedious for professors and tutors to provide asynchronous feedback via email or other communication channels \cite{henderson:2019:ChallengesFeedbackHigher}.
 The inherent delays and scheduling difficulties make this approach not scalable, especially in courses with a large number of students.
+% for larger courses, often multiple choice quizzes are used to simplify the feedback process as they can be graded automaticatlly, but they do not test the same cognitives levels.
 
 %todo: interactive learning concept (ref stephans paper)
-% todo: reference for this! \cite{jonsson:2013:FacilitatingProductiveUse}
-These limitations hinder students' learning progress and motivation.
+% todo: reference for this! \cite{jonsson:2013:FacilitatingProductiveUse} \cite{shute:2008:FocusFormativeFeedback}
+% todo: maybe use something else here than waiting period interrupts learning flow
+These limitations hinder students' learning progress and motivation. 
 The waiting period for feedback interrupts the learning flow, causing students to lose momentum and potentially disengage from the subject matter.
 %todo: reference for this!
 Additionally, providing individualized feedback and enabling students to enhance their knowledge through formative assessments are crucial components of effective learning \cite{irons:2007:EnhancingLearningFormative,higgins:2002:ConscientiousConsumerReconsidering}.
 However, the limited availability of tutors and professors means that not all students receive the individualized attention they need to improve their understanding and skills.
-This situation underscores the necessity for a more efficient and scalable feedback system that can provide continuous support to students without the constraints of traditional methods.
+This situation underscores the necessity for a more efficient and scalable feedback system that can provide continuous support and formative feedback to students without the constraints of traditional methods \cite{sondergaard:2004:EffectiveFeedbackSmall}.
 
 
 % Objectives
@@ -413,7 +415,7 @@ The study by \citet{liffiton:2024:CodeHelpUsingLarge} introduces CodeHelp, an LL
 
 % !!! Using GPT-4 to Provide Tiered, Formative Code Feedback
 % Ha Nguyen and Vicki Allan. [n. d.]. Using GPT-4 to Provide Tiered, Formative Code Feedback. In Proceedings of the 55th ACM Technical Symposium on Computer Science Education V. 1 (New York, NY, USA, 2024-03-07) (SIGCSE 2024). Association for Computing Machinery, 958–964.
-\citet{nguyen:2024:UsingGPT4Provide} demonstrate the feasibility of using GPT-4 for tiered, formative feedback on programming exercises in introductory courses, providing insights on conceptual understanding, syntax, and time complexity. Similarly, our DAFeeD approach uses GPT-4 Turbo and focuses on providing formative feedback in introductory courses. However, while \citeauthor{nguyen:2024:UsingGPT4Provide} provide feedback on isolated code snippets using few-shot learning, DAFeeD delivers iterative feedback on entire repositories with multiple files using a zero-shot approach with detailed prompts and context collection. Additionally, DAFeeD is integrated directly into an LMS, supporting an exercise-independent feedback process, which allows students to iteratively improve their submissions without revealing solutions.
+\citet{nguyen:2024:UsingGPT4Providea} demonstrate the feasibility of using GPT-4 for tiered, formative feedback on programming exercises in introductory courses, providing insights on conceptual understanding, syntax, and time complexity. Similarly, our DAFeeD approach uses GPT-4 Turbo and focuses on providing formative feedback in introductory courses. However, while \citeauthor{nguyen:2024:UsingGPT4Provide} provide feedback on isolated code snippets using few-shot learning, DAFeeD delivers iterative feedback on entire repositories with multiple files using a zero-shot approach with detailed prompts and context collection. Additionally, DAFeeD is integrated directly into an LMS, supporting an exercise-independent feedback process, which allows students to iteratively improve their submissions without revealing solutions.
 
 % Similarities:
 %  - Gives formative feedback on programming exercises
@@ -431,7 +433,7 @@ The study by \citet{liffiton:2024:CodeHelpUsingLarge} introduces CodeHelp, an LL
 
 % !!! AI Teaches the Art of Elegant Coding: Timely, Fair, and Helpful Style Feedback in a Global Course
 % \citet{woodrow:2024:AITeachesArta}
-The work by \citet{woodrow:2024:AITeachesArta} explores the deployment and effectiveness of a real-time style feedback tool using LLMs, specifically GPT 3.5 Turbo, in a large-scale online CS1 course. Their findings indicate significant improvements in student engagement and coding style when feedback is immediate and integrated within the learning platform. \citeauthor{woodrow:2024:AITeachesArta} conducted a randomized control trial with over 8,000 students, demonstrating that real-time feedback was five times more likely to be viewed and incorporated by students compared to delayed feedback. This supports our approach with DAFeeD, emphasizing the importance of immediate, iterative, and context-specific feedback in enhancing student learning outcomes.
+The work by \citet{woodrow:2024:AITeachesArt} explores the deployment and effectiveness of a real-time style feedback tool using LLMs, specifically GPT 3.5 Turbo, in a large-scale online CS1 course. Their findings indicate significant improvements in student engagement and coding style when feedback is immediate and integrated within the learning platform. \citeauthor{woodrow:2024:AITeachesArta} conducted a randomized control trial with over 8,000 students, demonstrating that real-time feedback was five times more likely to be viewed and incorporated by students compared to delayed feedback. This supports our approach with DAFeeD, emphasizing the importance of immediate, iterative, and context-specific feedback in enhancing student learning outcomes.
 
 % Similarities:
 % - :)
@@ -628,7 +630,13 @@ Subsequently, we outline the limitations of the evaluation and discuss the impli
 % We aim to evaluate how intuitive and user-friendly students find the system, as well as how effective they consider it in assisting their learning and improving their performance.
 
 \subsection{Study Design}
-To gain comprehensive insights into students' perceptions of the newly introduced DAFeeD concept, we employed a survey-based approach, visualized in Figure \ref{fig:study-design}.
+To gain comprehensive insights into students' perceptions of the newly introduced DAFeeD concept, we employed a survey-based approach, visualized in Figure \ref{fig:Study-Design}.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\linewidth]{figures/Study-Design.pdf}
+  \caption{An UML Activity Diagram showcasing the design and procedure of the conducted study from a participant's perspectives.}
+  \label{fig:Study-Design}
+\end{figure}
 At the beginning of the study, participants received a two-page instruction manual that included all required informaton. 
 Initially, study participants tested the new feedback feature on a sample exercise using the Artemis platform in a controlled environment at the university.
 
@@ -821,6 +829,7 @@ Overall, the direct automated feedback system was positively received by student
 
 % talk about further improvements
 
+% TOOD: this work aligns with the findings from 
 
 
 \subsection{Limitations}
@@ -842,13 +851,16 @@ In addition, the small sample size may also limit the generalizability of the fi
 \textit{Construct Validity}: 
 The survey questions designed to evaluate 'perceived effectiveness' and 'comfort with feedback source' may not fully encompass the breadth of these constructs.
 Factors such as prior experiences and personal preferences, which the survey does not account for, could influence participants' responses and perceptions.
+The use of a specific sample exercise to evaluate the automated feedback process may align more closely with some students' prior experiences or learning styles, introducing bias into the results.
 
-%todo: sample exercise can also limit
 
 \section{Conclusion \& Future Work} % 1 page
 \label{sec:conclusion}
 
 % todo: summarize the contributions and outcome
+The main contributions of this paper are the introduction of DAFeeD, a direct automated feedback delivery system, and the reference implementation Athena, which integrates DAFeeD into the learning platform Artemis.
+DAFeeD enables the interactive learning process by providing students with immediate, context-specific feedback on their submissions.
+The evaluation of DAFeeD showed that students perceive the automated feedback as effective, helpful, and easy to use, and that it enhances their engagement and motivation.
 
 %future work
 % 
