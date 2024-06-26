@@ -271,11 +271,11 @@ This shows that DAFeeD has the potential to significantly improve the feedback p
 In the current educational landscape, providing timely and effective feedback to students remains a significant challenge.
 Traditionally, students must wait for course tutors or professors to review their submissions and provide feedback.
 This process can be time-consuming, often requiring students to arrange meetings and wait for available time slots, which are not always convenient or immediate.
-Similar it is timecosuming and tedious for professors and tutors to provide asynchronous feedback via email or other communication channels.
+Similar it is timecosuming and tedious for professors and tutors to provide asynchronous feedback via email or other communication channels \cite{henderson:2019:ChallengesFeedbackHigher}.
 The inherent delays and scheduling difficulties make this approach not scalable, especially in courses with a large number of students.
 
 %todo: interactive learning concept (ref stephans paper)
-% todo: reference for this!
+% todo: reference for this! \cite{jonsson:2013:FacilitatingProductiveUse}
 These limitations hinder students' learning progress and motivation.
 The waiting period for feedback interrupts the learning flow, causing students to lose momentum and potentially disengage from the subject matter.
 %todo: reference for this!
@@ -284,13 +284,21 @@ This situation underscores the necessity for a more efficient and scalable feedb
 
 
 % Objectives
-In this paper, we present an approach for generating automated feedback on student submissions using large language models (LLMs) to address these challenges.
+In this paper, we present DAFeeD, an approach for generating automated feedback on student submissions using large language models (LLMs), to address these challenges.
 The approach is independent of the exercise type and can be applied to various domains, such as programming, text, or modeling exercises.
 We implemented the approach in an open-source reference implementation called Athena, connected to the learning platform Artemis through which students submit their solutions and receive feedback.
 To validate the effectiveness and efficiency of the approach, we tested it in a controlled environment. 
-We collected quantitative and qualitative data to evaluate students' perceptions of the approach and the overall performance of the reference implementation.
-The results show that students perceive the feedback process as relevant and beneficial to their learning, indicating that the approach has the potential to significantly improve the feedback process in educational institutions and increase students' learning efficiency and performance.
+% We collected quantitative and qualitative data to evaluate students' perceptions of the approach and the overall performance of the reference implementation.
+% The results show that students perceive the feedback process as relevant and beneficial to their learning, indicating that the approach has the potential to significantly improve the feedback process in educational institutions and increase students' learning efficiency and performance.
 
+With this paper, we want to answer the following research questions about direct automated feedback delivery:
+
+\begin{enumerate}[label=\textbf{RQ\arabic*},ref=RQ\arabic*]
+  \item \label{RQ1} How does the availability of direct automated feedback affect student engagement and motivation? 
+  \item \label{RQ2} Do students feel more comfortable requesting automatic feedback than asking a human tutor or the course professor?
+  \item \label{RQ3} How do students perceive the effectiveness of direct automated feedback?
+  \item \label{RQ4} How do students perceive the usability and helpfulness of DAFeeD?
+\end{enumerate}
 
 
 %Outline
@@ -577,36 +585,41 @@ In this section, we outline the methodology employed to validate the effectivene
 The conducted evaluation represents the treatment validation stage of the design science methodology proposed by Wieringa \cite{wieringa:2014:DesignScienceMethodologya}.
 In this stage, the proposed solution — DAFeeD — is evaluated in a controlled environment, and the collected data is utilized for the refinement and improvement of the solution.
 
-We begin by describing the research questions, followed by the study design and the results.
+We begin by describing the study design and the results.
 Subsequently, we outline the limitations of the evaluation and discuss the implications of the findings.
 
 
-\subsection{Research Questions}
+% research questions moved to the introduction
+% \subsection{Research Questions}
 
-With this study, we want to answer the following research questions about direct automated feedback delivery:
+% With this study, we want to answer the following research questions about direct automated feedback delivery:
 
-\begin{enumerate}[label=\textbf{RQ\arabic*},ref=RQ\arabic*]
-  \item \label{RQ1} How does the availability of direct automated feedback affect student engagement and motivation? 
-  \item \label{RQ2} Do students feel more comfortable requesting automatic feedback than asking a human tutor or the course professor?
-  \item \label{RQ3} How do students perceive the effectiveness of direct automated feedback?
-  \item \label{RQ4} How do students perceive the usability and helpfulness of DAFeeD?
-\end{enumerate}
+% \begin{enumerate}[label=\textbf{RQ\arabic*},ref=RQ\arabic*]
+%   \item \label{RQ1} How does the availability of direct automated feedback affect student engagement and motivation? 
+%   \item \label{RQ2} Do students feel more comfortable requesting automatic feedback than asking a human tutor or the course professor?
+%   \item \label{RQ3} How do students perceive the effectiveness of direct automated feedback?
+%   \item \label{RQ4} How do students perceive the usability and helpfulness of DAFeeD?
+% \end{enumerate}
 
-\ref{RQ1} examines the influence of direct automated feedback on students' overall engagement with the course material and their motivation to complete exercises and improve their skills.
-We aim to determine if the immediacy and convenience of automated feedback enhance students' commitment to their coursework.
-\ref{RQ2} explores students' comfort levels with seeking feedback from an automated system compared to traditional sources such as human tutors or course professors. 
-We want to assess whether students prefer the anonymity and immediacy of automated feedback over potentially intimidating interactions with instructors.
-\ref{RQ3} seeks to understand students' views on the value and impact of the feedback provided by the DAFeeD system. 
-We are interested in whether students find the feedback to be relevant and beneficial to their learning process.
-\ref{RQ4} focuses on students' perceptions of the usability and helpfulness of the DAFeeD system. 
-We aim to evaluate how intuitive and user-friendly students find the system, as well as how effective they consider it in assisting their learning and improving their performance.
+% \ref{RQ1} examines the influence of direct automated feedback on students' overall engagement with the course material and their motivation to complete exercises and improve their skills.
+% We aim to determine if the immediacy and convenience of automated feedback enhance students' commitment to their coursework.
+% \ref{RQ2} explores students' comfort levels with seeking feedback from an automated system compared to traditional sources such as human tutors or course professors. 
+% We want to assess whether students prefer the anonymity and immediacy of automated feedback over potentially intimidating interactions with instructors.
+% \ref{RQ3} seeks to understand students' views on the value and impact of the feedback provided by the DAFeeD system. 
+% We are interested in whether students find the feedback to be relevant and beneficial to their learning process.
+% \ref{RQ4} focuses on students' perceptions of the usability and helpfulness of the DAFeeD system. 
+% We aim to evaluate how intuitive and user-friendly students find the system, as well as how effective they consider it in assisting their learning and improving their performance.
 
 \subsection{Study Design}
-To gain comprehensive insights into students' perceptions of the newly introduced DAFeeD concept, we employed a survey-based approach.
+To gain comprehensive insights into students' perceptions of the newly introduced DAFeeD concept, we employed a survey-based approach, visualized in Figure \ref{fig:study-design}.
+At the beginning of the study, participants received a two-page instruction manual that included all required informaton. 
 Initially, study participants tested the new feedback feature on a sample exercise using the Artemis platform in a controlled environment at the university.
+
+The time limit for the evalution was set to 45 minutes, including the testing phase of the feature and the succeeding survey.
+Goal of the hands on phase was to understand the new feedback process, completing the exercise was not required.
 %TODO: be more specific
-% TODO: remove or rewrite the next sentence
-The study conductors were present throughout to answer questions and provide support as needed.
+
+%The study conductors were present throughout to answer questions and provide support as needed.
 Following this hands-on experience, participants were asked to complete a survey hosted on the community version of the open-source survey tool LimeSurvey\footnote{\url{https://www.limesurvey.org}}.
 This survey aimed to gather their opinions on direct automated feedback and collect feedback on their overall experience with the feature.
 
@@ -615,7 +628,7 @@ The study uses a mixed methods approach, combining quantitative and qualitative 
 The participants were a mix of undergraduate and graduate students from various disciplines, including computer science, information systems, and games engineering.
 %todo: describe participants 
 %todo: cite nielsen regarding number of participants
-%todo: describe sample exercise
+%todo Felix: describe sample exercise
 
 All survey questions, except for the introductory demographic queries and the five final, voluntary free-text responses (Q18 - Q22), employ a 5-point Likert scale \cite{allen:2007:LikertScalesData} ranging from "strongly agree" to "strongly disagree" and are mandatory.
 The following list shows the mapping from the asked questions and statements to the research questions:
@@ -785,6 +798,8 @@ Overall, the direct automated feedback system was positively received by student
 % enables interactive learning
 % feedback quality can be improved
 
+% talk about further improvements
+
 
 
 \subsection{Limitations}
@@ -807,6 +822,7 @@ In addition, the small sample size may also limit the generalizability of the fi
 The survey questions designed to evaluate 'perceived effectiveness' and 'comfort with feedback source' may not fully encompass the breadth of these constructs.
 Factors such as prior experiences and personal preferences, which the survey does not account for, could influence participants' responses and perceptions.
 
+%todo: sample exercise can also limit
 
 \section{Conclusion \& Future Work} % 1 page
 \label{sec:conclusion}
