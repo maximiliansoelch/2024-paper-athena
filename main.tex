@@ -288,7 +288,7 @@ Such a feedback system enables interactive learning for students, increasing the
 % Objectives
 In this paper, we present DAFeeD, an approach for generating automated feedback on student submissions using large language models (LLMs), to address these challenges.
 The approach is independent of the exercise type and can be applied to various domains, such as programming, text, or modeling exercises.
-We implemented the approach in an open-source reference implementation called Athena, connected to the learning platform Artemis through which students submit their solutions and receive feedback.
+We implemented the approach in an open-source reference implementation called Athena, connected to the learning platform Artemis \cite{krusche:2018:ArTEMiSAutomaticAssessmentf} through which students submit their solutions and receive feedback.
 To validate the effectiveness and efficiency of the approach, we tested it in a controlled environment. 
 % We collected quantitative and qualitative data to evaluate students' perceptions of the approach and the overall performance of the reference implementation.
 % The results show that students perceive the feedback process as relevant and beneficial to their learning, indicating that the approach has the potential to significantly improve the feedback process in educational institutions and increase students' learning efficiency and performance.
@@ -798,17 +798,24 @@ In regards to the overall performance of the direct automated feedback, the majo
 
 \subsection{Discussion}
 
-Overall, the direct automated feedback system was positively received by students, indicating its effectiveness in enhancing their programming skills, despite some areas for improvement.
+Overall, students received the direct automated feedback system Athena integrated into Artemis positively, indicating its effectiveness in enhancing their skills.
+The high levels of engagement, motivation, and satisfaction reported by the students underscore the system's potential to significantly improve the learning experience.
 
-% complement, not substitute
-% validation study
+The findings validate the role of automated feedback in fostering an interactive learning environment.
+Students reported increased engagement and motivation, as well as a greater willingness to experiment with their coding solutions.
+This interactive aspect of learning, facilitated by timely and continuous feedback, helps students develop critical problem-solving skills and deepen their understanding of programming concepts.
 
-% enables interactive learning
-% feedback quality can be improved
+Despite the overall positive reception, there is room for improving the quality of the feedback provided.
+While students found the feedback helpful in understanding their mistakes and improving their assignments, we need to further refine it to enhance its precision and relevance.
+%todo: Felix add suggestions for AI improvements
+Incorporating more advanced AI techniques, such as ..., could address these issues, offering more tailored and context-specific guidance to students.
 
-% talk about further improvements
+This work aligns with findings from other studies, highlighting the importance of timely and continuous feedback in education.
+Additionally, we believe that direct automated feedback should complement, rather than substitute, traditional human feedback.
+The convenience and accessibility of automated feedback are clear advantages, yet the nuanced insights that human tutors provide remain irreplaceable.
 
-% TOOD: this work aligns with the findings from 
+In conclusion, the direct automated feedback system shows significant potential in improving programming education.
+By addressing the areas identified for improvement and continuing to refine the system, we can harness the full benefits of automated feedback to support and enhance student learning
 
 
 \subsection{Limitations}
@@ -839,7 +846,9 @@ The use of a specific sample exercise to evaluate the automated feedback process
 % todo: summarize the contributions and outcome
 The main contributions of this paper are the introduction of DAFeeD, a direct automated feedback delivery system, and the reference implementation Athena, which integrates DAFeeD into the learning platform Artemis.
 DAFeeD enables the interactive learning process by providing students with immediate, context-specific feedback on their submissions.
-The evaluation of DAFeeD showed that students perceive the automated feedback as effective, helpful, and easy to use, and that it enhances their engagement and motivation.
+The implementation of DAFeeD demonstrates the feasibility and advantages of incorporating automated feedback systems into educational settings. 
+For educators, this can alleviate the heavy workload associated with providing individualized feedback, allowing them to focus more on instructional design and student support.
+For students, the evaluation of DAFeeD showed that they perceive the automated feedback as effective, helpful, and easy to use, and that it enhances their engagement and motivation.
 
 %future work
 % 
