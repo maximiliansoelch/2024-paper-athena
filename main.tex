@@ -273,24 +273,17 @@ This shows that DAFeeD has the potential to significantly improve the feedback p
 % time consuming, not scalable, not always available
 % hinders learning progress and motivation %todo: reference for this!
 
-% todo: reference for this!
+% todo: reference for this! \cite{jonsson:2013:FacilitatingProductiveUse} \cite{shute:2008:FocusFormativeFeedback}
 In the current educational landscape, providing timely and effective feedback to students remains a significant challenge.
 Traditionally, students must wait for course tutors or professors to review their submissions and provide feedback.
 This process can be time-consuming, often requiring students to arrange meetings and wait for available time slots, which are not always convenient or immediate.
 Similar it is time-consuming and tedious for professors and tutors to provide asynchronous feedback via email or other communication channels \cite{henderson:2019:ChallengesFeedbackHigher}.
 The inherent delays and scheduling difficulties make this approach not scalable, especially in courses with a large number of students.
-% for larger courses, often multiple choice quizzes are used to simplify the feedback process as they can be graded automaticatlly, but they do not test the same cognitives levels.
 
-%todo: interactive learning concept (ref stephans paper)
-% todo: reference for this! \cite{jonsson:2013:FacilitatingProductiveUse} \cite{shute:2008:FocusFormativeFeedback}
-% todo: maybe use something else here than waiting period interrupts learning flow
-These limitations hinder students' learning progress and motivation. 
-The waiting period for feedback interrupts the learning flow, causing students to lose momentum and potentially disengage from the subject matter.
-%todo: reference for this!
 Additionally, providing individualized feedback and enabling students to enhance their knowledge through formative assessments are crucial components of effective learning \cite{irons:2007:EnhancingLearningFormative,higgins:2002:ConscientiousConsumerReconsidering}.
 However, the limited availability of tutors and professors means that not all students receive the individualized attention they need to improve their understanding and skills.
 This situation underscores the necessity for a more efficient and scalable feedback system that can provide continuous support and formative feedback to students without the constraints of traditional methods \cite{sondergaard:2004:EffectiveFeedbackSmall}.
-
+Such a feedback system enables interactive learning for students, increasing their engagement in the course resulting in better final grades \cite{krusche:2017:InteractiveLearningIncreasing}.
 
 % Objectives
 In this paper, we present DAFeeD, an approach for generating automated feedback on student submissions using large language models (LLMs), to address these challenges.
@@ -497,7 +490,7 @@ In Figure \ref{fig:prompt-programming-exercise-generation}, we provide an exampl
 This prompt incorporates specific instructions to ensure that the feedback is tailored to the student's submission.
 
 The feedback generation process begins by identifying the differences between the student's submission repository and the provided template repository, the starting point. 
-These differences are identified using a git diff, which highlights lines removed and added by the student. 
+These differences are identified using a git diff, which highlights the lines removed and added by the student. 
 If the problem statement is too lengthy or complex, a separate LLM invocation is used to split the problem statement into relevant parts for each file. 
 This ensures that the feedback is targeted and relevant to the specific context of the file being reviewed. 
 Additionally, a summary of the student's solution across all files is generated using another LLM invocation. 
@@ -622,10 +615,10 @@ To gain comprehensive insights into students' perceptions of the newly introduce
   \caption{UML activity diagram illustrating the study procedure from a participant's perspective.}
   \label{fig:Study-Design}
 \end{figure}
-At the beginning of the study, participants received a two-page instruction manual that included all required informaton. 
+At the beginning of the study, participants received a two-page instruction manual that included all required information. 
 Initially, study participants tested the new feedback feature on a sample exercise using the Artemis platform in a controlled environment at the university.
 
-The time limit for the evalution was set to 45 minutes, including the testing phase of the feature and the succeeding survey.
+The time limit for the evaluation was set to 45 minutes, including the testing phase of the feature and the succeeding survey.
 Goal of the hands on phase was to understand the new feedback process, completing the exercise was not required.
 %TODO: be more specific
 
@@ -700,7 +693,7 @@ The following list shows the mapping from the asked questions and statements to 
 \subsection{Results}
 
 In the following paragraphs, we present the results. 
-The answers to each of the likert scale questions are visualized in Figure \ref{fig:Survey-Results}.
+The answers to each of the Likert scale questions are visualized in Figure \ref{fig:Survey-Results}.
 
 \begin{figure}[htpb]
   \centering
@@ -778,7 +771,7 @@ These findings highlight the effectiveness of automated feedback in providing a 
 The responses to \ref{RQ3} indicate that students think automated feedback is highly effective in helping them understand and improve their programming assignments. 
 Students reported that the feedback helped them understand their mistakes and found it more effective than receiving only one-time feedback for their submission.
 The majority reported that the feedback significantly improved the quality of their programming assignments, and all participants stated that automatic feedback is a helpful addition to automatic test case results generated by Artemis.
-In addition, most participants saw continuous access to autamted feedback as more beneficial than arranging meetings with a tutor. 
+In addition, most participants saw continuous access to automated feedback as more beneficial than arranging meetings with a tutor. 
 These findings suggest that automated feedback not only aids in error identification but also significantly enhances the overall quality of student assignments.
 
 \findingsbox{%
