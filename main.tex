@@ -481,6 +481,7 @@ A status visualization informs students about their feedback request state.
 Once Athena generates the feedback and sends it back to Artemis, the student can review it in a modal window on Artemis, as depicted in Figure \ref{fig:Artemis-feedback-visualization}.
 
 %todo: find better example for feedback including a positive feedback feedback item
+% Felix: Updated. Done?
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.75\linewidth]{figures/athena-feedback-new_light_clarity-upscaler_annonymized.png}
@@ -553,6 +554,11 @@ Consequently, the reference implementation must satisfy additional non-functiona
 To meet these requirements and to support feedback generation for multiple exercise types while allowing for future extensibility, we adopted a modular architecture, as illustrated in Figure \ref{fig:Athena-architecture}.
 
 %TODO: anonymize the figure (Artemis, Athena )
+% Felix:
+% - Anonymization seems to be done
+% - Called it component diagram instead of deployment diagram
+% - LMS could be replaced with Learning Management System (Large Language Model is also not shortened to LLM)
+% - Components could be vertically slightly smaller 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{figures/Athena-Architecture.pdf}
