@@ -271,7 +271,7 @@ This shows that DAFeeD has the potential to significantly improve the feedback p
 
 % problem
 % time consuming, not scalable, not always available
-% hinders learning progress and motivation %todo: reference for this!
+% hinders learning progress and motivation
 
 % todo: reference for this! \cite{jonsson:2013:FacilitatingProductiveUse} \cite{shute:2008:FocusFormativeFeedback}
 In the current educational landscape, providing timely and effective feedback to students remains a significant challenge.
@@ -473,8 +473,7 @@ Course instructors can customize the number of allowed feedback requests per exe
 A status visualization informs students about their feedback request state.
 Once Athena generates the feedback and sends it back to Artemis, the student can review it in a modal window on Artemis, as depicted in Figure \ref{fig:Artemis-feedback-visualization}.
 
-%todo: find better example for feedback including a positive feedback feedback item
-% Felix: Updated. Done?
+
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.75\linewidth]{figures/athena-feedback-new_light_clarity-upscaler_annonymized.png}
@@ -545,11 +544,7 @@ Athena is deployed in production alongside the learning platform Artemis, which 
 Consequently, the reference implementation must satisfy additional non-functional requirements such as performance, scalability, maintainability, and usability.
 To meet these requirements and to support feedback generation for multiple exercise types while allowing for future extensibility, we adopted a modular architecture, as illustrated in Figure \ref{fig:Athena-architecture}.
 
-%TODO: anonymize the figure (Artemis, Athena )
 % Felix:
-% - Anonymization seems to be done
-% - Called it component diagram instead of deployment diagram
-% - LMS could be replaced with Learning Management System (Large Language Model is also not shortened to LLM)
 % - Components could be vertically slightly smaller 
 \begin{figure}[htbp]
   \centering
@@ -704,7 +699,6 @@ The answers to each of the Likert scale questions are visualized in Figure \ref{
 \end{figure}
 
 
-%todo make this a bit shorter and simplify sentences
 90\% of students indicated that the direct automated feedback from Artemis keeps them more engaged in the learning process, with 10\% neutral (\ref{Q1}).
 For \ref{Q2}, 85\% of students stated that the direct automatic feedback from Artemis motivates them to repeatedly improve their code, with 10\% neutral and 5\% disagreeing.
 For \ref{Q3}, 85\% of students mentioned that the direct automated feedback from Artemis makes them feel more motivated to complete their programming assignments, with 10\% neutral and 5\% disagreeing.
@@ -762,8 +756,6 @@ These findings highlight the effectiveness of automated feedback in providing a 
 \findingsbox{%
 	\textbf{Main Findings for RQ2:} Students feel more comfortable requesting automated feedback than from human. 
   They are likely to request automated feedback more frequently and find it less intimidating and more convenient than arranging meetings with a human tutor.
-  % TODO: Does this fit here or in the discussion
-  % Nevertheless, DAFeeD's role should be seen as a complementary tool rather than a complete substitute for humans.
 }%
 \vspace{8pt}%
 
