@@ -606,6 +606,8 @@ We designed the ``Code Review'' Java programming exercise, a past introduction t
 
 We invited 20 participants from current courses at the university via direct messages, including undergraduate and graduate students from various disciplines like computer science, information systems, and games engineering. Participants received a two-page participation manual and tested the new feedback feature on the Artemis platform in a controlled university environment. The evaluation lasted around 45 minutes, focusing on understanding the feedback process rather than completing the exercise.
 
+While our study included 20 participants, this number is sufficient to yield meaningful insights based on established usability research. \citet{nielsen:2000:WhyYouOnly} has shown that smaller, iterative tests can reveal the majority of usability issues, making such an approach both practical and effective. This methodology allows for comprehensive feedback analysis without unnecessary resource expenditure.
+
 Participants followed a structured procedure, illustrated in Figure \ref{fig:Study-Design}. They started by thoroughly reading the participation manual. Next, they prepared their IDE and accessed the exercise on Artemis. They then worked on the exercise, committed and pushed their code, and requested AI feedback iteratively. After reviewing and acting on the AI-provided feedback, they refined their solutions until they felt they had a good understanding of the feedback process.
 
 \begin{figure}[htbp]
@@ -621,8 +623,6 @@ The study employed a mixed methods approach, combining quantitative and qualitat
 
 All survey questions, except for the introductory demographic queries and the five final voluntary free-text responses (\ref{Q18} - \ref{Q22}), employed a 5-point Likert scale \cite{allen:2007:LikertScalesData} ranging from ``strongly agree'' to ``strongly disagree'' and were mandatory. 
 The survey questions mapped to the research questions as follows:
-
-%todo: cite nielsen regarding number of participants
 
 \begin{enumerate}[label=\textbf{RQ\arabic*}]
   \item \textbf{Engagement and Motivation}
@@ -853,7 +853,7 @@ This will allow us to collect comprehensive data to thoroughly evaluate the impa
 %% The next two lines define the bibliography style to be used, and
 %% the bibliography file.
 \bibliographystyle{ACM-Reference-Format}
-\bibliography{main}
+\bibliography{main,custom}
 
 \end{document}
 \endinput
