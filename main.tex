@@ -438,8 +438,8 @@ The feedback process is designed to be exercise-independent, meaning that it can
 DAFeeD can provide formative feedback to the students, including feedback on issues or improvements, as well as positive feedback when the student completes the task correctly.
 Once the student submits their solution, DAFeeD initiates a three-stage process to generate natural language feedback.
 
-%todo: add learner profile (find reference) to generate individualized, personal feedback tailored to the student's learning progress and needs.
 The first stage, called \textit{Formatting}, takes the student's submission and extracts the submission content, the problem statement, including learning objectives, and any possible grading instructions the instructor defines.
+In addition, the student's learner profile \cite{alexander:1998:ProfilingDifferencesStudents} is considered to generate individualized, personal feedback tailored to the student's skills and learning styles.
 All of this gathered information represents the context.
 During the prompt generation step, a predefined prompt template is filled with the prompt input data, resulting in the feedback prompt.
 Depending on the exercise, adaptions need to be made to the prompt template to ensure that the feedback output of the LLM is tailored to the specific exercise type.
@@ -476,7 +476,7 @@ Once FeedbackSystem generates the feedback and sends it back to LMS, the student
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.75\linewidth]{figures/athena-feedback-new_light_clarity-upscaler_annonymized.png}
+  \includegraphics[width=0.9\linewidth]{figures/athena-feedback-new_light_clarity-upscaler_annonymized.png}
   \caption{Visualization of the feedback interface in the LMS as seen by students.}
   \label{fig:Artemis-feedback-visualization}
 \end{figure}
@@ -797,7 +797,7 @@ This interactive aspect of learning, facilitated by timely and continuous feedba
 Despite the overall positive reception, there is room for improving the quality of the feedback provided.
 While students found the feedback helpful in understanding their mistakes and improving their assignments, we need to further refine it to enhance its precision and relevance.
 Incorporating more advanced AI techniques, such as
-Chain-of-Thought \cite{wei:2023:ChainofThoughtPromptingElicitsa}, 
+Chain-of-Thought \cite{wei:2022:ChainofThoughtPromptingElicits}, 
 ReAct \cite{yao:2023:ReActSynergizingReasoning}, 
 Retrieval-Augmented Generation \cite{gao:2024:RetrievalAugmentedGenerationLarge},
 could address these issues, offering more tailored and context-specific guidance to students.
