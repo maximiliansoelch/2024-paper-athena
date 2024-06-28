@@ -485,8 +485,7 @@ Once Athena generates the feedback and sends it back to Artemis, the student can
 
 \subsection{Feedback Generation}
 
-The prompt design is crucial for guiding the large language model (LLM) in generating effective and contextually relevant feedback. 
-In Figure \ref{fig:prompt-programming-exercise-generation}, we provide an example of a prompt used for generating feedback for programming exercises. 
+The prompt design is crucial for guiding the large language model (LLM) in generating effective and contextually relevant feedback. For this study, we utilized OpenAI's GPT-4 Turbo with a temperature setting of 0 to ensure deterministic and consistent feedback generation, reducing randomness and the potential for hallucinations. However, the system is configurable, allowing the use of other models and settings. In Figure \ref{fig:prompt-programming-exercise-generation}, we provide an example of a prompt used for generating feedback for programming exercises. 
 This prompt incorporates specific instructions to ensure that the feedback is individualized to the student's submission while not revealing the solution.
 
 The feedback generation process for programming exercises begins by identifying the differences between the student's submission repository and the provided template repository, the starting point. 
