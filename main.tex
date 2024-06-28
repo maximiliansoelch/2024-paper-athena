@@ -218,11 +218,11 @@ Timely and individualized feedback is crucial for students' learning progress an
 However, providing such feedback is a major challenge in education, especially as the number of students has steadily increased in recent years.
 This growth has made it difficult for teachers to provide individualized feedback to each student, resulting in a time-consuming, repetitive and often manual task that contributes to a high workload.
 
-This paper presents Direct Automated Feedback (DAFeeD), a large language model (LLM)-based approach for automated formative feedback on student submissions in various exercise domains.
+This paper presents Direct Automated Feedback Delivery(DAFeeD), a large language model (LLM)-based approach for automated formative feedback on student submissions in various exercise domains.
 The defined feedback process enables interactive learning by allowing students to submit their solutions multiple times and request feedback repeatedly before the submission deadline.
 By incorporating task-specific information into the prompt, DAFeeD provides iterative customized feedback, facilitating continuous student improvement.
 
-To empirically evaluate the feedback process, we implemented it in an open-source reference implementation that is integrated into the LMS learning platform.
+To empirically evaluate the feedback process, we implemented it in an open-source reference implementation that is integrated into the learning platform LMS.
 We conducted a controlled study in which students used the feedback process in a programming task in a supervised environment and completed a survey.
 %TODO: nächsten Zwei sätze sind zu schwach, mehr auf Vorteile eingehen
 The results show that students perceive the feedback process as relevant and beneficial to their learning.
@@ -274,7 +274,7 @@ This shows that DAFeeD has the potential to significantly improve the feedback p
 % hinders learning progress and motivation
 
 % todo: reference for this! \cite{jonsson:2013:FacilitatingProductiveUse} \cite{shute:2008:FocusFormativeFeedback}
-In the current educational landscape, providing timely and effective feedback to students remains a significant challenge.
+In the current educational landscape, providing timely and effective feedback to students remains a significant challenge for both students and educators.
 Traditionally, students must wait for course tutors or professors to review their submissions and provide feedback.
 This process can be time-consuming, often requiring students to arrange meetings and wait for available time slots, which are not always convenient or immediate.
 Similar it is time-consuming and tedious for professors and tutors to provide asynchronous feedback via email or other communication channels \cite{henderson:2019:ChallengesFeedbackHigher}.
@@ -286,9 +286,9 @@ This situation underscores the necessity for a more efficient and scalable feedb
 Such a feedback system enables interactive learning for students, increasing their engagement in the course resulting in better final grades \cite{krusche:2017:InteractiveLearningIncreasing}.
 
 % Objectives
-In this paper, we present DAFeeD, an approach for generating automated feedback on student submissions using large language models (LLMs), to address these challenges.
-The approach is independent of the exercise type and can be applied to various domains, such as programming, text, or modeling exercises.
-We implemented the approach in an open-source reference implementation called FeedbackSystem\footnote{Anonymized due to double-blind review regulations}, connected to the learning platform LMS\footnote{Anonymized due to double-blind review regulations} \cite{krusche:2018:ArTEMiSAutomaticAssessmentf} through which students submit their solutions and receive feedback.
+In this paper, we present Direct Automated Feedback Delivery (DAFeeD), an approach for generating automated feedback on student submissions using large language models (LLMs), to address these challenges.
+The approach is independent of the exercise type and can be applied and adapted to various domains, such as programming, text, or modeling exercises.
+We implemented the approach in an open-source reference implementation called FeedbackSystem\footnote{FeedbackSystem - Anonymized due to double-blind review regulations}, connected to the learning platform LMS\footnote{LMS - Anonymized due to double-blind review regulations} \cite{krusche:2018:ArTEMiSAutomaticAssessmentf} through which students submit their solutions and receive feedback.
 To validate the effectiveness and efficiency of the approach, we tested it in a controlled environment. 
 % We collected quantitative and qualitative data to evaluate students' perceptions of the approach and the overall performance of the reference implementation.
 % The results show that students perceive the feedback process as relevant and beneficial to their learning, indicating that the approach has the potential to significantly improve the feedback process in educational institutions and increase students' learning efficiency and performance.
@@ -304,9 +304,9 @@ With this paper, we want to answer the following research questions about direct
 
 
 %Outline
-The subsequent sections of this paper are organized to provide a comprehensive understanding of the research. 
+The subsequent sections of this paper are systematically structured to offer a thorough understanding of the research.
 \cref{sec:related-work} provides an overview of related work. 
-\cref{sec:approach:DAFeeD} details the concept and methodology of Direct Automated Feedback Delivery (DAFeeD).
+\cref{sec:approach:DAFeeD} details the concept and methodology of DAFeeD.
 \cref{sec:reference-implementation} describes the reference implementation of DAFeeD, called FeedbackSystem, including a general overview, details on the used prompts, and the system architecture. 
 \cref{sec:evaluation} presents the evaluation results, including the research questions, study design, and findings. 
 Finally, \cref{sec:conclusion} concludes with a summary of findings and discusses future research directions to enhance automated feedback systems.
@@ -317,7 +317,9 @@ Finally, \cref{sec:conclusion} concludes with a summary of findings and discusse
 
 % A Systematic Review of the Effects of Automatic Scoring and Automatic Feedback in Educational Settings
 % \citet{hahn:2021:SystematicReviewEffects}
-Automated feedback systems have gained significant attention in educational research due to their potential to scale online education and reduce the time between submission and feedback. \citet{hahn:2021:SystematicReviewEffects} conducted a systematic review on the effects of automatic scoring and feedback tools, emphasizing their crucial role in enhancing scalability, reducing bias, and increasing student engagement. Their insights highlight the broader implications of automated feedback systems in education, which is highly relevant to our study.
+Automated feedback systems have gained significant attention in educational research due to their potential to scale online education and reduce the time between submission and feedback.
+\citet{hahn:2021:SystematicReviewEffects} conducted a systematic review on the effects of automatic scoring and feedback tools, emphasizing their crucial role in enhancing scalability, reducing bias, and increasing student engagement.
+Their insights highlight the broader implications of automated feedback systems in education, which is highly relevant to this work's study.
 
 
 % A Systematic Literature Review of Automated Feedback Generation for Programming Exercises
@@ -326,7 +328,10 @@ Automated feedback systems have gained significant attention in educational rese
 % -> Extension for potential of LLMs:
 % Exploring the Potential of Large Language Models to Generate Formative Programming Feedback
 % \citet{kiesler:2023:ExploringPotentialLarge} 
-In the domain of programming education, \citet{keuning:2018:SystematicLiteratureReview} reviewed 101 tools for automated feedback on programming exercises. They noted that most tools focus on error identification rather than providing actionable guidance or adapting to specific instructional needs. Extending this work, \citet{kiesler:2023:ExploringPotentialLarge} explored the effectiveness of large language models (LLMs) like ChatGPT in generating formative programming feedback, finding that while LLMs can produce useful feedback, they often include misleading information for novices. This emphasizes the need for careful design and evaluation of LLM-based feedback systems to ensure reliability and accuracy.
+In the domain of programming education, \citet{keuning:2018:SystematicLiteratureReview} reviewed 101 tools for automated feedback on programming exercises.
+They noted that most tools focus on error identification rather than providing actionable guidance or adapting to specific instructional needs.
+Extending this work, \citet{kiesler:2023:ExploringPotentialLarge} explored the effectiveness of large language models (LLMs) like ChatGPT in generating formative programming feedback, finding that while LLMs can produce useful feedback, they often include misleading information for novices.
+This emphasizes the need for careful design and evaluation of LLM-based feedback systems to ensure reliability and accuracy.
 
 
 % How Novices Use LLM-based Code Generators to Solve CS1 Coding Tasks in a Self-Paced Learning Environment
@@ -337,7 +342,11 @@ In the domain of programming education, \citet{keuning:2018:SystematicLiterature
 %
 % Programming Is Hard - Or at Least It Used to Be: Educational Opportunities and Challenges of AI Code Generation
 % \citet{becker:2023:ProgrammingHardLeast}
-\citet{kazemitabaar:2024:HowNovicesUse} examined how novice programmers interact with LLM-based code generators in self-paced learning environments. They identified distinct usage patterns and their impact on learning outcomes, revealing that a ``Hybrid'' approach — combining manual coding with LLM assistance — was most beneficial for learners. This aligns with findings by \citet{bucinca:2021:TrustThinkCognitive}, who highlighted the dangers of over-reliance on AI and proposed cognitive forcing functions to encourage deeper engagement with AI outputs. Similarly, \citet{becker:2023:ProgrammingHardLeast} discussed both the opportunities and challenges of AI-driven code generation tools, emphasizing the need for educators to guide students in leveraging these technologies effectively without becoming dependent on them. These findings highlight the importance of balancing AI assistance with traditional learning methods, which is a key consideration in our DAFeeD system.
+\citet{kazemitabaar:2024:HowNovicesUse} examined how novice programmers interact with LLM-based code generators in self-paced learning environments. 
+They identified distinct usage patterns and their impact on learning outcomes, revealing that a ``Hybrid'' approach — combining manual coding with LLM assistance — was most beneficial for learners. 
+This aligns with findings by \citet{bucinca:2021:TrustThinkCognitive}, who highlighted the dangers of over-reliance on AI and proposed cognitive forcing functions to encourage deeper engagement with AI outputs. 
+Similarly, \citet{becker:2023:ProgrammingHardLeast} discussed both the opportunities and challenges of AI-driven code generation tools, emphasizing the need for educators to guide students in leveraging these technologies effectively without becoming dependent on them. 
+These findings highlight the importance of balancing AI assistance with traditional learning methods, which is a key consideration in the DAFeeD approach.
 
 
 % Focus on Formative Feedback
@@ -345,7 +354,10 @@ In the domain of programming education, \citet{keuning:2018:SystematicLiterature
 %
 % What makes for effective feedback: staff and student perspectives
 % \citet{dawson:2019:WhatMakesEffective}
-The importance of timely and specific feedback is well-documented. \citet{shute:2008:FocusFormativeFeedback} provided a comprehensive review of formative feedback, highlighting its necessity for being nonevaluative, supportive, timely, and specific. \citet{dawson:2019:WhatMakesEffective} further explored perceptions of effective feedback, revealing that while educators focus on design aspects such as timing and modalities, students prioritize the quality and usability of feedback comments. This underscores the need for automated feedback systems to deliver not only timely but also detailed, specific, and personalized comments.
+The importance of timely and specific feedback is well-documented.
+\citet{shute:2008:FocusFormativeFeedback} provided a comprehensive review of formative feedback, highlighting its necessity for being nonevaluative, supportive, timely, and specific.
+\citet{dawson:2019:WhatMakesEffective} further explored perceptions of effective feedback, revealing that while educators focus on design aspects such as timing and modalities, students prioritize the quality and usability of feedback comments.
+This underscores the need for automated feedback systems to deliver not only timely but also detailed, specific, and personalized comments.
 
 
 % Adaptive Immediate Feedback Can Improve Novice Programming Engagement and Intention to Persist in Computer Science
@@ -353,32 +365,57 @@ The importance of timely and specific feedback is well-documented. \citet{shute:
 %
 % A Comparison of Immediate and Scheduled Feedback in Introductory Programming Projects
 % \citet{leinonen:2022:ComparisonImmediateScheduled}
-Adaptive and immediate feedback mechanisms have been shown to significantly enhance student learning outcomes. \citet{marwan:2020:AdaptiveImmediateFeedback} demonstrated that adaptive and immediate feedback can improve student performance and motivation. Similarly, \citet{leinonen:2022:ComparisonImmediateScheduled} compared immediate and scheduled feedback, concluding that immediate feedback is more effective in promoting student engagement and timely corrections. These studies collectively stress the potential of automated feedback systems in providing timely, adaptive, and engaging feedback, crucial for continuous improvement and learning efficiency.
+Adaptive and immediate feedback mechanisms have been shown to significantly enhance student learning outcomes.
+\citet{marwan:2020:AdaptiveImmediateFeedback} demonstrated that adaptive and immediate feedback can improve student performance and motivation.
+Similarly, \citet{leinonen:2022:ComparisonImmediateScheduled} compared immediate and scheduled feedback, concluding that immediate feedback is more effective in promoting student engagement and timely corrections.
+These studies collectively stress the potential of automated feedback systems in providing timely, adaptive, and engaging feedback, crucial for continuous improvement and learning efficiency.
 
 
 % Feedback-Generation for Programming Exercises With GPT-4:
 % Imen Azaiz, Natalie Kiesler, and Sven Strickroth. 2024. Feedback-Generation for Programming Exercises With GPT-4. arXiv:2403.04449 [cs]
 % Accepted at ITiCSE '24, first author is from LMU
-The work by \citet{azaiz:2024:FeedbackGenerationProgrammingExercises} highlights the limitations of LLMs, advising against using GPT-4 Turbo for automatic feedback generation in programming education due to inconsistencies. In contrast, our research with DAFeeD evaluates an integrated direct automatic feedback delivery process within a Learning Management System (LMS), demonstrating its potential immediate benefits for students, especially when feedback is critically evaluated. We believe that increasingly powerful LLMs and advanced prompting strategies will enhance feedback quality over time, with appropriate guardrails to prevent revealing solutions.
+The work by \citet{azaiz:2024:FeedbackGenerationProgrammingExercises} highlights the limitations of LLMs, advising against using GPT-4 Turbo for automatic feedback generation in programming education due to inconsistencies.
+In contrast, this work's research with DAFeeD evaluates an integrated direct automatic feedback delivery process within a Learning Management System (LMS), demonstrating its potential immediate benefits for students, especially when feedback is critically evaluated.
+We believe that increasingly powerful LLMs and advanced prompting strategies will enhance feedback quality over time, with appropriate guardrails to prevent revealing solutions.
 
 
 % CodeHelp: Using Large Language Models with Guardrails for Scalable Support in Programming Classes
 % \citet{liffiton:2024:CodeHelpUsingLarge}
-The study by \citet{liffiton:2024:CodeHelpUsingLarge} introduces CodeHelp, an LLM-powered tool that provides real-time assistance to programming students. In a first-year computer science course with 52 students, CodeHelp collected data over 12 weeks, revealing that students valued its availability, immediacy, and support for error resolution and independent learning. CodeHelp requires students to manually enter code, error messages, and issue descriptions. In contrast, DAFeeD integrates into the LMS, automatically providing context and feedback on code repository changes without requiring student input. This seamless integration aims to increase student engagement and motivation by offering timely, individualized feedback automatically, and to improve perceptions of feedback effectiveness, usability, and helpfulness.
+The study by \citet{liffiton:2024:CodeHelpUsingLarge} introduces CodeHelp, an LLM-powered tool that provides real-time assistance to programming students.
+In a first-year computer science course with 52 students, CodeHelp collected data over 12 weeks, revealing that students valued its availability, immediacy, and support for error resolution and independent learning.
+CodeHelp requires students to manually enter code, error messages, and issue descriptions.
+In contrast, DAFeeD integrates into the LMS, automatically providing context and feedback on code repository changes without requiring student input.
+This seamless integration aims to increase student engagement and motivation by offering timely, individualized feedback automatically, and to improve perceptions of feedback effectiveness, usability, and helpfulness.
 
 
 % Using GPT-4 to Provide Tiered, Formative Code Feedback
 % \citet{nguyen:2024:UsingGPT4Providea}
-Similarly, \citet{nguyen:2024:UsingGPT4Providea} demonstrate the feasibility of using GPT-4 for tiered, formative feedback on programming exercises in introductory courses, providing insights on conceptual understanding, syntax, and time complexity. Our DAFeeD approach is evaluated using a similar LLM, GPT-4 Turbo, and likewise focuses on providing formative feedback in introductory courses. However, while \citeauthor{nguyen:2024:UsingGPT4Providea} provide feedback on isolated code snippets using few-shot learning, DAFeeD delivers iterative feedback on entire repositories with multiple files using detailed prompts and context collection. Additionally, DAFeeD is integrated directly into an LMS, supporting multiple exercise domains, which allows students to iteratively improve their submissions before the deadline, aiming to enhance learning outcomes and engagement through interactive learning.
+Similarly, \citet{nguyen:2024:UsingGPT4Providea} demonstrate the feasibility of using GPT-4 for tiered, formative feedback on programming exercises in introductory courses, providing insights on conceptual understanding, syntax, and time complexity.
+The DAFeeD approach proposed in this paper is evaluated using a similar LLM, GPT-4 Turbo, and likewise focuses on providing formative feedback in introductory courses.
+However, while \citeauthor{nguyen:2024:UsingGPT4Providea} provide feedback on isolated code snippets using few-shot learning, DAFeeD delivers iterative feedback on entire repositories with multiple files using detailed prompts and context collection.
+Additionally, DAFeeD is integrated directly into an LMS, supporting multiple exercise domains, which allows students to iteratively improve their submissions before the deadline, aiming to enhance learning outcomes and engagement through interactive learning.
 
 
 % AI Teaches the Art of Elegant Coding: Timely, Fair, and Helpful Style Feedback in a Global Course
 % \citet{woodrow:2024:AITeachesArta}
-\citet{woodrow:2024:AITeachesArt} explore the deployment and effectiveness of a real-time style feedback tool using LLMs, specifically GPT 3.5 Turbo, in a large-scale online CS1 course. Their findings indicate significant improvements in student engagement and coding style when feedback is immediate and integrated within the learning platform. \citeauthor{woodrow:2024:AITeachesArt} conducted a randomized control trial with over 8,000 students, demonstrating that real-time feedback was five times more likely to be viewed and incorporated by students compared to delayed feedback. This supports our approach with DAFeeD, emphasizing the importance of immediate, individualized feedback in enhancing student learning outcomes.
+\citet{woodrow:2024:AITeachesArt} explore the deployment and effectiveness of a real-time style feedback tool using LLMs, specifically GPT 3.5 Turbo, in a large-scale online CS1 course.
+Their findings indicate significant improvements in student engagement and coding style when feedback is immediate and integrated within the learning platform.
+\citeauthor{woodrow:2024:AITeachesArt} conducted a randomized control trial with over 8,000 students, demonstrating that real-time feedback was five times more likely to be viewed and incorporated by students compared to delayed feedback.
+This supports the approach with DAFeeD, emphasizing the importance of immediate, individualized feedback in enhancing student learning outcomes.
 
-A broader perspective on the capabilities and challenges of LLMs is provided by \citet{wei:2022:EmergentAbilitiesLarge}, who discussed the emergent abilities of large language models that are not present in smaller models, highlighting the need for ongoing research to harness these capabilities effectively. \citet{huang:2023:SurveyHallucinationLargeb} addressed the issue of hallucinations in LLMs, offering an in-depth overview of detection methods and mitigation strategies crucial for developing reliable feedback systems. \citet{amatriain:2024:PromptDesignEngineering} detailed core concepts and advanced techniques in prompt engineering, such as Chain-of-Thought and Reflection, which can enhance the quality and relevance of automated feedback. Additionally, \citet{liu:2024:JailbreakingChatGPTPrompt} highlighted the importance of robust prompt design to prevent misuse, investigating vulnerabilities of LLMs to jailbreak prompts. \citet{zhao:2023:SurveyLargeLanguage} reviewed the evolution and recent advances of large language models, focusing on pre-training, adaptation tuning, utilization, and capacity evaluation, and highlighting the progress and ongoing challenges in the field. Lastly, \citet{yang:2024:HarnessingPowerLLMs} provided a comprehensive guide for practitioners working with LLMs, discussing the influence of pre-training data and challenges associated with different natural language processing tasks, offering insights for developing and deploying LLM-based feedback systems.
+A broader perspective on the capabilities and challenges of LLMs is provided by \citet{wei:2022:EmergentAbilitiesLarge}, who discussed the emergent abilities of large language models that are not present in smaller models, highlighting the need for ongoing research to harness these capabilities effectively.
+\citet{huang:2023:SurveyHallucinationLargeb} addressed the issue of hallucinations in LLMs, offering an in-depth overview of detection methods and mitigation strategies crucial for developing reliable feedback systems.
+\citet{amatriain:2024:PromptDesignEngineering} detailed core concepts and advanced techniques in prompt engineering, such as Chain-of-Thought and Reflection, which can enhance the quality and relevance of automated feedback.
+Additionally, \citet{liu:2024:JailbreakingChatGPTPrompt} highlighted the importance of robust prompt design to prevent misuse, investigating vulnerabilities of LLMs to jailbreak prompts.
+\citet{zhao:2023:SurveyLargeLanguage} reviewed the evolution and recent advances of large language models, focusing on pre-training, adaptation tuning, utilization, and capacity evaluation, and highlighting the progress and ongoing challenges in the field.
+Lastly, \citet{yang:2024:HarnessingPowerLLMs} provided a comprehensive guide for practitioners working with LLMs, discussing the influence of pre-training data and challenges associated with different natural language processing tasks, offering insights for developing and deploying LLM-based feedback systems.
 
-In summary, the related work collectively highlights the evolving landscape of automated feedback systems and the significant potential of LLMs to enhance educational outcomes through immediate, specific, and actionable feedback. Our primary contribution with DAFeeD lies in its seamless integration within the LMS, supporting a variety of exercise types. By LLMs, DAFeeD provides individualized formative feedback automatically, with a focus on the feedback delivery process rather than the current quality. We are confident that feedback quality will improve through more advanced prompting methods as LLM technology evolves. This approach enables students to iteratively improve their solutions and learn continuously without direct intervention from tutors or professors. Ultimately, DAFeeD aims to enhance student engagement, learning efficiency, and performance through timely, relevant, and personalized feedback, aligning with and advancing the findings of the reviewed studies.
+In summary, the related work collectively highlights the evolving landscape of automated feedback systems and the significant potential of LLMs to enhance educational outcomes through immediate, specific, and actionable feedback.
+The primary contribution with DAFeeD lies in its seamless integration within the LMS, supporting a variety of exercise types.
+By LLMs, DAFeeD provides individualized formative feedback automatically, with a focus on the feedback delivery process rather than the current quality.
+We are confident that feedback quality will improve through more advanced prompting methods as LLM technology evolves.
+This approach enables students to iteratively improve their solutions and learn continuously without direct intervention from tutors or professors.
+Ultimately, DAFeeD aims to enhance student engagement, learning efficiency, and performance through timely, relevant, and personalized feedback, aligning with and advancing the findings of the reviewed studies.
 
 % ================
 
@@ -424,7 +461,7 @@ In summary, the related work collectively highlights the evolving landscape of a
 \section{Approach: Direct Automated Feedback Delivery (DAFeeD)} % 1 page
 \label{sec:approach:DAFeeD}
 
-DAFeeD employs large language models to deliver automated feedback on student submissions, designed to complement traditional teaching methods and provide additional support.
+To complement traditional teaching methods and provide additional support, DAFeeD employs large language models to deliver automated feedback on student submissions.
 Figure \ref{fig:DAFeeD-workflow} illustrates the continuous feedback workflow that DAFeeD facilitates, enabling students to receive feedback at any time, thereby eliminating the need to wait for responses from human tutors or course professors.
 
 \begin{figure}[htbp]
@@ -434,14 +471,15 @@ Figure \ref{fig:DAFeeD-workflow} illustrates the continuous feedback workflow th
   \label{fig:DAFeeD-workflow}
 \end{figure}
 
-The feedback process is designed to be exercise-independent, meaning that it can be applied to various exercise types, such as programming, text, or modeling exercises.
+The feedback process is designed to be exercise-independent, meaning that it can be applied and adapted to various exercise types, such as programming, text, or modeling exercises.
 DAFeeD can provide formative feedback to the students, including feedback on issues or improvements, as well as positive feedback when the student completes the task correctly.
 Once the student submits their solution, DAFeeD initiates a three-stage process to generate natural language feedback.
 
 The first stage, called \textit{Formatting}, takes the student's submission and extracts the submission content, the problem statement, including learning objectives, and any possible grading instructions the instructor defines.
 In addition, the student's learner profile \cite{alexander:1998:ProfilingDifferencesStudents} is considered to generate individualized, personal feedback tailored to the student's skills and learning styles.
 All of this gathered information represents the context.
-During the prompt generation step, a predefined prompt template is filled with the prompt input data, resulting in the feedback prompt.
+
+During the prompt generation step, a predefined prompt template is filled with the individual prompt input data that is included in the context, resulting in the feedback prompt.
 Depending on the exercise, adaptions need to be made to the prompt template to ensure that the feedback output of the LLM is tailored to the specific exercise type.
 For programming exercises, the generated feedback needs to have metadata information about the file and line number of the code snippet to which the feedback refers.
 For text exercises, the feedback needs to have metadata about the sentence or word range the feedback refers to.
@@ -460,6 +498,7 @@ Otherwise, the student can refine and resubmit their solution, initiating the DA
 
 This iterative process is designed to motivate students to continuously learn and experiment with their solutions, resulting in improved performance.
 
+%todo: abgrenzen zu ChatGPT, Copilot etc., warum ist es besser für den anwendungsfall? Vllt für jeden Absatz
 
 \section{Reference Implementation: FeedbackSystem} % 2 pages
 \label{sec:reference-implementation}
@@ -468,10 +507,11 @@ We incorporated DAFeeD into a reference implementation named FeedbackSystem, whi
 Through LMS, students can submit their solution and review the feedback.
 
 When submitting their solutions on LMS, students have the option to request direct automated feedback by clicking a newly added button.
-This feedback request is then sent to FeedbackSystem, provided the student has not reached their feedback request limit for the exercise.
-Course instructors can customize the number of allowed feedback requests per exercise according to their preference.
+This feedback request is then sent to FeedbackSystem, assuming the student has not reached their feedback request limit for the exercise.
+Course instructors can customize the limit of allowed feedback requests per exercise according to their preference.
 A status visualization informs students about their feedback request state.
-Once FeedbackSystem generates the feedback and sends it back to LMS, the student can review it in a modal window on LMS, as depicted in Figure \ref{fig:Artemis-feedback-visualization}.
+Once FeedbackSystem generates the feedback and sends it back to LMS, the student can review it in a modal window on LMS.
+An example visualization of the feedback interface is depicted in Figure \ref{fig:Artemis-feedback-visualization}.
 
 
 \begin{figure}[htbp]
@@ -487,8 +527,9 @@ Once FeedbackSystem generates the feedback and sends it back to LMS, the student
 The prompt design is crucial for guiding the large language model (LLM) in generating effective and contextually relevant feedback. For this study, we utilized OpenAI's GPT-4 Turbo with a temperature setting of 0 to ensure deterministic and consistent feedback generation, reducing randomness and the potential for hallucinations. However, the system is configurable, allowing the use of other models and settings. In Figure \ref{fig:prompt-programming-exercise-generation}, we provide an example of a prompt used for generating feedback for programming exercises. 
 This prompt incorporates specific instructions to ensure that the feedback is individualized to the student's submission while not revealing the solution.
 
-The feedback generation process for programming exercises begins by identifying the differences between the student's submission repository and the provided template repository, the starting point. 
+The feedback generation process for programming exercises begins by identifying the differences between the student's submission repository and the provided template repository. 
 These differences are identified using a git diff, which highlights the lines removed and added by the student. 
+%TODO Felix: How does the splitting work
 If the problem statement is too lengthy or complex, a separate LLM invocation is used to split the problem statement into relevant parts for each file. 
 This ensures that the feedback is targeted and relevant to the specific context of the file being reviewed. 
 Additionally, a summary of the student's solution across all files is generated using another LLM invocation. 
@@ -500,7 +541,10 @@ The \textit{Task Instructions} direct the LLM to provide non-graded, formative f
 The \textit{File Path and Content} provide the specific file under review along with its content, aiding the LLM in pinpointing specific lines of code for feedback.
 Additionally, \textit{Summary and Diffs} between the template and submission offer additional context, helping the LLM understand the student's changes and their overall approach.
 
+% TODO: Unterscheidungen zu ChatGPT, etc hier anbringen - 1-2 Sätze was didaktisch und anwendungsfall spezischer besser ist
+
 The structure and content of this prompt are designed to emulate a human tutor's approach, ensuring that the feedback is both relevant and supportive of the student's learning process.
+% todo: better word for meaningful, this is kinda vage
 By providing such detailed instructions and contextual information, the LLM can generate feedback that is both meaningful and actionable for students.
 
 % Prompt for generating feedback suggestions of programming exercises
@@ -559,15 +603,17 @@ Similarly, the \textit{TextLLM} module is optimized for text exercises and follo
 
 FeedbackSystem's system design is independent of any specific learning management system (LMS) as it provides a REST API, documented using the OpenAPI standard\footnote{\url{https://www.openapis.org}}.
 This independence allows FeedbackSystem to be integrated with various LMS platforms, such as Moodle\footnote{\url{https://moodle.org}}.
+% Beeing able to integrate FeedbackSystems into different LMSs enables more students to benefit from Athena
+% TODO MS: Highlight why this is cool, integratable into different learning systems allowing more students to benefit from DAFeeD.
 
 FeedbackSystem currently connects to OpenAI models hosted in a private Azure cloud to ensure that student data is not used for training models, maintaining privacy.
 Additionally, the system can be configured to use open-source models like Llama\footnote{\url{https://llama.meta.com}} or Mistral\footnote{\url{https://mistral.ai}}, either self-hosted or cloud-based.
 
-To meet performance and scalability requirements, FeedbackSystem and its modules are deployed within a Kubernetes cluster\footnote{\url{https://kubernetes.io}}.
-Kubernetes, in conjunction with FeedbackSystem's modular architecture, allows the system to scale each module independently.
+To meet performance and scalability requirements, the FeedbackSystem and its modules are deployed within a Kubernetes cluster\footnote{\url{https://kubernetes.io}}.
+Kubernetes, in conjunction with the FeedbackSystem's modular architecture, allows the system to scale each module independently.
 For example, additional instances of the programming module can be instantiated when a new programming exercise is released.
 Furthermore, Kubernetes provides out-of-the-box load balancing and self-healing capabilities, ensuring that if a module crashes, it is automatically restarted.
-
+% TODO MS: It is very important that students have always access to the feedback
 
 \section{Evaluation} % 5 pages
 \label{sec:evaluation}
@@ -605,9 +651,13 @@ Subsequently, we outline the limitations of the evaluation and discuss the impli
 We designed the ``Code Review'' Java programming exercise, a past introduction to software engineering homework assignment, to simulate a real-world scenario where students review and improve existing code.
 The exercise included tasks such as improving the \texttt{Student} and \texttt{Professor} classes by following good coding practices, refactoring duplicated code using the template method design pattern, catching edge cases in the \texttt{StudentRepository}, and implementing forgotten methods in the service package.
 
-We invited 20 participants from current courses at the university via direct messages, including undergraduate and graduate students from various disciplines like computer science, information systems, and games engineering. Participants received a two-page participation manual and tested the new feedback feature on the LMS platform in a controlled university environment. The evaluation lasted around 45 minutes, focusing on understanding the feedback process rather than completing the exercise.
+We invited 20 participants from current courses at the university via direct messages, including undergraduate and graduate students from various disciplines like computer science, information systems, and games engineering. 
+Participants received a two-page participation manual and tested the new feedback feature on the LMS platform in a controlled university environment. 
+The evaluation lasted around 45 minutes, focusing on understanding the feedback process rather than completing the exercise.
 
-While our study included 20 participants, this number is sufficient to yield meaningful insights based on established usability research. \citet{nielsen:2000:WhyYouOnly} has shown that smaller, iterative tests can reveal the majority of usability issues, making such an approach both practical and effective. This methodology allows for comprehensive feedback analysis without unnecessary resource expenditure.
+While our study included 20 participants, this number is sufficient to yield meaningful insights based on established usability research. 
+\citet{nielsen:2000:WhyYouOnly} has shown that smaller, iterative tests can reveal the majority of usability issues, making such an approach both practical and effective. 
+This methodology allows for comprehensive feedback analysis without unnecessary resource expenditure.
 
 Participants followed a structured procedure, illustrated in Figure \ref{fig:Study-Design}.
 They started by thoroughly reading the participation manual.
@@ -735,6 +785,7 @@ Some challenges included understanding certain automated feedback messages and o
 
 \subsection{Findings}
 
+%todo: add question numbers to findings
 The responses to \ref{RQ1} show that the availability of direct automated feedback can significantly enhance student engagement and motivation.
 Students reported feeling more engaged in the learning process.
 The majority of participants also stated they are motivated to repeatedly improve their code and complete their programming assignments.
@@ -805,6 +856,7 @@ could address these issues, offering more tailored and context-specific guidance
 This work aligns with findings from other studies, highlighting the importance of timely and continuous feedback in education.
 Additionally, we believe that direct automated feedback should complement, rather than substitute, traditional human feedback.
 The convenience and accessibility of automated feedback are clear advantages, yet the nuanced insights that human tutors provide remain irreplaceable.
+% TODO: Why
 
 In conclusion, the direct automated feedback system shows significant potential in improving programming education.
 By addressing the areas identified for improvement and continuing to refine the system, we can harness the full benefits of automated feedback to support and enhance student learning
