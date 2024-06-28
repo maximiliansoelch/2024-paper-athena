@@ -488,7 +488,7 @@ The prompt design is crucial for guiding the large language model (LLM) in gener
 This prompt incorporates specific instructions to ensure that the feedback is individualized to the student's submission while not revealing the solution.
 
 The feedback generation process for programming exercises begins by identifying the differences between the student's submission repository and the provided template repository, the starting point. 
-These differences are identified using a git diff, which highlights lines removed and added by the student. 
+These differences are identified using a git diff, which highlights the lines removed and added by the student. 
 If the problem statement is too lengthy or complex, a separate LLM invocation is used to split the problem statement into relevant parts for each file. 
 This ensures that the feedback is targeted and relevant to the specific context of the file being reviewed. 
 Additionally, a summary of the student's solution across all files is generated using another LLM invocation. 
@@ -602,13 +602,18 @@ Subsequently, we outline the limitations of the evaluation and discuss the impli
 % We aim to evaluate how intuitive and user-friendly students find the system, as well as how effective they consider it in assisting their learning and improving their performance.
 
 \subsection{Study Design}
-We designed the ``Code Review'' Java programming exercise, a past introduction to software engineering homework assignment, to simulate a real-world scenario where students review and improve existing code. The exercise included tasks such as improving the \texttt{Student} and \texttt{Professor} classes by following good coding practices, refactoring duplicated code using the template method design pattern, catching edge cases in the \texttt{StudentRepository}, and implementing forgotten methods in the service package.
+We designed the ``Code Review'' Java programming exercise, a past introduction to software engineering homework assignment, to simulate a real-world scenario where students review and improve existing code.
+The exercise included tasks such as improving the \texttt{Student} and \texttt{Professor} classes by following good coding practices, refactoring duplicated code using the template method design pattern, catching edge cases in the \texttt{StudentRepository}, and implementing forgotten methods in the service package.
 
 We invited 20 participants from current courses at the university via direct messages, including undergraduate and graduate students from various disciplines like computer science, information systems, and games engineering. Participants received a two-page participation manual and tested the new feedback feature on the Artemis platform in a controlled university environment. The evaluation lasted around 45 minutes, focusing on understanding the feedback process rather than completing the exercise.
 
 While our study included 20 participants, this number is sufficient to yield meaningful insights based on established usability research. \citet{nielsen:2000:WhyYouOnly} has shown that smaller, iterative tests can reveal the majority of usability issues, making such an approach both practical and effective. This methodology allows for comprehensive feedback analysis without unnecessary resource expenditure.
 
-Participants followed a structured procedure, illustrated in Figure \ref{fig:Study-Design}. They started by thoroughly reading the participation manual. Next, they prepared their IDE and accessed the exercise on Artemis. They then worked on the exercise, committed and pushed their code, and requested AI feedback iteratively. After reviewing and acting on the AI-provided feedback, they refined their solutions until they felt they had a good understanding of the feedback process.
+Participants followed a structured procedure, illustrated in Figure \ref{fig:Study-Design}.
+They started by thoroughly reading the participation manual.
+Next, they prepared their IDE and accessed the exercise on Artemis.
+They then worked on the exercise, committed and pushed their code, and requested AI feedback iteratively.
+After reviewing and acting on the AI-provided feedback, they refined their solutions until they felt they had a good understanding of the feedback process.
 
 \begin{figure}[htbp]
   \centering
@@ -769,7 +774,7 @@ The responses to \ref{RQ4} demonstrate the ease of receiving feedback and overal
 Students found it easy to receive feedback on their programming assignments.
 A large number of participants preferred using the feedback integrated into Artemis than copy their submission and relevant context information over to an external AI tool. 
 Most participants also deemed the feedback helpful in improving their programming skills. 
-In regards to the overall performance of the direct automated feedback, the majority of students expressed high satisfaction with the system.
+In regard to the overall performance of the direct automated feedback, the majority of students expressed high satisfaction with the system.
 %These findings underscore the high level of user satisfaction and the perceived effectiveness of Artemis' automated feedback in enhancing programming skills.
 %TODO: free text answers including improvements
 
