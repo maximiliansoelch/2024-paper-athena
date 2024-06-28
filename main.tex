@@ -45,7 +45,7 @@
 %% for your publication.
 %%
 %%
-\documentclass[manuscript,screen,review]{acmart}
+\documentclass[manuscript,screen,review, anonymous]{acmart}
 
 \usepackage{caption}
 \usepackage[utf8]{inputenc}
@@ -288,7 +288,7 @@ Such a feedback system enables interactive learning for students, increasing the
 % Objectives
 In this paper, we present DAFeeD, an approach for generating automated feedback on student submissions using large language models (LLMs), to address these challenges.
 The approach is independent of the exercise type and can be applied to various domains, such as programming, text, or modeling exercises.
-We implemented the approach in an open-source reference implementation called Athena, connected to the learning platform Artemis \cite{krusche:2018:ArTEMiSAutomaticAssessmentf} through which students submit their solutions and receive feedback.
+We implemented the approach in an open-source reference implementation called FeedbackSystem\footnote{Anonymized due to double-blind review regulations}, connected to the learning platform LMS\footnote{Anonymized due to double-blind review regulations} \cite{krusche:2018:ArTEMiSAutomaticAssessmentf} through which students submit their solutions and receive feedback.
 To validate the effectiveness and efficiency of the approach, we tested it in a controlled environment. 
 % We collected quantitative and qualitative data to evaluate students' perceptions of the approach and the overall performance of the reference implementation.
 % The results show that students perceive the feedback process as relevant and beneficial to their learning, indicating that the approach has the potential to significantly improve the feedback process in educational institutions and increase students' learning efficiency and performance.
@@ -307,7 +307,7 @@ With this paper, we want to answer the following research questions about direct
 The subsequent sections of this paper are organized to provide a comprehensive understanding of the research. 
 \cref{sec:related-work} provides an overview of related work. 
 \cref{sec:approach:DAFeeD} details the concept and methodology of Direct Automated Feedback Delivery (DAFeeD).
-\cref{sec:reference-implementation} describes the reference implementation of DAFeeD, called Athena, including a general overview, details on the used prompts, and the system architecture. 
+\cref{sec:reference-implementation} describes the reference implementation of DAFeeD, called FeedbackSystem, including a general overview, details on the used prompts, and the system architecture. 
 \cref{sec:evaluation} presents the evaluation results, including the research questions, study design, and findings. 
 Finally, \cref{sec:conclusion} concludes with a summary of findings and discusses future research directions to enhance automated feedback systems.
 
@@ -461,17 +461,17 @@ Otherwise, the student can refine and resubmit their solution, initiating the DA
 This iterative process is designed to motivate students to continuously learn and experiment with their solutions, resulting in improved performance.
 
 
-\section{Reference Implementation: Athena} % 2 pages
+\section{Reference Implementation: FeedbackSystem} % 2 pages
 \label{sec:reference-implementation}
 
-We incorporated DAFeeD into a reference implementation named Athena, which is seamlessly integrated with the learning platform Artemis. 
-Through Artemis, students can submit their solution and review the feedback.
+We incorporated DAFeeD into a reference implementation named FeedbackSystem, which is seamlessly integrated with the learning platform LMS. 
+Through LMS, students can submit their solution and review the feedback.
 
-When submitting their solutions on Artemis, students have the option to request direct automated feedback by clicking a newly added button.
-This feedback request is then sent to Athena, provided the student has not reached their feedback request limit for the exercise.
+When submitting their solutions on LMS, students have the option to request direct automated feedback by clicking a newly added button.
+This feedback request is then sent to FeedbackSystem, provided the student has not reached their feedback request limit for the exercise.
 Course instructors can customize the number of allowed feedback requests per exercise according to their preference.
 A status visualization informs students about their feedback request state.
-Once Athena generates the feedback and sends it back to Artemis, the student can review it in a modal window on Artemis, as depicted in Figure \ref{fig:Artemis-feedback-visualization}.
+Once FeedbackSystem generates the feedback and sends it back to LMS, the student can review it in a modal window on LMS, as depicted in Figure \ref{fig:Artemis-feedback-visualization}.
 
 
 \begin{figure}[htbp]
@@ -540,7 +540,7 @@ The template to submission diff (only as reference):
 
 \subsection{Architecture}
 
-Athena is deployed in production alongside the learning platform Artemis, which serves up to more than 2000 students per course.
+FeedbackSystem is deployed in production alongside the learning platform LMS, which serves up to more than 2000 students per course.
 Consequently, the reference implementation must satisfy additional non-functional requirements such as performance, scalability, maintainability, and usability.
 To meet these requirements and to support feedback generation for multiple exercise types while allowing for future extensibility, we adopted a modular architecture, as illustrated in Figure \ref{fig:Athena-architecture}.
 
@@ -557,14 +557,14 @@ The \textit{Module Manager} handles all incoming requests, verifies authorizatio
 The \textit{ProgrammingLLM} module manages programming exercises and executes the three-stage DAFeeD process, which includes formatting, predicting, and parsing. 
 Similarly, the \textit{TextLLM} module is optimized for text exercises and follows the same process.
 
-Athena's system design is independent of any specific learning management system (LMS) as it provides a REST API, documented using the OpenAPI standard\footnote{\url{https://www.openapis.org}}.
-This independence allows Athena to be integrated with various LMS platforms, such as Moodle\footnote{\url{https://moodle.org}}.
+FeedbackSystem's system design is independent of any specific learning management system (LMS) as it provides a REST API, documented using the OpenAPI standard\footnote{\url{https://www.openapis.org}}.
+This independence allows FeedbackSystem to be integrated with various LMS platforms, such as Moodle\footnote{\url{https://moodle.org}}.
 
-Athena currently connects to OpenAI models hosted in a private Azure cloud to ensure that student data is not used for training models, maintaining privacy.
+FeedbackSystem currently connects to OpenAI models hosted in a private Azure cloud to ensure that student data is not used for training models, maintaining privacy.
 Additionally, the system can be configured to use open-source models like Llama\footnote{\url{https://llama.meta.com}} or Mistral\footnote{\url{https://mistral.ai}}, either self-hosted or cloud-based.
 
-To meet performance and scalability requirements, Athena and its modules are deployed within a Kubernetes cluster\footnote{\url{https://kubernetes.io}}.
-Kubernetes, in conjunction with Athena's modular architecture, allows the system to scale each module independently.
+To meet performance and scalability requirements, FeedbackSystem and its modules are deployed within a Kubernetes cluster\footnote{\url{https://kubernetes.io}}.
+Kubernetes, in conjunction with FeedbackSystem's modular architecture, allows the system to scale each module independently.
 For example, additional instances of the programming module can be instantiated when a new programming exercise is released.
 Furthermore, Kubernetes provides out-of-the-box load balancing and self-healing capabilities, ensuring that if a module crashes, it is automatically restarted.
 
@@ -572,7 +572,7 @@ Furthermore, Kubernetes provides out-of-the-box load balancing and self-healing 
 \section{Evaluation} % 5 pages
 \label{sec:evaluation}
 
-In this section, we outline the methodology employed to validate the effectiveness of the proposed DAFeeD approach including the reference implementation Athena.
+In this section, we outline the methodology employed to validate the effectiveness of the proposed DAFeeD approach including the reference implementation FeedbackSystem.
 The conducted evaluation represents the treatment validation stage of the design science methodology proposed by Wieringa \cite{wieringa:2014:DesignScienceMethodologya}.
 In this stage, the proposed solution — DAFeeD — is evaluated in a controlled environment, and the collected data is utilized for the refinement and improvement of the solution.
 
@@ -605,13 +605,13 @@ Subsequently, we outline the limitations of the evaluation and discuss the impli
 We designed the ``Code Review'' Java programming exercise, a past introduction to software engineering homework assignment, to simulate a real-world scenario where students review and improve existing code.
 The exercise included tasks such as improving the \texttt{Student} and \texttt{Professor} classes by following good coding practices, refactoring duplicated code using the template method design pattern, catching edge cases in the \texttt{StudentRepository}, and implementing forgotten methods in the service package.
 
-We invited 20 participants from current courses at the university via direct messages, including undergraduate and graduate students from various disciplines like computer science, information systems, and games engineering. Participants received a two-page participation manual and tested the new feedback feature on the Artemis platform in a controlled university environment. The evaluation lasted around 45 minutes, focusing on understanding the feedback process rather than completing the exercise.
+We invited 20 participants from current courses at the university via direct messages, including undergraduate and graduate students from various disciplines like computer science, information systems, and games engineering. Participants received a two-page participation manual and tested the new feedback feature on the LMS platform in a controlled university environment. The evaluation lasted around 45 minutes, focusing on understanding the feedback process rather than completing the exercise.
 
 While our study included 20 participants, this number is sufficient to yield meaningful insights based on established usability research. \citet{nielsen:2000:WhyYouOnly} has shown that smaller, iterative tests can reveal the majority of usability issues, making such an approach both practical and effective. This methodology allows for comprehensive feedback analysis without unnecessary resource expenditure.
 
 Participants followed a structured procedure, illustrated in Figure \ref{fig:Study-Design}.
 They started by thoroughly reading the participation manual.
-Next, they prepared their IDE and accessed the exercise on Artemis.
+Next, they prepared their IDE and accessed the exercise on LMS.
 They then worked on the exercise, committed and pushed their code, and requested AI feedback iteratively.
 After reviewing and acting on the AI-provided feedback, they refined their solutions until they felt they had a good understanding of the feedback process.
 
@@ -655,7 +655,7 @@ The survey questions mapped to the research questions as follows:
   \item \textbf{Usability and Helpfulness}
     \begin{enumerate}[label=\textbf{Q\arabic*},resume,ref=Q\arabic*]
       \item \label{Q14} It is easy to receive direct automated feedback  on my programming assignments.
-      \item \label{Q15} I would rather use the direct automated feedback integrated into Artemis than use an external AI tool for getting feedback.
+      \item \label{Q15} I would rather use the direct automated feedback integrated into LMS than use an external AI tool for getting feedback.
       \item \label{Q16} I find the direct automated feedback helpful in improving my programming skills.
       \item \label{Q17} I am satisfied with the overall performance of the direct automated feedback.
       \item \label{Q18} Are there any improvements that you would suggest for direct automated feedback?
@@ -698,28 +698,28 @@ The answers to each of the Likert scale questions are visualized in Figure \ref{
 \end{figure}
 
 
-90\% of students indicated that the direct automated feedback from Artemis keeps them more engaged in the learning process, with 10\% neutral (\ref{Q1}).
-For \ref{Q2}, 85\% of students stated that the direct automatic feedback from Artemis motivates them to repeatedly improve their code, with 10\% neutral and 5\% disagreeing.
-For \ref{Q3}, 85\% of students mentioned that the direct automated feedback from Artemis makes them feel more motivated to complete their programming assignments, with 10\% neutral and 5\% disagreeing.
+90\% of students indicated that the direct automated feedback from LMS keeps them more engaged in the learning process, with 10\% neutral (\ref{Q1}).
+For \ref{Q2}, 85\% of students stated that the direct automatic feedback motivates them to repeatedly improve their code, with 10\% neutral and 5\% disagreeing.
+For \ref{Q3}, 85\% of students mentioned that the direct automated feedback makes them feel more motivated to complete their programming assignments, with 10\% neutral and 5\% disagreeing.
 The encouragement to experiment more with coding solutions (\ref{Q4}) received a positive response, with 70\% agreeing, 20\% neutral, and 10\% disagreeing.
 
 
-Comfort levels in requesting feedback showed that 90\% of students feel more comfortable requesting direct automated feedback from Artemis than feedback from a human tutor, with 10\% neutral (\ref{Q5}).
-For \ref{Q6}, 100\% of students noted that they are likely to request feedback more frequently when using direct automated feedback from Artemis than feedback from their course professor.
-Receiving feedback from Artemis was found to be less intimidating than from a human tutor by 80\% of students, with 10\% neutral and 10\% disagreeing (\ref{Q7}).
-Convenience in requesting feedback showed that 100\% of students feel that requesting direct automated feedback from Artemis is more convenient than arranging a meeting with a human tutor (\ref{Q8}).
+Comfort levels in requesting feedback showed that 90\% of students feel more comfortable requesting direct automated feedback from LMS than feedback from a human tutor, with 10\% neutral (\ref{Q5}).
+For \ref{Q6}, 100\% of students noted that they are likely to request feedback more frequently when using direct automated feedback than feedback from their course professor.
+Receiving feedback from LMS was found to be less intimidating than from a human tutor by 80\% of students, with 10\% neutral and 10\% disagreeing (\ref{Q7}).
+Convenience in requesting feedback showed that 100\% of students feel that requesting direct automated feedback is more convenient than arranging a meeting with a human tutor (\ref{Q8}).
 
 
-In terms of understanding mistakes, 90\% of students believed that the direct automated feedback provided by Artemis helps them understand their mistakes, with 10\% neutral (\ref{Q9}).
-The effectiveness of the feedback was highlighted by 95\% of students who found that the direct automated feedback from Artemis is more effective than one-time feedback, with 5\% neutral (\ref{Q10}).
+In terms of understanding mistakes, 90\% of students believed that the direct automated feedback provided by LMS helps them understand their mistakes, with 10\% neutral (\ref{Q9}).
+The effectiveness of the feedback was highlighted by 95\% of students who found that the direct automated feedback is more effective than one-time feedback, with 5\% neutral (\ref{Q10}).
 Regarding the quality of assignments, 70\% of students observed that the direct automated feedback has significantly improved the quality of their programming assignments, with 20\% neutral and 10\% disagreeing (\ref{Q11}).
 For \ref{Q12}, 95\% of students felt that the direct automated feedback is a helpful addition to the automatic test case results, with 5\% neutral.
 Continuous access to feedback was found to be more beneficial than arranging meetings with a tutor by 75\% of students, with 15\% neutral and 10\% disagreeing (\ref{Q13}).
 
 
-Ease of receiving feedback was highly rated, with 100\% of students confirming that it is easy to receive direct automated feedback from Artemis on their programming assignments (\ref{Q14}).
-Furthermore, 70\% of students preferred using the direct automated feedback integrated into Artemis over using an external AI tool for getting feedback, with 25\% neutral and 5\% disagreeing (\ref{Q15}).
-In terms of skill improvement, 70\% of students agreed that they find the direct automated feedback from Artemis helpful in improving their programming skills, with 25\% neutral and 5\% disagreeing (\ref{Q16}).
+Ease of receiving feedback was highly rated, with 100\% of students confirming that it is easy to receive direct automated feedback on their programming assignments (\ref{Q14}).
+Furthermore, 70\% of students preferred using the direct automated feedback integrated into LMS over using an external AI tool for getting feedback, with 25\% neutral and 5\% disagreeing (\ref{Q15}).
+In terms of skill improvement, 70\% of students agreed that they find the direct automated feedback helpful in improving their programming skills, with 25\% neutral and 5\% disagreeing (\ref{Q16}).
 Lastly, 80\% of students were satisfied with the overall performance of the direct automated feedback system, with 10\% neutral and 10\% disagreeing (\ref{Q17}).
 
 
@@ -760,7 +760,7 @@ These findings highlight the effectiveness of automated feedback in providing a 
 
 The responses to \ref{RQ3} indicate that students think automated feedback is highly effective in helping them understand and improve their programming assignments. 
 Students reported that the feedback helped them understand their mistakes and found it more effective than receiving only one-time feedback for their submission.
-The majority reported that the feedback significantly improved the quality of their programming assignments, and all participants stated that automatic feedback is a helpful addition to automatic test case results generated by Artemis.
+The majority reported that the feedback significantly improved the quality of their programming assignments, and all participants stated that automatic feedback is a helpful addition to automatic test case results generated by LMS.
 In addition, most participants saw continuous access to automated feedback as more beneficial than arranging meetings with a tutor. 
 These findings suggest that automated feedback not only aids in error identification but also significantly enhances the overall quality of student assignments.
 
@@ -772,7 +772,7 @@ These findings suggest that automated feedback not only aids in error identifica
 
 The responses to \ref{RQ4} demonstrate the ease of receiving feedback and overall satisfaction with DAFeeD's feedback process and its reference implementation. 
 Students found it easy to receive feedback on their programming assignments.
-A large number of participants preferred using the feedback integrated into Artemis than copy their submission and relevant context information over to an external AI tool. 
+A large number of participants preferred using the feedback integrated into LMS than copy their submission and relevant context information over to an external AI tool. 
 Most participants also deemed the feedback helpful in improving their programming skills. 
 In regard to the overall performance of the direct automated feedback, the majority of students expressed high satisfaction with the system.
 %These findings underscore the high level of user satisfaction and the perceived effectiveness of Artemis' automated feedback in enhancing programming skills.
@@ -787,7 +787,7 @@ In regard to the overall performance of the direct automated feedback, the major
 
 \subsection{Discussion}
 
-Overall, students received the direct automated feedback system Athena integrated into Artemis positively, indicating its effectiveness in enhancing their skills.
+Overall, students received the direct automated feedback system FeedbackSystem integrated into LMS positively, indicating its effectiveness in enhancing their skills.
 The high levels of engagement, motivation, and satisfaction reported by the students underscore the system's potential to significantly improve the learning experience.
 
 The findings validate the role of automated feedback in fostering an interactive learning environment.
@@ -836,7 +836,7 @@ The use of a specific sample exercise to evaluate the automated feedback process
 \label{sec:conclusion}
 
 % todo: summarize the contributions and outcome
-The main contributions of this paper are the introduction of DAFeeD, a direct automated feedback delivery system, and the reference implementation Athena, which integrates DAFeeD into the learning platform Artemis.
+The main contributions of this paper are the introduction of DAFeeD, a direct automated feedback delivery system, and the reference implementation FeedbackSystem, which integrates DAFeeD into the learning platform LMS.
 DAFeeD enables the interactive learning process by providing students with immediate, context-specific feedback on their submissions.
 The implementation of DAFeeD demonstrates the feasibility and advantages of incorporating automated feedback systems into educational settings. 
 For educators, this can alleviate the heavy workload associated with providing individualized feedback, allowing them to focus more on instructional design and student support.
@@ -846,7 +846,7 @@ For students, the evaluation of DAFeeD showed that they perceive the automated f
 % 
 Future work includes enhancing the visualization of feedback, such as grouping and color coding the feedback items to make it easier to differentiate between critical feedback items, suggestions for improvement, and positive feedback.
 A high priority will be on further improving the overall quality of the feedback provided. 
-We also aim to extend the implementation to support direct automated feedback for the remaining exercise types of Artemis.
+We also aim to extend the implementation to support direct automated feedback for the remaining exercise types of LMS.
 Another crucial step is to test direct automated feedback in a real-world setting by utilizing this feature in an actual course. 
 This will allow us to collect comprehensive data to thoroughly evaluate the impact on student performance and motivation.
 
