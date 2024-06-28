@@ -435,7 +435,6 @@ Figure \ref{fig:DAFeeD-workflow} illustrates the continuous feedback workflow th
 \end{figure}
 
 The feedback process is designed to be exercise-independent, meaning that it can be applied to various exercise types, such as programming, text, or modeling exercises.
-%todo: cite formative feedback
 DAFeeD can provide formative feedback to the students, including feedback on issues or improvements, as well as positive feedback when the student completes the task correctly.
 Once the student submits their solution, DAFeeD initiates a three-stage process to generate natural language feedback.
 
@@ -603,22 +602,23 @@ Subsequently, we outline the limitations of the evaluation and discuss the impli
 % We aim to evaluate how intuitive and user-friendly students find the system, as well as how effective they consider it in assisting their learning and improving their performance.
 
 \subsection{Study Design}
-To gain comprehensive insights into students' perceptions of the newly introduced DAFeeD concept, we employed a survey-based approach, visualized in Figure \ref{fig:Study-Design}.
+To gain comprehensive insights into students' perceptions of the newly introduced DAFeeD concept and to test the usability of the reference implementation, we employed a survey-based approach, visualized in Figure \ref{fig:Study-Design}.
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.6\linewidth]{figures/Study-Design.pdf}
   \caption{UML activity diagram illustrating the study procedure from a participant's perspective.}
   \label{fig:Study-Design}
 \end{figure}
-At the beginning of the study, participants received a two-page instruction manual that included all required information. 
-Initially, study participants tested the new feedback feature on a sample exercise using the Artemis platform in a controlled environment at the university.
 
 The time limit for the evaluation was set to 45 minutes, including the testing phase of the feature and the succeeding survey.
-Goal of the hands on phase was to understand the new feedback process, completing the exercise was not required.
-%TODO: be more specific
+Goal of the hands-on phase was to understand the new feedback process, completing the exercise was not required.
 
-%The study conductors were present throughout to answer questions and provide support as needed.
-Following this hands-on experience, participants were asked to complete a survey hosted on the community version of the open-source survey tool LimeSurvey\footnote{\url{https://www.limesurvey.org}}.
+At the beginning of the study, participants received a two-page participation instruction manual that included all necessary information. 
+Study participants then tested the new feedback feature with a sample exercise using the Artemis platform in a controlled environment at the university.
+%todo Felix: describe sample exercise
+For the sample programming exercise, students needed to review code and had to improve the submission by fixing issues such as code duplication, missing methods, and implementation of wrong modifiers.
+During the testing phase, participants followed DAFeeD's workflow, submitting their solution, requesting and reviewing the feedback, and refining their solution. 
+Once the participants had a good understanding of the feedback process, participants were asked to complete a survey hosted on the community version of the open-source survey tool LimeSurvey\footnote{\url{https://www.limesurvey.org}}.
 This survey aimed to gather their opinions on direct automated feedback and collect feedback on their overall experience with the feature.
 
 We invited students from current courses at the university to participate in the study via direct messages and conducted the study with a total of 20 participants.
@@ -626,7 +626,6 @@ The study uses a mixed methods approach, combining quantitative and qualitative 
 The participants were a mix of undergraduate and graduate students from various disciplines, including computer science, information systems, and games engineering.
 %todo: describe participants 
 %todo: cite nielsen regarding number of participants
-%todo Felix: describe sample exercise
 
 All survey questions, except for the introductory demographic queries and the five final, voluntary free-text responses (Q18 - Q22), employ a 5-point Likert scale \cite{allen:2007:LikertScalesData} ranging from "strongly agree" to "strongly disagree" and are mandatory.
 The following list shows the mapping from the asked questions and statements to the research questions:
@@ -726,7 +725,7 @@ Lastly, 80\% of students were satisfied with the overall performance of the dire
 
 
 % free text responses
-% todo: add Question numbers 
+% todo: add Question numbers and some more details
 The responses to the voluntary free text questions highlight several themes.
 Many students appreciated the immediate availability of feedback, which allowed for prompt corrections without waiting for manual review. 
 However, some respondents suggested improvements such as better categorization of feedback, more detailed explanations of errors, and prioritization of critical issues. 
