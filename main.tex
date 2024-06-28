@@ -603,33 +603,27 @@ Subsequently, we outline the limitations of the evaluation and discuss the impli
 % We aim to evaluate how intuitive and user-friendly students find the system, as well as how effective they consider it in assisting their learning and improving their performance.
 
 \subsection{Study Design}
-To gain comprehensive insights into students' perceptions of the newly introduced DAFeeD concept, we employed a survey-based approach, visualized in Figure \ref{fig:Study-Design}.
+We designed the ``Code Review'' Java programming exercise, a past introduction to software engineering homework assignment, to simulate a real-world scenario where students review and improve existing code. The exercise included tasks such as improving the \texttt{Student} and \texttt{Professor} classes by following good coding practices, refactoring duplicated code using the template method design pattern, catching edge cases in the \texttt{StudentRepository}, and implementing forgotten methods in the service package.
+
+We invited 20 participants from current courses at the university via direct messages, including undergraduate and graduate students from various disciplines like computer science, information systems, and games engineering. Participants received a two-page instruction manual and tested the new feedback feature on the Artemis platform in a controlled university environment. The evaluation lasted around 45 minutes, focusing on understanding the feedback process rather than completing the exercise.
+
+Participants followed a structured procedure, illustrated in Figure \ref{fig:Study-Design}. They started by preparing their IDE and accessing the exercise on Artemis. They then worked on the exercise, committed and pushed their code, and requested AI feedback iteratively. After reviewing and acting on the AI-provided feedback, they refined their solutions until they felt they had a good understanding of the feedback process.
+
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.6\linewidth]{figures/Study-Design.pdf}
   \caption{UML activity diagram illustrating the study procedure from a participant's perspective.}
   \label{fig:Study-Design}
 \end{figure}
-At the beginning of the study, participants received a two-page instruction manual that included all required information. 
-Initially, study participants tested the new feedback feature on a sample exercise using the Artemis platform in a controlled environment at the university.
 
-The time limit for the evaluation was set to 45 minutes, including the testing phase of the feature and the succeeding survey.
-Goal of the hands on phase was to understand the new feedback process, completing the exercise was not required.
-%TODO: be more specific
-
-%The study conductors were present throughout to answer questions and provide support as needed.
 Following this hands-on experience, participants were asked to complete a survey hosted on the community version of the open-source survey tool LimeSurvey\footnote{\url{https://www.limesurvey.org}}.
 This survey aimed to gather their opinions on direct automated feedback and collect feedback on their overall experience with the feature.
+The study employed a mixed methods approach, combining quantitative and qualitative data collection methods.
 
-We invited students from current courses at the university to participate in the study via direct messages and conducted the study with a total of 20 participants.
-The study uses a mixed methods approach, combining quantitative and qualitative data collection methods. 
-The participants were a mix of undergraduate and graduate students from various disciplines, including computer science, information systems, and games engineering.
-%todo: describe participants 
+All survey questions, except for the introductory demographic queries and the five final voluntary free-text responses (\ref{Q18} - \ref{Q22}), employed a 5-point Likert scale \cite{allen:2007:LikertScalesData} ranging from ``strongly agree'' to ``strongly disagree'' and were mandatory. 
+The survey questions mapped to the research questions as follows:
+
 %todo: cite nielsen regarding number of participants
-%todo Felix: describe sample exercise
-
-All survey questions, except for the introductory demographic queries and the five final, voluntary free-text responses (Q18 - Q22), employ a 5-point Likert scale \cite{allen:2007:LikertScalesData} ranging from "strongly agree" to "strongly disagree" and are mandatory.
-The following list shows the mapping from the asked questions and statements to the research questions:
 
 \begin{enumerate}[label=\textbf{RQ\arabic*}]
   \item \textbf{Engagement and Motivation}
