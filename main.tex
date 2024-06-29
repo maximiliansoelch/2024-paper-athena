@@ -541,11 +541,12 @@ The \textit{Task Instructions} direct the LLM to provide non-graded, formative f
 The \textit{File Path and Content} provide the specific file under review along with its content, aiding the LLM in pinpointing specific lines of code for feedback.
 Additionally, \textit{Summary and Diffs} between the template and submission offer additional context, helping the LLM understand the student's changes and their overall approach.
 
-% TODO: Unterscheidungen zu ChatGPT, etc hier anbringen - 1-2 Sätze was didaktisch und anwendungsfall spezischer besser ist
+In contrast to other external AI tools such as ChatGPT, FeedbackSystem is integrated directly into the LMS and has direct access to every relevant context information, providing immediate feedback to students without requiring manual input.
+With FeedbackSystem in place, students do not need to switch between different windows and do not need to copy-paste their solution or the problem statement into other tools. 
+FeedbackSystem is also designed in a way that it provides didactically sensible feedback without giving away the solution, which is crucial for educational purposes.
 
 The structure and content of this prompt are designed to emulate a human tutor's approach, ensuring that the feedback is both relevant and supportive of the student's learning process.
-% todo: better word for meaningful, this is kinda vage
-By providing such detailed instructions and contextual information, the LLM can generate feedback that is both meaningful and actionable for students.
+By providing such detailed instructions and contextual information, the LLM can generate feedback that is both useful and actionable for students.
 
 % Prompt for generating feedback suggestions of programming exercises
 \begin{figure}[!htbp]
@@ -850,7 +851,7 @@ could address these issues, offering more tailored and context-specific guidance
 
 This work aligns with findings from other studies, highlighting the importance of timely and continuous feedback in education.
 Additionally, we believe that direct automated feedback should complement, rather than substitute, traditional human feedback.
-The convenience and accessibility of automated feedback are clear advantages, yet the nuanced insights that human tutors provide remain irreplaceable.
+The convenience and accessibility of automated feedback are clear advantages, yet the nuanced insights that human tutors provide remain irreplaceable, including emotional support and empathy.
 % TODO: Why
 
 As the study is intended as the treatment validation stage for the proposed feedback process and should also provide important insights into the usability of the reference implementation, we assume that the results correctly reflect the tendency despite the rather small sample size. 
