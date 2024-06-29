@@ -414,7 +414,6 @@ Lastly, \citet{yang:2024:HarnessingPowerLLMs} provided a comprehensive guide for
 In summary, the related work collectively highlights the evolving landscape of automated feedback systems and the significant potential of LLMs to enhance educational outcomes through immediate, specific, and actionable feedback.
 The primary contribution with DAFeeD lies in its seamless integration within the LMS, supporting a variety of exercise types.
 By using LLMs, DAFeeD provides individualized formative feedback automatically, with a focus on the feedback delivery process.
-%We are confident that feedback quality will improve through more advanced prompting methods as LLM technology evolves.
 This approach enables students to iteratively improve their solutions and learn continuously without direct intervention from tutors or professors.
 DAFeeD aims to enhance student engagement, learning efficiency, and performance through timely, relevant, and personalized feedback, aligning with and advancing the findings of the reviewed studies.
 
@@ -592,7 +591,7 @@ To meet these requirements and to support feedback generation for multiple exerc
 % - Components could be vertically slightly smaller 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\linewidth]{figures/Athena-Architecture.pdf}
+  \includegraphics[width=0.9\linewidth]{figures/Athena-Architecture.pdf}
   \caption{UML component diagram showing the top-level architecture of the reference implementation.}
   \label{fig:Athena-architecture}
 \end{figure}
@@ -609,8 +608,8 @@ Additionally, the system can be configured to use open-source models like Llama\
 
 To meet performance and scalability requirements, the FeedbackSystem and its modules are deployed within a Kubernetes cluster\footnote{\url{https://kubernetes.io}}.
 Kubernetes, in conjunction with the FeedbackSystem's modular architecture, allows the system to scale each module independently.
-For example, additional instances of the programming module can be instantiated when a new programming exercise is released.
-Furthermore, Kubernetes provides out-of-the-box load balancing and self-healing capabilities, ensuring that if a module crashes, it is automatically restarted.
+For example, additional instances of the programming module can be instantiated when a new programming exercise is released to handle the increased load.
+Furthermore, Kubernetes provides out-of-the-box load balancing to distribute the load between multiple module instances and self-healing capabilities, ensuring that if a module crashes, it gets automatically restarted.
 % TODO MS: It is very important that students have always access to the feedback
 
 \section{Evaluation} % 5 pages
