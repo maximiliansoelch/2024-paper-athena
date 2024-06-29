@@ -498,8 +498,6 @@ Otherwise, the student can refine and resubmit their solution, initiating the DA
 
 This iterative process is designed to motivate students to continuously learn and experiment with their solutions, resulting in improved performance.
 
-%todo: abgrenzen zu ChatGPT, Copilot etc., warum ist es besser für den anwendungsfall? Vllt für jeden Absatz
-
 \section{Reference Implementation: FeedbackSystem} % 2 pages
 \label{sec:reference-implementation}
 
@@ -603,9 +601,7 @@ The \textit{ProgrammingLLM} module manages programming exercises and executes th
 Similarly, the \textit{TextLLM} module is optimized for text exercises and follows the same process.
 
 FeedbackSystem's system design is independent of any specific learning management system (LMS) as it provides a REST API, documented using the OpenAPI standard\footnote{\url{https://www.openapis.org}}.
-This independence allows FeedbackSystem to be integrated with various LMS platforms, such as Moodle\footnote{\url{https://moodle.org}}.
-% Beeing able to integrate FeedbackSystems into different LMSs enables more students to benefit from Athena
-% TODO MS: Highlight why this is cool, integratable into different learning systems allowing more students to benefit from DAFeeD.
+This independence allows FeedbackSystem to be integrated with various LMS platforms, such as Moodle\footnote{\url{https://moodle.org}}, bringing the benefits of DAFeeD to more universities and students.
 
 FeedbackSystem currently connects to OpenAI models hosted in a private Azure cloud to ensure that student data is not used for training models, maintaining privacy.
 Additionally, the system can be configured to use open-source models like Llama\footnote{\url{https://llama.meta.com}} or Mistral\footnote{\url{https://mistral.ai}}, either self-hosted or cloud-based.
@@ -901,9 +897,13 @@ We also aim to extend the implementation to support direct automated feedback fo
 Another crucial step is to test direct automated feedback in a real-world setting by utilizing this feature in an actual course. 
 This will allow us to collect comprehensive data to thoroughly evaluate the impact on student performance and motivation.
 
-% todo: AI guidelines?
-% \section*{Acknowledgments}
-% We used ChatGPT to formulate sections of this paper.
+
+\appendix
+
+\section{Acknowledgments}
+This paper includes sections revised with the help of ChatGPT to enhance clarity and readability.
+We have carefully reviewed all text produced by AI.
+The dataset for the survey discussed in this paper is available on OSF\footnote{\url{https://osf.io/p9szv/?view_only=7d0b9889657244dcaee896070d7c15da}}.
 
 %%
 %% The next two lines define the bibliography style to be used, and
