@@ -533,7 +533,7 @@ An example visualization of the inline feedback interface for a text exercise su
 
 The prompt design is crucial for guiding the LLM in generating effective and contextually relevant feedback.
 The system is configurable, allowing the use of different LLMs and model settings. 
-In Figure \ref{fig:prompt-programming-exercise-generation}, we provide an example of a prompt used for generating feedback for programming exercises. 
+In Listing \ref{lst:prompt-programming-exercise-generation}, we provide an example of a prompt used for generating feedback for programming exercises. 
 This prompt incorporates specific instructions to ensure that the feedback is individualized to the student's submission while not revealing the solution.
 
 The feedback generation process for programming exercises begins by identifying the differences between the student's submission repository and the provided template repository. 
@@ -558,8 +558,8 @@ The structure and content of this prompt are designed to emulate a human tutor's
 By providing such detailed instructions and contextual information, the LLM can generate feedback that is both useful and actionable for students.
 
 % Prompt for generating feedback suggestions of programming exercises
-\begin{figure}[!htbp]
-  \begin{lstlisting}[style=prompt, basicstyle=\footnotesize, columns=fullflexible]
+\noindent\begin{minipage}{\linewidth}
+\begin{lstlisting}[style=prompt, basicstyle=\footnotesize, columns=fullflexible, caption={Prompt template for generating feedback for programming exercises.}, captionpos=b, label=lst:prompt-programming-exercise-generation]
 You are an AI tutor for programming exercises at a prestigious university.
 
 # Problem statement
@@ -588,10 +588,8 @@ Summary of other files in the solution:
 
 The template to submission diff (only as reference):
 %*\highlight{\{template\_to\_submission\_diff\}}*)
-  \end{lstlisting}
-  \caption{Prompt template for generating feedback for programming exercises.}
-  \label{fig:prompt-programming-exercise-generation}
-\end{figure}
+\end{lstlisting}
+\end{minipage}
 
 \subsection{Architecture}
 
@@ -985,10 +983,12 @@ The comparative analysis of FeedbackSystem and human tutor scores highlighted ce
 While over half of the submissions showed only minimal differences between the automated and human evaluations, the remaining inconsistencies suggest that refinements are needed to better align the automated scoring with human judgment.
 % unbedingt reinschreiben mit tutorenevaluation ground truth, aber tutoren auch nicht immer richtig
 Here it is important to note that while tutor assessments are treated as ground truth data in this analysis, but human grading is not infallible.
+The approach presented in this paper primarily supports the concept of formative assessment and is particularly effective when implemented fully automatically, especially in contexts where summative assessment is not the primary focus.
 
 While students found the feedback helpful in understanding their mistakes and improving their assignments, we need to further refine it to enhance its precision and relevance.
-Incorporating more advanced AI techniques, such as Chain-of-Thought \cite{wei:2022:ChainofThoughtPromptingElicits}, ReAct \cite{yao:2023:ReActSynergizingReasoning}, Retrieval-Augmented Generation \cite{gao:2024:RetrievalAugmentedGenerationLarge},
+Incorporating more advanced AI techniques, such as Chain-of-Thought \cite{wei:2022:ChainofThoughtPromptingElicits}, ReAct \cite{yao:2023:ReActSynergizingReasoning}, Retrieval-Augmented Generation (RAG) \cite{gao:2024:RetrievalAugmentedGenerationLarge},
 could address these issues, offering more tailored and context-specific guidance to students.
+Specifically, a RAG approach could enhance FeedbackSystem by retrieving relevant course materials, such as lecture slides, course discussions, and past feedback examples, to provide more contextually accurate and tailored responses that align with the course's learning objectives, offering students clearer explanations and actionable suggestions for improvement.
 
 This work aligns with findings from other studies, highlighting the importance of timely and continuous feedback in education \cite{shute:2008:FocusFormativeFeedback, dawson:2019:WhatMakesEffective}.
 Additionally, we believe that direct automated feedback should complement, rather than substitute, traditional human feedback.
@@ -1000,7 +1000,7 @@ As the study is intended as the treatment validation stage for the proposed feed
 % Possible Problems with AI in education
 We acknowledge that different challenges exist when using AI in education, and we are aware of their potential to negatively influence the learning experience of the diverse student body \cite{kasneci:2023:ChatGPTGoodOpportunitiesa}.
 First, the competent use of AI must be explicitly taught to both educators and students to ensure effective and ethical utilization.
-Addressing the issue of AI hallucinations, a Retrieval-Augmented Generation (RAG) approach can be employed to enhance accuracy \cite{gao:2024:RetrievalAugmentedGenerationLarge}.
+Addressing the issue of AI hallucinations, a RAG approach can be employed to enhance accuracy \cite{gao:2024:RetrievalAugmentedGenerationLarge}.
 To mitigate over-reliance on AI, it is crucial to encourage students to independently solve certain problems, fostering critical thinking and problem-solving skills.
 Bias in AI can be reduced by using models that are designed to minimize prejudices, ensuring fairness in feedback.
 Additionally, privacy and cost concerns can be alleviated by deploying locally trained open-source models, which offer greater control over data and reduce dependency on commercial AI solutions.
