@@ -218,7 +218,7 @@ Timely and individualized feedback is essential for students' learning progress 
 This has resulted in a time-consuming, repetitive, and often manual task for educators, contributing to a high workload.
 
 This paper presents DAFeeD, an LLM-based approach for automated feedback on student submissions across various exercise domains.
-The defined feedback process enables interactive learning by allowing students to submit solutions multiple times and request iterative feedback before deadlines.
+The defined feedback process enables interactive learning by allowing students to submit solutions multiple times and automatically receive iterative LLM feedback on their submission attempts before deadlines.
 By incorporating task details, grading criteria, student solutions, and custom instructions into the prompt, DAFeeD provides clear, personalized, and pedagogically meaningful feedback to support continuous improvement.
 
 To evaluate the feedback process, we implemented it as an open-source reference implementation integrated into the learning platform LP.
@@ -297,11 +297,11 @@ To validate the effectiveness and efficiency of the approach, we first tested it
 With this paper, we want to answer the following research questions about direct automated feedback delivery:
 
 \begin{enumerate}[label=\textbf{RQ\arabic*},ref=RQ\arabic*]
-  \item \label{RQ1} How does the availability of direct automated feedback affect student engagement and motivation? 
+  \item \label{RQ1} How does the availability of DAFeeD affect student engagement and motivation? 
   \item \label{RQ2} Do students feel more comfortable requesting automatic feedback than asking a human educator?
-  \item \label{RQ3} How do students perceive the effectiveness of direct automated feedback?
+  \item \label{RQ3} How do students perceive the effectiveness of DAFeeD?
   \item \label{RQ4} How do students perceive the usability and helpfulness of DAFeeD?
-  \item \label{RQ5} Does the direct automated feedback process improve students' performance?
+  \item \label{RQ5} Does the DAFeeD process improve students' performance?
   \item \label{RQ6} How does DAFeeD's feedback compare against human tutor feedback?
 \end{enumerate}
 
@@ -527,6 +527,9 @@ An example visualization of the inline feedback interface for a text exercise su
   \vspace{-4mm}
 \end{figure}
 
+The inline feedback view for text exercises offers a targeted approach by directly associating feedback items with specific text spans, such as highlighting the second sentence in the example shown.
+The interface also distinguishes between referenced feedback, tied to specific text, and unreferenced feedback, offering general observations.
+
 
 \subsection{Feedback Generation}
 
@@ -746,7 +749,7 @@ Following the initial lab experiment and survey, the second stage of the evaluat
 This stage aimed to assess the system's performance and scalability in a real-world educational setting.
 The deployment allowed for an in-depth investigation of the system's impact on student performance (\ref{RQ5}) and how it compares to human feedback (\ref{RQ6}).
 
-The FeedbackSystem with OpenAI's GPT-4o LLM was enabled for two exercises, a modeling exercise and a text exercise.
+The FeedbackSystem, configured with OpenAI's GPT-4o LLM, was enabled for two exercises, a modeling exercise and a text exercise.
 In the text exercise, students had to explain the difference between the strategy and the bridge design pattern, and could achieve a maximum of 4 points.
 The modeling exercise required students to create a UML class diagram of a car rental system and was worth 7 points. 
 
@@ -787,15 +790,15 @@ Convenience in requesting feedback showed that 100\% of students feel that reque
 
 In terms of understanding mistakes, 90\% of students believed that the direct automated feedback provided by LP helps them understand their mistakes, with 10\% neutral (\ref{Q9}).
 The effectiveness of the feedback was highlighted by 95\% of students who found that the direct automated feedback is more effective than one-time feedback, with 5\% neutral (\ref{Q10}).
-Regarding the quality of assignments, 70\% of students observed that the direct automated feedback has significantly improved the quality of their programming assignments, with 20\% neutral and 10\% disagreeing (\ref{Q11}).
+Regarding the quality of assignments, 70\% of students observed that DAFeeD has significantly improved the quality of their programming assignments, with 20\% neutral and 10\% disagreeing (\ref{Q11}).
 For \ref{Q12}, 95\% of students felt that the direct automated feedback is a helpful addition to the automatic test case results, with 5\% neutral.
 Continuous access to feedback was found to be more beneficial than arranging meetings with a tutor by 75\% of students, with 15\% neutral and 10\% disagreeing (\ref{Q13}).
 
 
 Ease of receiving feedback was highly rated, with 100\% of students confirming that it is easy to receive direct automated feedback on their programming assignments (\ref{Q14}).
-Furthermore, 70\% of students preferred using the direct automated feedback integrated into LP over using an external AI tool for getting feedback, with 25\% neutral and 5\% disagreeing (\ref{Q15}).
+Furthermore, 70\% of students preferred using DAFeeD integrated into LP over using an external AI tool for getting feedback, with 25\% neutral and 5\% disagreeing (\ref{Q15}).
 In terms of skill improvement, 70\% of students agreed that they find the direct automated feedback helpful in improving their programming skills, with 25\% neutral and 5\% disagreeing (\ref{Q16}).
-Lastly, 80\% of students were satisfied with the overall performance of the direct automated feedback system, with 10\% neutral and 10\% disagreeing (\ref{Q17}).
+Lastly, 80\% of students were satisfied with the overall performance of DAFeeD, with 10\% neutral and 10\% disagreeing (\ref{Q17}).
 
 
 % free text responses
@@ -929,7 +932,7 @@ The responses to \ref{RQ4} demonstrate the ease of receiving feedback and overal
 Students found it easy to receive feedback on their programming assignments.
 A large number of participants preferred using the feedback integrated into LP than copy their submission and relevant context information over to an external AI tool. 
 Most participants also deemed the feedback helpful in improving their programming skills. 
-In regard to the overall performance of the direct automated feedback, the majority of students expressed high satisfaction with the system.
+In regard to the overall performance of DAFeeD, the majority of students expressed high satisfaction with the system.
 %These findings underscore the high level of user satisfaction and the perceived effectiveness of Artemis' automated feedback in enhancing programming skills.
 %TODO: free text answers including improvements
 
@@ -969,7 +972,7 @@ Similar to manual assessment by human tutors, clear and course-specific grading 
 
 \subsection{Discussion}
 
-Overall, students received the direct automated feedback system FeedbackSystem integrated into LP positively, indicating its effectiveness in enhancing their skills.
+Overall, students received DAFeeD's reference implementation FeedbackSystem integrated into LP positively, indicating its effectiveness in enhancing their skills.
 The high levels of engagement, motivation, and satisfaction reported by the students underscore the system's potential to significantly improve the learning experience.
 The iterative submission process, supported by automated feedback, allowed students to refine their work progressively, leading to measurable improvements in their performance across multiple submission attempts.
 
@@ -1005,7 +1008,7 @@ Bias in AI can be reduced by using models that are designed to minimize prejudic
 Additionally, privacy and cost concerns can be alleviated by deploying locally trained open-source models, which offer greater control over data and reduce dependency on commercial AI solutions.
 These measures collectively promote a balanced and responsible integration of AI in the educational process.
 
-In conclusion, the direct automated feedback system shows significant potential in improving programming education.
+In conclusion, DAFeeD shows significant potential in improving computing education.
 By addressing the areas identified for improvement and continuing to refine the system, we can harness the full benefits of automated feedback to support and enhance student learning
 
 
@@ -1036,7 +1039,8 @@ The use of a specific sample exercise to evaluate the automated feedback process
 \label{sec:conclusion}
 
 % todo: summarize the contributions and outcome
-The main contributions of this paper are the introduction of DAFeeD, a direct automated feedback delivery system, and the reference implementation FeedbackSystem, which integrates DAFeeD into the learning platform LP.
+The main contributions of this paper include the introduction of DAFeeD, a direct automated feedback delivery system, and the development of its reference implementation, FeedbackSystem, which integrates DAFeeD into the learning platform LP.
+In addition, we conducted a comprehensive evaluation to demonstrate the system's effectiveness in improving student performance and engagement through iterative feedback.
 DAFeeD enables the interactive learning process by providing students with immediate, context-specific feedback on their submissions.
 The implementation of DAFeeD demonstrates the feasibility and advantages of incorporating automated feedback systems into computing education. 
 For educators, this can alleviate the heavy workload associated with providing individualized feedback, allowing them to focus more on instructional design and student support.
@@ -1046,8 +1050,7 @@ For students, the evaluation of DAFeeD showed that they perceive the automated f
 % 
 Future work includes enhancing the visualization of feedback by grouping and color-coding feedback items to differentiate between critical feedback, suggestions for improvement, and positive comments. 
 A priority will be further improving the quality of the feedback provided.
-We also aim to extend the implementation to support a wider range of exercise types. 
-Integrating direct automated feedback into actual courses and empirically evaluating its effects on learning experience, performance, and motivation is another crucial step.
+Integrating direct automated feedback into other courses and universities, and empirically evaluating its effects on learning experience, performance, and motivation is another crucial step.
 Further, we plan to consider potential issues with AI in education, such as over-reliance and ethical implications in the learning process.
 
 
