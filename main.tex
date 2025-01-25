@@ -406,6 +406,16 @@ Their findings indicate significant improvements in student engagement and codin
 \citeauthor{woodrow:2024:AITeachesArt} conducted a randomized control trial with over 8,000 students, demonstrating that real-time feedback was five times more likely to be viewed and incorporated by students compared to delayed feedback.
 This supports the approach with DAFeeD, emphasizing the importance of immediate, individualized feedback in enhancing student learning outcomes.
 
+% UML Modeling
+Besides programming exercises, recent studies have explored using LLMs to provide automated feedback in UML modeling education.
+\citet{ardimento:2024:TeachingUMLUsinga} introduced a cloud-based tool that utilizes Retrieval-Augmented Generation (RAG) to analyze UML diagrams and offer contextually relevant suggestions.
+An evaluation with 5,120 labeled UML models demonstrated its effectiveness in helping students identify and correct common errors, enhancing their understanding of UML concepts.
+A follow-up study further improved error detection and provided real-time, constructive feedback, with user feedback highlighting the tool's potential to enhance software modeling education \cite{ardimento:2024:RAGbasedFeedbackTool}.
+
+Similarly, \citet{camara:2023:AssessmentGenerativeAI} examined generative AI tools, such as ChatGPT, for formative assessment in UML modeling tasks.
+Their findings show that AI-assisted feedback helps students track their progress and improve performance compared to traditional methods.
+However, the study also emphasizes the importance of educating students on AI limitations to prevent over-reliance on automated feedback.
+
 A broader perspective on the capabilities and challenges of LLMs is provided by \citet{wei:2022:EmergentAbilitiesLarge}, who discussed the emergent abilities of LLMs that are not present in smaller models, highlighting the need for ongoing research to harness these capabilities effectively.
 \citet{huang:2023:SurveyHallucinationLargeb} addressed the issue of hallucinations in LLMs, offering an in-depth overview of detection methods and mitigation strategies crucial for developing reliable feedback systems.
 \citet{amatriain:2024:PromptDesignEngineering} detailed core concepts and advanced techniques in prompt engineering, such as Chain-of-Thought and Reflection, which can enhance the quality and relevance of automated feedback.
@@ -594,6 +604,7 @@ Summary of other files in the solution:
 The template to submission diff (only as reference):
 %*\highlight{\{template\_to\_submission\_diff\}}*)
 \end{lstlisting}
+\vspace{-5mm}
 % \end{minipage}
 
 \subsection{Architecture}
@@ -605,10 +616,12 @@ To meet these requirements and to support feedback generation for multiple exerc
 % Felix:
 % - Components could be vertically slightly smaller 
 \begin{figure}[htbp]
+  \vspace{-4mm}
   \centering
   \includegraphics[width=\linewidth]{figures/Athena-Architecture.pdf}
   \caption{UML component diagram showing the top-level architecture of the reference implementation.}
   \label{fig:Athena-architecture}
+  \vspace{-4mm}
 \end{figure}
 
 The \textit{Module Manager} handles all incoming requests, verifies authorization, and forwards them to the appropriate modules.
@@ -632,7 +645,8 @@ Furthermore, Kubernetes provides out-of-the-box load balancing to distribute the
 
 In this section, we outline the methodology employed to validate the effectiveness of the proposed DAFeeD approach including the reference implementation FeedbackSystem.
 The conducted evaluation represents the treatment validation phase of the design science methodology proposed by Wieringa \cite{wieringa:2014:DesignScienceMethodologya}.
-In this phase, the proposed solution — DAFeeD — is first evaluated in a controlled environment followed by a field study, and the collected data is utilized for the refinement and improvement of the solution.
+For this phase, we first evaluated the proposed solution — DAFeeD — in a controlled environment followed by a field study.
+The collected data is then utilized for the refinement and improvement of the solution.
 
 We begin by describing the study design and the results.
 Subsequently, we outline the limitations of the evaluation and discuss the implications of the findings.
@@ -774,6 +788,7 @@ The answers to each of the Likert scale questions are visualized in Figure \ref{
   \resizebox{\linewidth}{!}{
     \input{figures/likert_responses-adapted.pgf}
   }
+  \vspace{-6mm}
   \caption{Distribution of survey responses to Likert scale questions.}
   \label{fig:Survey-Results}
 \end{figure}
@@ -818,33 +833,38 @@ For stage two we first analyzed the distribution of scores across submission att
 Since students were not obliged to request automatic feedback, the sample sizes differ across submission attempts.
 The results indicate an overall improvement in scores with subsequent submission attempts.
 
-In the modeling exercise, the average scores increased steadily across multiple submission attempts.
-The initial average score was 44\% in the first attempt, rising to 61\% by the sixth attempt.
-However, a slight decline was observed in the seventh attempt, where the score dropped to 59\%.
-The scores then showed a peak of 65\% in the ninth attempt.
-After this peak, the scores declined down to 57\% in the eleventh attempt.
-
-For the text exercise, the average scores exhibited a more consistent upward trajectory.
-The initial average score of 64\% in the first attempt increased significantly to 82\% by the second attempt and further improved to 88\% by the third attempt.
-Despite a minor decline to 80\% in the fourth attempt, subsequent submissions saw an upward trend from 83\% in the fifth to 100\% in the sixth attempt.
-
 \begin{figure}[htbp]
+  \vspace{-3mm}
   \centering
   \begin{subfigure}{0.40\textwidth}
     \centering
     \includegraphics[width=\linewidth]{figures/distribution-submission-attempts-modeling.pdf}
+    \vspace{-6mm}
     \caption{Score distribution for the modeling exercise.}
     \label{fig:distribution-submission-attempts-modeling}
   \end{subfigure}
   \begin{subfigure}{0.40\textwidth}
     \centering
     \includegraphics[width=\linewidth]{figures/distribution-submission-attempts-text.pdf}
+    \vspace{-6mm}
     \caption{Score distribution for the text exercise.}
     \label{fig:distribution-submission-attempts-text}
   \end{subfigure}
+  \vspace{-2mm}
   \caption{Distribution of FeedbackSystem's scores across submission attempts.}
   \label{fig:score-distribution-by-submission-attempt}
+  \vspace{-3mm}
 \end{figure}
+
+In the modeling exercise (Figure \ref{fig:distribution-submission-attempts-modeling}), the average scores increased steadily across multiple submission attempts.
+The initial average score was 44\% in the first attempt, rising to 61\% by the sixth attempt.
+However, a slight decline was observed in the seventh attempt, where the score dropped to 59\%.
+The scores then showed a peak of 65\% in the ninth attempt.
+After this peak, the scores declined down to 57\% in the eleventh attempt.
+
+For the text exercise (Figure \ref{fig:distribution-submission-attempts-text}), the average scores exhibited a more consistent upward trajectory.
+The initial average score of 64\% in the first attempt increased significantly to 82\% by the second attempt and further improved to 88\% by the third attempt.
+Despite a minor decline to 80\% in the fourth attempt, subsequent submissions saw an upward trend from 83\% in the fifth to 100\% in the sixth attempt.
 
 
 We analyzed the score differences between the FeedbackSystem and human tutors for both exercises, as illustrated in Figure \ref{fig:score-differences}.
@@ -859,15 +879,18 @@ To facilitate the visualization of a 1-point score deviation, the data was group
   \begin{subfigure}{0.40\textwidth}
     \centering
     \includegraphics[width=\linewidth]{figures/score-difference-modeling.pdf}
+    \vspace{-6mm}
     \caption{Score differences for the modeling exercise.}
     \label{fig:score-differences-modeling}
   \end{subfigure}
   \begin{subfigure}{0.40\textwidth}
     \centering
     \includegraphics[width=\linewidth]{figures/score-difference-text.pdf}
+    \vspace{-6mm}
     \caption{Score differences for the text exercise.}
     \label{fig:score-differences-text}
   \end{subfigure}
+  \vspace{-2mm}
   \caption{Distribution of score differences between the FeedbackSystem and a human tutor. Negative values indicate a lower score from the tutor.}
   \label{fig:score-differences}
 \end{figure}
@@ -909,7 +932,7 @@ Requesting automated feedback was perceived as less intimidating for most of the
 These findings highlight the effectiveness of automated feedback in providing a more comfortable and accessible feedback mechanism for students.
 
 \findingsbox{%
-	\textbf{Main Findings for RQ1:} Students feel more comfortable requesting automated feedback than from human. 
+	\textbf{Main Findings for RQ1:} Students feel more comfortable requesting automated feedback than human feedback. 
   They are likely to request automated feedback more frequently and find it less intimidating and more convenient than arranging meetings with a human tutor.
 }%
 \vspace{8pt}%
@@ -977,7 +1000,7 @@ Overall, students received DAFeeD's reference implementation FeedbackSystem inte
 The iterative submission process, supported by automated feedback, allowed students to refine their work progressively, leading to measurable improvements in their performance across multiple submission attempts.
 
 The findings validate the role of automated feedback in fostering an interactive learning environment.
-Students reported increased engagement and motivation, as well as a greater willingness to experiment with their solutions.
+Students reported feeling more comfortable requesting automated feedback than human feedback, highlighting the system's convenience and accessibility.
 This interactive aspect of learning, facilitated by timely and continuous feedback, helps students develop critical problem-solving skills and deepen their understanding of programming concepts.
 
 Despite the overall positive reception, there is room for improving the quality of the feedback provided.
@@ -988,7 +1011,7 @@ Here it is important to note that while tutor assessments are treated as ground 
 The approach presented in this paper primarily supports the concept of formative assessment and is particularly effective when implemented fully automatically, especially in contexts where summative assessment is not the primary focus.
 
 While students found the feedback helpful in understanding their mistakes and improving their assignments, we need to further refine it to enhance its precision and relevance.
-Incorporating more advanced AI techniques, such as Chain-of-Thought \cite{wei:2022:ChainofThoughtPromptingElicits}, ReAct \cite{yao:2023:ReActSynergizingReasoning}, Retrieval-Augmented Generation (RAG) \cite{gao:2024:RetrievalAugmentedGenerationLarge},
+Incorporating more advanced AI techniques, such as Chain-of-Thought \cite{wei:2022:ChainofThoughtPromptingElicits}, ReAct \cite{yao:2023:ReActSynergizingReasoning}, Retrieval-Augmented Generation (RAG) \cite{gao:2024:RetrievalAugmentedGenerationLarge,ardimento:2024:TeachingUMLUsinga},
 could address these issues, offering more tailored and context-specific guidance to students.
 Specifically, a RAG approach could enhance FeedbackSystem by retrieving relevant course materials, such as lecture slides, course discussions, and past feedback examples, to provide more contextually accurate and tailored responses that align with the course's learning objectives, offering students clearer explanations and actionable suggestions for improvement.
 
